@@ -4,16 +4,96 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
-    <meta name="description" content="">
+    <meta name="description" content="Special Ingredient Bass Mixes">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title></title>
+    <title>Special Ingredient Bass Mixes</title>
 
-    <link rel="stylesheet" href="https://fonts.googleapis.com/fonts">
-    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="style.css">
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.3.2/jquery.js"></script>
+    <script type="text/javascript">
+        // var myLink = document.getElementsByTagName('iframe');
+
+
+
+        // function setLink() {
+        //     for (var e of myLink) {
+        //         const existingSrc = e.getAttribute("src")
+        //         const fullVisual = window.innerWidth > 800
+        //         console.log(existingSrc)
+        //         const newSrc = existingSrc.includes("&visual") ? existingSrc.replace(/\&visual=(true|false)/, `&visual=${fullVisual}`) : (existingSrc + `&visual=${fullVisual}`)
+        //         if (existingSrc !== newSrc) {
+        //             e.setAttribute('src', newSrc);
+        //         }
+        //     }
+        // }
+
+        // setLink();
+
+        // window.addEventListener('resize', setLink);
+    </script>
+    <script src="https://connect.soundcloud.com/sdk/sdk-3.3.2.js"></script>
+    <script>
+        function init() {
+            SC.initialize({
+                client_id: 'DgFeY88vapbGCcK7RrT2E33nmNQVWX82',
+                // redirect_uri: 'https://google.com'
+            });
+
+            const linksToTransform = document.getElementsByClassName("transform-to-sc-item")
+
+            Array.from(linksToTransform).forEach((el) => {
+                const link = el.getAttribute("href")
+                SC.oEmbed(link, { auto_play: false }).then(function (oEmbed) {
+                    console.log(oEmbed)
+                    const titleStr = oEmbed.title.replace(' by Special Ingredient', '')
+
+                    const soundcloudItemDiv = document.createElement("div");
+                    soundcloudItemDiv.classList.add("sc-item")
+
+                    const art = document.createElement('img');
+                    art.src = oEmbed.thumbnail_url;
+                    art.alt = titleStr
+                    soundcloudItemDiv.appendChild(art);
+
+                    const title = document.createElement("span");
+                    title.appendChild(document.createTextNode(titleStr));
+                    title.classList.add("sc-item-title")
+                    soundcloudItemDiv.appendChild(title);
+
+                    el.replaceWith(soundcloudItemDiv)
+                });
+            })
+        }
+
+        window.onload = init
+    </script>
+
 </head>
 
 <body>
-   <iframe width="100%" height="300" scrolling="no" frameborder="no" allow="autoplay" src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/1518019441&color=%23ff5500&auto_play=false&hide_related=false&show_comments=true&show_user=true&show_reposts=false&show_teaser=true&visual=true"></iframe><div style="font-size: 10px; color: #cccccc;line-break: anywhere;word-break: normal;overflow: hidden;white-space: nowrap;text-overflow: ellipsis; font-family: Interstate,Lucida Grande,Lucida Sans Unicode,Lucida Sans,Garuda,Verdana,Tahoma,sans-serif;font-weight: 100;"><a href="https://soundcloud.com/special-ingredient" title="Special Ingredient" target="_blank" style="color: #cccccc; text-decoration: none;">Special Ingredient</a> · <a href="https://soundcloud.com/special-ingredient/sub-sauce-vol-1-og-wonky-riddim-w-tracklist" title="Sub Sauce Vol. 1 (OG Wonky Riddim) [w TRACKLIST]" target="_blank" style="color: #cccccc; text-decoration: none;">Sub Sauce Vol. 1 (OG Wonky Riddim) [w TRACKLIST]</a></div>
+    <h1>Special Ingredient Website WIP</h1>
+    <h2>Bass mixes from the forest</h2>
+    <div class="playlist-grid">
+        <div class="playlist-block">
+            <iframe width="100%" height="166" scrolling="no" frameborder="no" allow="autoplay"
+                src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/1518019441&color=%23ff5500&auto_play=false&hide_related=false&show_comments=true&show_user=true&show_reposts=false&show_teaser=true&visual=true"></iframe>
+        </div>
+        <div class="playlist-block">
+            <iframe width="100%" height="166" scrolling="no" frameborder="no" allow="autoplay"
+                src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/1367095810&color=%23ff5500&auto_play=false&hide_related=false&show_comments=true&show_user=true&show_reposts=false&show_teaser=true&visual=true"></iframe>
+        </div>
+        <div class="playlist-block">
+            <a href="https://soundcloud.com/special-ingredient/sets/mashups-flips">
+                <h3>Mashups / Flips</h3>
+            </a>
+            <a class="transform-to-sc-item"
+                href="https://soundcloud.com/special-ingredient/akon-love-right-now-na-na-na-x-nit-grit-mashup"></a>
+            <a class="transform-to-sc-item"
+                href="https://soundcloud.com/special-ingredient/meduso-a-moment-vip-x-baby-bash-cyclone"></a>
+            <a class="transform-to-sc-item"
+                href="https://soundcloud.com/special-ingredient/meduso-a-moment-vip-x-baby-bash-cyclone"></a>
+        </div>
+    </div>
 </body>
 
 </html>
