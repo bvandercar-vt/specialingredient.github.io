@@ -31,9 +31,10 @@
                 SC.oEmbed(el.getAttribute("href"), { auto_play: false, maxheight: 150 }).then((
                     /**
                      * @type { { 
-                     *      title: string, 
-                     *      thumbnail_url: string, 
+                     *      title: string
+                     *      thumbnail_url: string
                      *      html: string 
+                     *      description: string
                      * } } 
                      */
                     oEmbed) => {
@@ -45,9 +46,9 @@
                     /** @type {HTMLIframeElement} */
                     const iframeElement = htmlToElement(oEmbed.html)
                     iframeElement.title = titleStr
+                    iframeElement.src += "&hide_related=false&show_user=false&show_reposts=true&visual=false"
 
                     el.replaceWith(iframeElement)
-
 
                 });
             })

@@ -15,10 +15,6 @@ h3 {
     text-align: center;
 }
 
-a h3:hover {
-    box-shadow: 0 0 10px 2px cyan;
-    transition: 0.2s;
-}
 
 .playlist-grid {
     display: grid;
@@ -27,19 +23,28 @@ a h3:hover {
 }
 
 .playlist-block {
+    /* border */
     border-style: solid;
     border-width: 0px;
     border-radius: 20px;
     border-color: red;
+    box-shadow: 0 0 10px 2px red;
+
+    /* layout */
     display: inline-block;
     justify-content: center;
     align-items: center;
     padding: 10px;
-    box-shadow: 0 0 10px 2px red;
 }
 
 .playlist-block h3 {
     border-radius: 20px;
+    margin: 10px;
+}
+
+.playlist-block a h3:hover {
+    box-shadow: 0 0 10px 2px cyan;
+    transition: 0.2s;
 }
 
 .playlist-block iframe {
