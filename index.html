@@ -20,9 +20,17 @@
         }
 
         function init() {
+            // All anchors
+            const allAnchors = document.getElementsByTagName("a")
+            Array.from(allAnchors).forEach((el) => {
+                // Open in new tab
+                el.target = "_blank"
+                el.rel = "noreferrer noopener"
+            })
+
+            // Soundcloud stuff
             SC.initialize({
-                client_id: 'DgFeY88vapbGCcK7RrT2E33nmNQVWX82',
-                // redirect_uri: 'https://google.com'
+                client_id: 'DgFeY88vapbGCcK7RrT2E33nmNQVWX82'
             });
 
             const linksToTransform = document.getElementsByClassName("transform-to-sc-item")
@@ -48,7 +56,17 @@
                     iframeElement.title = titleStr
                     iframeElement.src += "&hide_related=false&show_user=false&show_reposts=true&visual=false"
 
-                    el.replaceWith(iframeElement)
+                    const iframeWrapper = document.createElement("div")
+                    iframeWrapper.classList = "iframe-wrapper"
+                    iframeWrapper.appendChild(iframeElement)
+
+                    // const coverElement = document.createElement("span")
+                    // coverElement.appendChild(document.createTextNode(oEmbed.description))
+                    // coverElement.classList = "tooltip-text"
+                    // iframeWrapper.appendChild(coverElement)
+
+
+                    el.replaceWith(iframeWrapper)
 
                 });
             })

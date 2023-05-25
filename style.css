@@ -1,20 +1,43 @@
 body {
     background-color: black;
     color: white;
+    font-family: tahoma;
 }
 
 h1 {
     text-align: center;
+    font-size: 3em;
 }
 
 h2 {
     text-align: center;
+    font-size: 2em;
 }
 
 h3 {
     text-align: center;
+    font-size: 2em;
 }
 
+a {
+    text-decoration: none;
+}
+
+a:link,
+a:visited {
+    color: inherit;
+}
+
+a:hover {
+    /* color: grey; */
+    text-shadow: 0 0 3px white,
+        0 0 5px deeppink,
+        0 0 10px deeppink,
+        0 0 15px deeppink,
+        0 0 20px deeppink,
+        0 0 30px deeppink,
+        0 0 50px deeppink
+}
 
 .playlist-grid {
     display: grid;
@@ -34,25 +57,30 @@ h3 {
     display: inline-block;
     justify-content: center;
     align-items: center;
-    padding: 10px;
 }
 
 .playlist-block h3 {
     border-radius: 20px;
+    padding: 0.5em;
     margin: 10px;
+    background-color: blue;
 }
 
 .playlist-block a h3:hover {
-    box-shadow: 0 0 10px 2px cyan;
+    box-shadow: 0 0 10px 2px deeppink;
     transition: 0.2s;
 }
 
-.playlist-block iframe {
+.playlist-block .iframe-wrapper {
+    margin: 10px;
+}
+
+.playlist-block .iframe-wrapper iframe {
     border-radius: 20px;
     width: 100%;
 }
 
-.playlist-block iframe:hover {
+.playlist-block .iframe-wrapper iframe:hover {
     box-shadow: 0 0 10px 2px cyan;
     transition: 0.2s;
 }
