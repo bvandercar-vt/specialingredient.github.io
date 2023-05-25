@@ -33,10 +33,14 @@ h3 {
     box-shadow: 0 0 10px 2px red;
 }
 
-
 .playlist-block iframe {
     border-radius: 20px;
     width: 100%;
+}
+
+.playlist-block iframe:hover {
+    box-shadow: 0 0 10px 2px cyan;
+    transition: 0.2s;
 }
 
 .sc-item {
