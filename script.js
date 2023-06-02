@@ -89,33 +89,41 @@ function init() {
         return element.scrollTop > (element.scrollHeight - element.offsetHeight - offset)
     }
 
-    function showHideArrowsOnScroll(event) {
-        /** @type {HTMLDivElement} */
-        const scrollableDiv = event.target
-        /** @type {HTMLDivElement} */
-        const upArrow = scrollableDiv.getElementsByClassName("scroll-arrow-up")[0]
-        /** @type {HTMLDivElement} */
-        const downArrow = scrollableDiv.getElementsByClassName("scroll-arrow-down")[0]
 
-        upArrow.style.display = isScrolledToTop(scrollableDiv, 50) ? "none" : "inherit"
-        downArrow.style.display = isScrolledToBottom(scrollableDiv, 50) ? "none" : "inherit"
-    }
 
     const scrolls = document.getElementsByClassName("scroll")
 
     Array.from(scrolls).forEach((el) => {
+        const ARROW_BTN_CLICK_SCROLL_DIST = 150
+
         const upDiv = document.createElement("div")
         upDiv.classList = "material-symbols-outlined scroll-arrow scroll-arrow-up"
         upDiv.appendChild(document.createTextNode("arrow_drop_up"))
+        upDiv.onclick = function () {
+            el.scrollTo({ top: el.scrollTop - ARROW_BTN_CLICK_SCROLL_DIST, behavior: 'smooth' })
+        }
 
         const downDiv = document.createElement("div")
         downDiv.classList = "material-symbols-outlined scroll-arrow scroll-arrow-down"
         downDiv.appendChild(document.createTextNode("arrow_drop_down"))
+        downDiv.onclick = function () {
+            el.scrollTo({ top: el.scrollTop + ARROW_BTN_CLICK_SCROLL_DIST, behavior: 'smooth' })
+        }
 
         el.insertBefore(upDiv, el.firstChild);
         el.appendChild(downDiv);
 
-        el.addEventListener("scroll", showHideArrowsOnScroll);
+        el.addEventListener("scroll", function (event) {
+            /** @type {HTMLDivElement} */
+            const scrollableDiv = event.target
+            /** @type {HTMLDivElement} */
+            const upArrow = scrollableDiv.getElementsByClassName("scroll-arrow-up")[0]
+            /** @type {HTMLDivElement} */
+            const downArrow = scrollableDiv.getElementsByClassName("scroll-arrow-down")[0]
+
+            upArrow.style.display = isScrolledToTop(scrollableDiv, 50) ? "none" : "inherit"
+            downArrow.style.display = isScrolledToBottom(scrollableDiv, 50) ? "none" : "inherit"
+        });
     })
 }
 
