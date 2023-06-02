@@ -31,7 +31,7 @@ header #header-title-img {
     display: block;
     margin-left: auto;
     margin-right: auto;
-    width: 500px;
+    height: 200px;
 
     --header-title-img-glow-color: orangered;
     --header-title-img-glow: drop-shadow(0 0 10px var(--header-title-img-glow-color)) drop-shadow(0 0 20px var(--header-title-img-glow-color)) drop-shadow(0 0 50px var(--header-title-img-glow-color)) drop-shadow(0 0 100px darkcyan);
