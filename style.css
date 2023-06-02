@@ -1,3 +1,7 @@
+:root {
+    --border-radius: 20px;
+}
+
 body {
     background-color: black;
     color: white;
@@ -24,13 +28,14 @@ a:visited {
 }
 
 a:hover {
+    --hover-color: deeppink;
     text-shadow: 0 0 3px white,
-        0 0 5px deeppink,
-        0 0 10px deeppink,
-        0 0 15px deeppink,
-        0 0 20px deeppink,
-        0 0 30px deeppink,
-        0 0 50px deeppink
+        0 0 5px var(--hover-color),
+        0 0 10px var(--hover-color),
+        0 0 15px var(--hover-color),
+        0 0 20px var(--hover-color),
+        0 0 30px var(--hover-color),
+        0 0 50px var(--hover-color)
 }
 
 header>div {
@@ -46,22 +51,23 @@ header>div {
 }
 
 .playlist-block {
-    /* border */
-    border-style: solid;
-    border-width: 0px;
-    border-radius: 20px;
-    border-color: red;
-    box-shadow: 0 0 10px 2px red;
-
     /* layout */
     display: inline-block;
     justify-content: center;
     align-items: center;
+
+    /* border */
+    --border-color: red;
+    border-style: solid;
+    border-width: 0px;
+    border-radius: var(--border-radius);
+    border-color: var(--border-color);
+    box-shadow: 0 0 10px 2px var(--border-color);
 }
 
 
 .playlist-block h2 {
-    border-radius: 20px;
+    border-radius: var(--border-radius);
     padding: 0.5em;
     margin: 10px;
     background-color: maroon;
@@ -82,16 +88,7 @@ header>div {
     transition: 0.2s;
 }
 
-.playlist-block .track-wrapper:hover>.track-title {
-    text-shadow:
-        0 0 5px cyan,
-        0 0 10px cyan,
-        0 0 15px cyan,
-        0 0 20px cyan,
-        0 0 30px cyan,
-        0 0 50px cyan;
-    transition: 0.2s;
-}
+
 
 .track-title {
     font-size: 1.25em;
@@ -111,29 +108,28 @@ header>div {
     color: grey
 }
 
-.playlist-block .track-wrapper iframe {
-    border-radius: 20px;
+.track-wrapper iframe {
     width: 100%;
+    border-radius: var(--border-radius);
 }
 
-.no-track-descriptions .track-genre-description {
-    display: none;
-    visibility: hidden;
-}
-
+.no-track-descriptions .track-genre-description,
 .no-track-descriptions .track-addl-description {
     display: none;
     visibility: hidden;
 }
 
 .privacy-policy-cover {
-    background-color: orangered;
-    border-bottom-left-radius: 20px;
-    border-top-right-radius: 20px;
+    /* position */
     position: absolute;
     height: 1.25em;
     width: 100px;
-    left: 0;
+    left: 0px;
     bottom: 2px;
-    z-index: 10;
+    z-index: 1;
+
+    /* style */
+    background-color: orangered;
+    border-bottom-left-radius: var(--border-radius);
+    border-top-right-radius: var(--border-radius);
 }
