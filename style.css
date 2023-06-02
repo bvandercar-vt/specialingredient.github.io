@@ -56,7 +56,7 @@ header #header-subtitle {
         0 0 50px var(--hover-color-text);
 }
 
-.playlist-grid {
+#playlist-grid {
     --min-column-width: 400px;
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(var(--min-column-width), 1fr));
