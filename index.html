@@ -51,9 +51,10 @@
                     const trackWrapper = document.createElement("div")
                     trackWrapper.classList = "track-wrapper"
 
-                    const titleStr = oEmbed.title.replaceAll(' by Special Ingredient', '')
-                        .replaceAll('[w TRACKLIST]', '')
-                        .replaceAll('[MASHUP]', '')
+                    const titleStr = el.getAttribute("data-title") ? el.getAttribute("data-title") :
+                        oEmbed.title.replaceAll(' by Special Ingredient', '')
+                            .replaceAll('[w TRACKLIST]', '')
+                            .replaceAll('[MASHUP]', '')
                     const titleElement = document.createElement("p")
                     titleElement.classList = "track-title"
                     titleElement.appendChild(document.createTextNode(titleStr))
@@ -61,7 +62,6 @@
 
                     const genreDescription = el.getAttribute("data-genre-desc")
                     if (genreDescription) {
-                        console.log(titleStr)
                         const genreDescriptionElement = document.createElement("p")
                         genreDescriptionElement.classList = "track-genre-description"
                         genreDescriptionElement.appendChild(document.createTextNode(genreDescription))
@@ -70,7 +70,6 @@
 
                     const addlDescription = el.getAttribute("data-addl-desc") ? el.getAttribute("data-addl-desc") : oEmbed.description
                     if (addlDescription) {
-                        console.log("b")
                         const addlDescriptionElement = document.createElement("p")
                         addlDescriptionElement.classList = "track-addl-description"
                         addlDescriptionElement.appendChild(document.createTextNode(addlDescription))
@@ -132,12 +131,13 @@
             </a>
             <a class="transform-to-sc-item"
                 data-sc-link="https://soundcloud.com/special-ingredient/subwoofer-sauce-vol-1"
-                data-genre-desc="OG Deeper Late Night Wonky Riddim"
+                data-title="Subwoofer Sauce Vol. 1" data-genre-desc="OG Deeper Late Night Wonky Riddim"
                 data-addl-desc="I'm super picky about riddim, so if you're not a fan yet maybe I can bring you to the dark side 😉 Lotta wild sounds bouncing around the 3D space in this one, headphones recommended!">
 
             </a>
             <a class="transform-to-sc-item"
                 data-sc-link="https://soundcloud.com/special-ingredient/aged-cheddar-mix-vol-1"
+                data-title="Aged Cheddar Vol. 1"
                 data-genre-desc="(Early 2010s Wompy Dubstep— Liquid Stranger, Bar9, etc.)"
                 data-addl-desc="For this mix, I mainly wanted to capture all my favorite tracks of Liquid Stranger's 2010 album Mechanoid Meltdown, a style that I think is completely unique and unmatched to this day, and fill in with my favorite bangers of the era/sound.">
             </a>
@@ -149,7 +149,7 @@
             </a>
             <a class="transform-to-sc-item"
                 data-sc-link="https://soundcloud.com/special-ingredient/bass-kitchen-mix-rage-dubstep-mix-briddim-riddim"
-                data-genre-desc="Briddim, Riddim, Heavy Dubstep"
+                data-title="Bass Kitchen Vol. 1" data-genre-desc="Briddim, Riddim, Heavy Dubstep"
                 data-addl-desc="Wanted to make a heavy mix of newer-style, briddim-type dubstep, while also journeying into some deeper genres at times."></a>
         </div>
         <div class="playlist-block no-track-descriptions">
