@@ -57,8 +57,9 @@ header #header-subtitle {
 }
 
 .playlist-grid {
+    --min-column-width: 400px;
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(50px, 600px));
+    grid-template-columns: repeat(auto-fit, minmax(var(--min-column-width), 1fr));
     grid-gap: 20px;
 }
 
