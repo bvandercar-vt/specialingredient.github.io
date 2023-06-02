@@ -98,6 +98,7 @@ header #header-subtitle {
 }
 
 .playlist-block .scroll {
+    position: relative;
     overflow-y: scroll;
     max-height: 800px;
 }
@@ -125,6 +126,35 @@ header #header-subtitle {
         0 0 30px var(--hover-color-text),
         0 0 50px var(--hover-color-text);
     transition: 0.2s;
+}
+
+.scroll-arrow {
+    /* Position */
+    margin: auto;
+    position: sticky;
+    left: 0;
+    right: 0;
+    z-index: 1;
+
+    /* Style */
+    width: 100px;
+    height: 30px;
+    background-color: darkslateblue;
+    opacity: 0.8;
+    border-radius: 10px;
+    text-align: center;
+    font-size: 3em;
+    cursor: pointer;
+}
+
+.scroll-arrow-up {
+    top: 5px;
+    display: none;
+}
+
+.scroll-arrow-down {
+    bottom: 5px;
+    display: inherit;
 }
 
 .playlist-block .track-wrapper {

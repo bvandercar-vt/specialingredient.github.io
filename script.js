@@ -76,15 +76,46 @@ function init() {
             trackWrapper.appendChild(privacyPolicyCoverElement)
 
 
-            // const coverElement = document.createElement("span")
-            // coverElement.appendChild(document.createTextNode(oEmbed.description))
-            // coverElement.classList = "tooltip-text"
-            // trackWrapper.appendChild(coverElement)
-
-
             el.replaceWith(trackWrapper)
 
         });
+    })
+
+    function isScrolledToTop(element, offset = 0) {
+        return element.scrollTop < offset
+    }
+
+    function isScrolledToBottom(element, offset = 0) {
+        return element.scrollTop > (element.scrollHeight - element.offsetHeight - offset)
+    }
+
+    function showHideArrowsOnScroll(event) {
+        /** @type {HTMLDivElement} */
+        const scrollableDiv = event.target
+        /** @type {HTMLDivElement} */
+        const upArrow = scrollableDiv.getElementsByClassName("scroll-arrow-up")[0]
+        /** @type {HTMLDivElement} */
+        const downArrow = scrollableDiv.getElementsByClassName("scroll-arrow-down")[0]
+
+        upArrow.style.display = isScrolledToTop(scrollableDiv, 50) ? "none" : "inherit"
+        downArrow.style.display = isScrolledToBottom(scrollableDiv, 50) ? "none" : "inherit"
+    }
+
+    const scrolls = document.getElementsByClassName("scroll")
+
+    Array.from(scrolls).forEach((el) => {
+        const upDiv = document.createElement("div")
+        upDiv.classList = "material-symbols-outlined scroll-arrow scroll-arrow-up"
+        upDiv.appendChild(document.createTextNode("arrow_drop_up"))
+
+        const downDiv = document.createElement("div")
+        downDiv.classList = "material-symbols-outlined scroll-arrow scroll-arrow-down"
+        downDiv.appendChild(document.createTextNode("arrow_drop_down"))
+
+        el.insertBefore(upDiv, el.firstChild);
+        el.appendChild(downDiv);
+
+        el.addEventListener("scroll", showHideArrowsOnScroll);
     })
 }
 
