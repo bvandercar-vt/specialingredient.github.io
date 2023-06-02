@@ -63,11 +63,6 @@ header #header-subtitle {
 }
 
 .playlist-block {
-    /* layout */
-    display: inline-block;
-    justify-content: center;
-    align-items: center;
-
     /* border */
     --border-color: darkslateblue;
     border-style: solid;
