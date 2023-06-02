@@ -27,16 +27,7 @@ a:visited {
     color: inherit;
 }
 
-a:hover {
-    --hover-color: deeppink;
-    text-shadow: 0 0 3px white,
-        0 0 5px var(--hover-color),
-        0 0 10px var(--hover-color),
-        0 0 15px var(--hover-color),
-        0 0 20px var(--hover-color),
-        0 0 30px var(--hover-color),
-        0 0 50px var(--hover-color)
-}
+
 
 header>div {
     text-align: center;
@@ -57,9 +48,9 @@ header>div {
     align-items: center;
 
     /* border */
-    --border-color: red;
+    --border-color: darkslateblue;
     border-style: solid;
-    border-width: 0px;
+    border-width: 2px;
     border-radius: var(--border-radius);
     border-color: var(--border-color);
     box-shadow: 0 0 10px 2px var(--border-color);
@@ -70,11 +61,20 @@ header>div {
     border-radius: var(--border-radius);
     padding: 0.5em;
     margin: 10px;
-    background-color: maroon;
+    background-color: darkslateblue;
 }
 
 .playlist-block a h2:hover {
-    box-shadow: 0 0 10px 2px deeppink;
+    --hover-color-text: darkcyan;
+    --hover-color-border: cyan;
+    box-shadow: 0 0 10px 2px var(--hover-color-border);
+    text-shadow: 0 0 3px white,
+        0 0 5px var(--hover-color-text),
+        0 0 10px var(--hover-color-text),
+        0 0 15px var(--hover-color-text),
+        0 0 20px var(--hover-color-text),
+        0 0 30px var(--hover-color-text),
+        0 0 50px var(--hover-color-text);
     transition: 0.2s;
 }
 
@@ -83,12 +83,22 @@ header>div {
     position: relative;
 }
 
-.playlist-block .track-wrapper:hover>iframe {
+.playlist-block .track-wrapper:hover iframe {
     box-shadow: 0 0 10px 2px cyan;
     transition: 0.2s;
 }
 
-
+.playlist-block .track-wrapper:hover .track-title {
+    --hover-color-text: darkslateblue;
+    text-shadow: 0 0 3px white,
+        0 0 5px var(--hover-color-text),
+        0 0 10px var(--hover-color-text),
+        0 0 15px var(--hover-color-text),
+        0 0 20px var(--hover-color-text),
+        0 0 30px var(--hover-color-text),
+        0 0 50px var(--hover-color-text);
+    transition: 0.2s;
+}
 
 .track-title {
     font-size: 1.25em;
@@ -99,7 +109,7 @@ header>div {
     font-size: 1em;
     font-weight: bold;
     font-style: italic;
-    color: darkcyan
+    color: turquoise
 }
 
 .track-addl-description {
