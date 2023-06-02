@@ -1,3 +1,5 @@
+/* General */
+
 :root {
     --border-radius: 20px;
 }
@@ -27,6 +29,25 @@ a:visited {
     color: inherit;
 }
 
+::-webkit-scrollbar {
+    width: 10px;
+}
+
+::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+    background: darkcyan;
+    border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: cyan;
+}
+
+/* Header */
+
 header #header-title-img {
     display: block;
     margin-left: auto;
@@ -55,6 +76,8 @@ header #header-subtitle {
         0 0 30px var(--hover-color-text),
         0 0 50px var(--hover-color-text);
 }
+
+/* Body Components */
 
 #playlist-grid {
     --min-column-width: 400px;
