@@ -51,22 +51,25 @@
                     const trackWrapper = document.createElement("div")
                     trackWrapper.classList = "track-wrapper"
 
+                    const titleWrapper = document.createElement("div")
                     const titleStr = el.getAttribute("data-title") ? el.getAttribute("data-title") :
                         oEmbed.title.replaceAll(' by Special Ingredient', '')
                             .replaceAll('[w TRACKLIST]', '')
                             .replaceAll('[MASHUP]', '')
-                    const titleElement = document.createElement("p")
+                    const titleElement = document.createElement("span")
                     titleElement.classList = "track-title"
                     titleElement.appendChild(document.createTextNode(titleStr))
-                    trackWrapper.appendChild(titleElement)
+                    titleWrapper.appendChild(titleElement)
 
                     const genreDescription = el.getAttribute("data-genre-desc")
                     if (genreDescription) {
-                        const genreDescriptionElement = document.createElement("p")
+                        const genreDescriptionElement = document.createElement("span")
                         genreDescriptionElement.classList = "track-genre-description"
-                        genreDescriptionElement.appendChild(document.createTextNode(genreDescription))
-                        trackWrapper.appendChild(genreDescriptionElement)
+                        genreDescriptionElement.appendChild(document.createTextNode(" - " + genreDescription))
+                        titleWrapper.appendChild(genreDescriptionElement)
                     }
+
+                    trackWrapper.appendChild(titleWrapper)
 
                     const addlDescription = el.getAttribute("data-addl-desc") ? el.getAttribute("data-addl-desc") : oEmbed.description
                     if (addlDescription) {
