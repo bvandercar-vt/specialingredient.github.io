@@ -36,7 +36,7 @@
             const linksToTransform = document.getElementsByClassName("transform-to-sc-item")
 
             Array.from(linksToTransform).forEach((el) => {
-                SC.oEmbed(el.getAttribute("href"), { auto_play: false, maxheight: 150 }).then((
+                SC.oEmbed(el.getAttribute("data-sc-link"), { auto_play: false, maxheight: 150 }).then((
                     /**
                      * @type { { 
                      *      title: string
@@ -48,23 +48,34 @@
                     oEmbed) => {
                     console.log(oEmbed)
 
-                    const titleStr = oEmbed.title.replaceAll(' by Special Ingredient', '')
-                        .replaceAll('[w TRACKLIST]', '')
-                        .replaceAll('[MASHUP]', '')
-
                     const trackWrapper = document.createElement("div")
                     trackWrapper.classList = "track-wrapper"
 
-                    const titleElement = document.createElement("h4")
+                    const titleStr = oEmbed.title.replaceAll(' by Special Ingredient', '')
+                        .replaceAll('[w TRACKLIST]', '')
+                        .replaceAll('[MASHUP]', '')
+                    const titleElement = document.createElement("p")
                     titleElement.classList = "track-title"
                     titleElement.appendChild(document.createTextNode(titleStr))
                     trackWrapper.appendChild(titleElement)
 
-                    const descriptionElement = document.createElement("p")
-                    descriptionElement.classList = "track-description"
-                    const description = el.textContent.length > 1 ? el.textContent : oEmbed.description
-                    descriptionElement.appendChild(document.createTextNode(description))
-                    trackWrapper.appendChild(descriptionElement)
+                    const genreDescription = el.getAttribute("data-genre-desc")
+                    if (genreDescription) {
+                        console.log(titleStr)
+                        const genreDescriptionElement = document.createElement("p")
+                        genreDescriptionElement.classList = "track-genre-description"
+                        genreDescriptionElement.appendChild(document.createTextNode(genreDescription))
+                        trackWrapper.appendChild(genreDescriptionElement)
+                    }
+
+                    const addlDescription = el.getAttribute("data-addl-desc") ? el.getAttribute("data-addl-desc") : oEmbed.description
+                    if (addlDescription) {
+                        console.log("b")
+                        const addlDescriptionElement = document.createElement("p")
+                        addlDescriptionElement.classList = "track-addl-description"
+                        addlDescriptionElement.appendChild(document.createTextNode(addlDescription))
+                        trackWrapper.appendChild(addlDescriptionElement)
+                    }
 
                     /** @type {HTMLIframeElement} */
                     const iframeElement = htmlToElement(oEmbed.html)
@@ -95,58 +106,62 @@
 </head>
 
 <body>
-    <h1>Special Ingredient Website WIP</h1>
-    <h2>Bass mixes from the forest</h2>
+    <header>
+        <h1>Special Ingredient Website WIP</h1>
+        <div>Bass mixes from the forest</div>
+    </header>
     <div class="playlist-grid">
         <div class="playlist-block">
-            <a href="https://soundcloud.com/special-ingredient/sets/trippy-melty-wavy-bass">
-                <h3>Trippy Melty Wavey Bass Mixes</h3>
+            <a data-sc-link="https://soundcloud.com/special-ingredient/sets/trippy-melty-wavy-bass">
+                <h2>Trippy Melty Wavey Bass Mixes</h2>
             </a>
             <a class="transform-to-sc-item"
-                href="https://soundcloud.com/special-ingredient/bass-canyon-late-night-trippy-set-pt-1-back-2-camp">
-                Part 1 of my 4-hour Bass Canyon late night trippy campsite set. Lots of tempos and genres, from psydub
-                to wave to downtempo to groovy bassy halftime.</a>
+                data-sc-link="https://soundcloud.com/special-ingredient/bass-canyon-late-night-trippy-set-pt-1-back-2-camp"
+                data-genre-desc="Trippy Chill Genre Journey - Wave, Psydub, Downtempo, Groovy Halftime"
+                data-addl-desc="Part 1 of my 4-hour Bass Canyon late night campsite set.">
+            </a>
             <a class="transform-to-sc-item"
-                href="https://soundcloud.com/special-ingredient/bass-canyon-late-night-trippy-set-pt-2">
-                Part 2 of my 4-hour Bass Canyon late night trippy campsite set. Lots of tempos and genres, from psydub
-                to wave to downtempo drippy.
+                data-sc-link="https://soundcloud.com/special-ingredient/bass-canyon-late-night-trippy-set-pt-2"
+                data-genre-desc="Trippy Chill Genre Journey - Wave, Psydub, Downtempo"
+                data-addl-desc="Part 2 of my 4-hour Bass Canyon late night campsite set.">
             </a>
         </div>
         <div class="playlist-block">
             <a href="https://soundcloud.com/special-ingredient/sets/heavier-dubstep">
-                <h3>Dubstep / Riddim Mixes</h3>
-            </a>
-            <a class="transform-to-sc-item" href="https://soundcloud.com/special-ingredient/subwoofer-sauce-vol-1">
-                For the first mix of the series, I wanted to hit that OG deeper late night wonky riddim. I'm super picky
-                about riddim, so if you're not a fan yet maybe I can bring you to the dark side 😉 Lotta wild sounds
-                bouncing around the 3D space in this one, headphones recommended!
-            </a>
-            <a class="transform-to-sc-item" href="https://soundcloud.com/special-ingredient/aged-cheddar-mix-vol-1">
-                For this mix, I mainly wanted to capture all my favorite tracks of Liquid Stranger's 2010 album
-                Mechanoid Meltdown, a style that I think is completely unique and unmatched to this day, and fill in
-                with my favorite bangers of the era/sound.
+                <h2>Dubstep / Riddim Mixes</h2>
             </a>
             <a class="transform-to-sc-item"
-                href="https://soundcloud.com/special-ingredient/special-ingredient-b2b-saumii-larimer-lounge-1-26-2023">
-                Cooked up an extra special bass journey set with @saumiimusic for a sold out crowd at Larimer Lounge!
-                Rinsed some of our favorite tracks we've shared over the years of DJing together. We'll see you at the
-                next one!
+                data-sc-link="https://soundcloud.com/special-ingredient/subwoofer-sauce-vol-1"
+                data-genre-desc="OG Deeper Late Night Wonky Riddim"
+                data-addl-desc="I'm super picky about riddim, so if you're not a fan yet maybe I can bring you to the dark side 😉 Lotta wild sounds bouncing around the 3D space in this one, headphones recommended!">
+
             </a>
             <a class="transform-to-sc-item"
-                href="https://soundcloud.com/special-ingredient/bass-kitchen-mix-rage-dubstep-mix-briddim-riddim">
-                Wanted to make a heavy mix of newer-style, briddim-type dubstep, while also journeying into some deeper
-                genres at times.</a>
+                data-sc-link="https://soundcloud.com/special-ingredient/aged-cheddar-mix-vol-1"
+                data-genre-desc="(Early 2010s Wompy Dubstep— Liquid Stranger, Bar9, etc.)"
+                data-addl-desc="For this mix, I mainly wanted to capture all my favorite tracks of Liquid Stranger's 2010 album Mechanoid Meltdown, a style that I think is completely unique and unmatched to this day, and fill in with my favorite bangers of the era/sound.">
+            </a>
+            <a class="transform-to-sc-item"
+                data-sc-link="https://soundcloud.com/special-ingredient/special-ingredient-b2b-saumii-larimer-lounge-1-26-2023"
+                data-genre-desc="Bass Journey"
+                data-addl-desc="Cooked up an extra special bass journey set with @saumiimusic for a sold out crowd at Larimer Lounge! Rinsed some of our favorite tracks we've shared over the years of DJing together. We'll see you at the next one!">
+
+            </a>
+            <a class="transform-to-sc-item"
+                data-sc-link="https://soundcloud.com/special-ingredient/bass-kitchen-mix-rage-dubstep-mix-briddim-riddim"
+                data-genre-desc="Briddim, Riddim, Heavy Dubstep"
+                data-addl-desc="Wanted to make a heavy mix of newer-style, briddim-type dubstep, while also journeying into some deeper genres at times."></a>
         </div>
         <div class="playlist-block no-track-descriptions">
-            <a href="https://soundcloud.com/special-ingredient/sets/mashups-flips">
-                <h3>Mashups / Flips</h3>
+            <a data-sc-link="https://soundcloud.com/special-ingredient/sets/mashups-flips">
+                <h2>Mashups / Flips</h2>
             </a>
             <a class="transform-to-sc-item"
-                href="https://soundcloud.com/special-ingredient/akon-love-right-now-na-na-na-x-nit-grit-mashup"></a>
+                data-sc-link="https://soundcloud.com/special-ingredient/akon-love-right-now-na-na-na-x-nit-grit-mashup"></a>
             <a class="transform-to-sc-item"
-                href="https://soundcloud.com/special-ingredient/meduso-a-moment-vip-x-baby-bash-cyclone"></a>
+                data-sc-link="https://soundcloud.com/special-ingredient/meduso-a-moment-vip-x-baby-bash-cyclone"></a>
             <a class="transform-to-sc-item"
-                href="https://soundcloud.com/special-ingredient/ian-snow-revelation-x-travis-scott-kid-cudi-through-the-late-night"></a>
+                data-sc-link="https://soundcloud.com/special-ingredient/ian-snow-revelation-x-travis-scott-kid-cudi-through-the-late-night"></a>
         </div>
     </div>
 </body>

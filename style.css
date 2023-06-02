@@ -23,8 +23,12 @@ a {
     text-decoration: none;
 }
 
-p {
-    text-align: justify;
+
+
+header>div {
+    text-align: center;
+    margin-bottom: 20px;
+    font-size: 2em;
 }
 
 a:link,
@@ -63,14 +67,14 @@ a:hover {
 }
 
 
-.playlist-block h3 {
+.playlist-block h2 {
     border-radius: 20px;
     padding: 0.5em;
     margin: 10px;
     background-color: blue;
 }
 
-.playlist-block a h3:hover {
+.playlist-block a h2:hover {
     box-shadow: 0 0 10px 2px deeppink;
     transition: 0.2s;
 }
@@ -96,13 +100,35 @@ a:hover {
     transition: 0.2s;
 }
 
+.track-title {
+    font-size: 1.25em;
+    font-weight: bold;
+}
+
+.track-genre-description {
+    font-size: 1em;
+    font-weight: bold;
+    font-style: italic;
+    color: darkcyan
+}
+
+.track-addl-description {
+    font-size: 1em;
+    text-align: justify;
+    color: grey
+}
 
 .playlist-block .track-wrapper iframe {
     border-radius: 20px;
     width: 100%;
 }
 
-.no-track-descriptions .track-description {
+.no-track-descriptions .track-genre-description {
+    display: none;
+    visibility: hidden;
+}
+
+.no-track-descriptions .track-addl-description {
     display: none;
     visibility: hidden;
 }
