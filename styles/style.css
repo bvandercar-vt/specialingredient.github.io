@@ -7,7 +7,7 @@
 body {
     background-color: black;
     color: white;
-    font-family: tahoma;
+    font-family: tahoma, sans-serif;
 }
 
 h1 {
