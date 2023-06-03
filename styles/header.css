@@ -16,13 +16,10 @@ header {
     padding: 5px;
 
     /* Glow */
-    /* --header-title-img-glow-color: orangered;
-    --header-title-img-glow: drop-shadow(0 0 10px var(--header-title-img-glow-color)) drop-shadow(0 0 20px var(--header-title-img-glow-color)) drop-shadow(0 0 50px var(--header-title-img-glow-color)) drop-shadow(0 0 100px darkcyan);
-    -webkit-filter: var(--header-title-img-glow);
-    filter: var(--header-title-img-glow); */
     --header-title-img-glow-color: orangered;
-    -webkit-filter: drop-shadow(0 0 10px var(--header-title-img-glow-color)) drop-shadow(0 0 20px var(--header-title-img-glow-color)) drop-shadow(0 0 50px darkcyan);
-    filter: drop-shadow(0 0 10px var(--header-title-img-glow-color)) drop-shadow(0 0 20px var(--header-title-img-glow-color)) drop-shadow(0 0 50px darkcyan);
+    --header-title-img-glow: drop-shadow(0 0 10px var(--header-title-img-glow-color)) drop-shadow(0 0 20px var(--header-title-img-glow-color)) drop-shadow(0 0 50px darkcyan);
+    -webkit-filter: var(--header-title-img-glow);
+    filter: var(--header-title-img-glow);
 }
 
 #header-subtitle {
