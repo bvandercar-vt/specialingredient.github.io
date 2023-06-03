@@ -93,16 +93,25 @@ function init() {
     // Collapsable titles
     const playlistTitles = document.getElementsByClassName("playlist-title");
     Array.from(playlistTitles).forEach((el) => {
+        const collapseArrow = document.createElement("span")
+        collapseArrow.classList = "fa fa-lg collapse-caret"
+        collapseArrow.classList.add(el.nextElementSibling.style.display == "none" ? "fa-caret-right" : "fa-caret-down")
+        el.appendChild(collapseArrow)
+
         el.addEventListener("click", function () {
-            this.classList.toggle("active");
             var content = this.nextElementSibling;
             if (!content.style.display || content.style.display === "block") {
                 content.style.display = "none";
+                collapseArrow.classList.add("fa-caret-right")
+                collapseArrow.classList.remove("fa-caret-down")
             } else {
                 content.style.display = "block";
+                collapseArrow.classList.remove("fa-caret-right")
+                collapseArrow.classList.add("fa-caret-down")
             }
         });
     })
+
 
     // Scrollable playlists
     const scrolls = document.getElementsByClassName("scroll")

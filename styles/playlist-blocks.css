@@ -28,9 +28,22 @@
 
 .playlist-title {
     border-radius: var(--border-radius);
-    padding: 0.5em;
-    margin: 10px;
     background-color: darkslateblue;
+    margin: 10px;
+    padding: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+}
+
+.playlist-title h2 {
+    margin: 0px;
+}
+
+.playlist-title .collapse-caret {
+    position: absolute;
+    right: 10px;
 }
 
 .playlist-title:hover {
