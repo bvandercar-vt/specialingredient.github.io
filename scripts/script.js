@@ -20,6 +20,10 @@ function getWindowWidth() {
         document.body.clientWidth;
 }
 
+function isMobile() {
+    return getWindowWidth() < MOBILE_WIDTH
+}
+
 function init() {
     // All anchors
     const allAnchors = document.getElementsByTagName("a")
@@ -97,9 +101,9 @@ function init() {
         /** @type {boolean} */
         collapsed,
         /** @type {HTMLDivElement} */
-        collapseContent,
-        /** @type {HTMLDivElement} */
-        collapseArrow) {
+        playlistTitleEl) {
+        const collapseContent = playlistTitleEl.parentElement.getElementsByClassName('playlist-items')[0]
+        const collapseArrow = playlistTitleEl.parentElement.getElementsByClassName('collapse-caret')[0]
         if (collapsed) {
             collapseContent.classList.add('hidden')
             collapseArrow.classList.add("fa-caret-right")
@@ -112,24 +116,24 @@ function init() {
     }
 
     // Collapsable titles
-    Array.from(document.getElementsByClassName("playlist-title")).forEach((el) => {
+    const playlistTitles = document.getElementsByClassName("playlist-title")
+    Array.from(playlistTitles).forEach((
         /** @type {HTMLDivElement} */
-        const collapseContent = el.parentElement.getElementsByClassName('playlist-items')[0]
+        playlistTitle) => {
         const collapseArrow = document.createElement("span")
         collapseArrow.classList = "fa fa-lg collapse-caret"
-        setCollapsed(false, collapseContent, collapseArrow)
-        el.appendChild(collapseArrow)
+        playlistTitle.appendChild(collapseArrow)
+        setCollapsed(isMobile(), playlistTitle)
 
-        el.addEventListener("click", function () {
+        playlistTitle.addEventListener("click", function () {
             const collapseContent = this.parentElement.getElementsByClassName('playlist-items')[0]
             const isCollapsed = collapseContent.classList.contains('hidden')
-            setCollapsed(!isCollapsed, collapseContent, collapseArrow)
+            setCollapsed(!isCollapsed, this)
 
-            if (isCollapsed && false) {
-                Array.from(playlistTitles).forEach((el) => {
-                    if (this !== el) {
-                        setCollapsed(true, el.parentElement.getElementsByClassName('playlist-items')[0],
-                            el.parentElement.getElementsByClassName('collapse-caret')[0])
+            if (isMobile() && isCollapsed) {
+                Array.from(playlistTitles).forEach((otherPlaylistTitleEl) => {
+                    if (otherPlaylistTitleEl !== this) {
+                        setCollapsed(true, otherPlaylistTitleEl)
                     }
 
                 })
