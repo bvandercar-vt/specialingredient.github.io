@@ -6,7 +6,7 @@ header {
     width: 100%;
 }
 
-header #header-title-img {
+#header-title-img {
     /* Position */
     display: block;
     margin-left: auto;
@@ -21,11 +21,11 @@ header #header-title-img {
     -webkit-filter: var(--header-title-img-glow);
     filter: var(--header-title-img-glow); */
     --header-title-img-glow-color: orangered;
-    -webkit-filter: drop-shadow(0 0 10px var(--header-title-img-glow-color)) drop-shadow(0 0 20px var(--header-title-img-glow-color)) drop-shadow(0 0 50px var(--header-title-img-glow-color)) drop-shadow(0 0 80px darkcyan);
-    filter: drop-shadow(0 0 10px var(--header-title-img-glow-color)) drop-shadow(0 0 20px var(--header-title-img-glow-color)) drop-shadow(0 0 50px var(--header-title-img-glow-color)) drop-shadow(0 0 80px darkcyan);
+    -webkit-filter: drop-shadow(0 0 10px var(--header-title-img-glow-color)) drop-shadow(0 0 20px var(--header-title-img-glow-color)) drop-shadow(0 0 80px darkcyan);
+    filter: drop-shadow(0 0 10px var(--header-title-img-glow-color)) drop-shadow(0 0 20px var(--header-title-img-glow-color)) drop-shadow(0 0 80px darkcyan);
 }
 
-header #header-subtitle {
+#header-subtitle {
     text-align: center;
     margin-bottom: 20px;
     font-size: 2em;
@@ -44,11 +44,27 @@ header #header-subtitle {
 
 #header-logo {}
 
-#social-links {
+#header-right {
     position: absolute;
     right: 20px;
     bottom: 0px;
     margin-bottom: 20px
+}
+
+#bio {
+    text-align: right;
+    max-width: 220px;
+    color: grey;
+    font-size: 0.8em;
+    margin-bottom: 0.5em;
+}
+
+#bio p {
+    margin-bottom: 0.25em;
+}
+
+#social-links {
+    text-align: right;
 }
 
 @media (max-width:960px) {
@@ -56,10 +72,21 @@ header #header-subtitle {
         display: block;
     }
 
-    #social-links {
+    #header-right {
         position: relative;
         text-align: center;
         right: 0px;
+    }
+
+    #bio {
+        margin-left: auto;
+        margin-right: auto;
+        left: 50%;
+        text-align: center;
+    }
+
+    #social-links {
+        text-align: center;
     }
 }
 
