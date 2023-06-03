@@ -95,33 +95,38 @@ function init() {
         });
     })
 
+    function setCollapsed(
+        /** @type {boolean} */
+        collapsed,
+        /** @type {HTMLDivElement} */
+        collapseContent,
+        /** @type {HTMLDivElement} */
+        collapseArrow) {
+        if (collapsed) {
+            collapseContent.classList.add('hidden')
+            collapseArrow.classList.add("fa-caret-right")
+            collapseArrow.classList.remove("fa-caret-down")
+        } else {
+            collapseContent.classList.remove('hidden')
+            collapseArrow.classList.remove("fa-caret-right")
+            collapseArrow.classList.add("fa-caret-down")
+        }
+    }
+
     // Collapsable titles
     const playlistTitles = document.getElementsByClassName("playlist-title");
     Array.from(playlistTitles).forEach((el) => {
         /** @type {HTMLDivElement} */
         const collapseContent = el.parentElement.getElementsByClassName('playlist-items')[0]
-        if (getWindowWidth() < MOBILE_WIDTH) {
-            collapseContent.classList.add('hidden')
-        }
-        const isCollapsed = collapseContent.classList.contains('hidden')
-
         const collapseArrow = document.createElement("span")
         collapseArrow.classList = "fa fa-lg collapse-caret"
-        collapseArrow.classList.add(isCollapsed ? "fa-caret-right" : "fa-caret-down")
+        setCollapsed(getWindowWidth() < MOBILE_WIDTH, collapseContent, collapseArrow)
         el.appendChild(collapseArrow)
 
         el.addEventListener("click", function () {
             const collapseContent = this.parentElement.getElementsByClassName('playlist-items')[0]
             const isCollapsed = collapseContent.classList.contains('hidden')
-            if (isCollapsed) {
-                collapseContent.classList.remove('hidden')
-                collapseArrow.classList.remove("fa-caret-right")
-                collapseArrow.classList.add("fa-caret-down")
-            } else {
-                collapseContent.classList.add('hidden')
-                collapseArrow.classList.add("fa-caret-right")
-                collapseArrow.classList.remove("fa-caret-down")
-            }
+            setCollapsed(!isCollapsed, collapseContent, collapseArrow)
         });
     })
 
