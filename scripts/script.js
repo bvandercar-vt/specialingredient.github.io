@@ -47,8 +47,6 @@ function init() {
              * } } 
              */
             oEmbed) => {
-            console.log(oEmbed)
-
             const trackWrapper = document.createElement("div")
             trackWrapper.classList = "track-wrapper"
 
