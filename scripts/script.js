@@ -34,9 +34,7 @@ function init() {
         client_id: 'DgFeY88vapbGCcK7RrT2E33nmNQVWX82'
     });
 
-    const linksToTransform = document.getElementsByClassName("transform-to-sc-item")
-
-    Array.from(linksToTransform).forEach((el) => {
+    Array.from(document.getElementsByClassName("transform-to-sc-item")).forEach((el) => {
         SC.oEmbed(el.getAttribute("data-sc-link"), { auto_play: false, maxheight: 150 }).then((
             /**
              * @type { { 
@@ -114,13 +112,12 @@ function init() {
     }
 
     // Collapsable titles
-    const playlistTitles = document.getElementsByClassName("playlist-title");
-    Array.from(playlistTitles).forEach((el) => {
+    Array.from(document.getElementsByClassName("playlist-title")).forEach((el) => {
         /** @type {HTMLDivElement} */
         const collapseContent = el.parentElement.getElementsByClassName('playlist-items')[0]
         const collapseArrow = document.createElement("span")
         collapseArrow.classList = "fa fa-lg collapse-caret"
-        setCollapsed(getWindowWidth() < MOBILE_WIDTH, collapseContent, collapseArrow)
+        setCollapsed(false, collapseContent, collapseArrow)
         el.appendChild(collapseArrow)
 
         el.addEventListener("click", function () {
@@ -128,7 +125,7 @@ function init() {
             const isCollapsed = collapseContent.classList.contains('hidden')
             setCollapsed(!isCollapsed, collapseContent, collapseArrow)
 
-            if (isCollapsed && getWindowWidth() < MOBILE_WIDTH) {
+            if (isCollapsed && false) {
                 Array.from(playlistTitles).forEach((el) => {
                     if (this !== el) {
                         setCollapsed(true, el.parentElement.getElementsByClassName('playlist-items')[0],
