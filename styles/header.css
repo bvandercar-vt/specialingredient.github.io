@@ -14,6 +14,7 @@ header #header-title-img {
     max-height: 200px;
     max-width: 100%;
     padding: 5px;
+    /* TEST */
 
     /* Glow */
     /* --header-title-img-glow-color: orangered;
@@ -22,8 +23,8 @@ header #header-title-img {
     filter: var(--header-title-img-glow); */
 
     --header-title-img-glow-color: orangered;
-    -webkit-filter: drop-shadow(0 0 10px var(--header-title-img-glow-color)) drop-shadow(0 0 20px var(--header-title-img-glow-color));
-    filter: drop-shadow(0 0 10px var(--header-title-img-glow-color)) drop-shadow(0 0 20px var(--header-title-img-glow-color));
+    -webkit-filter: drop-shadow(0 0 10px var(--header-title-img-glow-color)) drop-shadow(0 0 20px var(--header-title-img-glow-color)) drop-shadow(0 0 50px var(--header-title-img-glow-color));
+    filter: drop-shadow(0 0 10px var(--header-title-img-glow-color)) drop-shadow(0 0 20px var(--header-title-img-glow-color)) drop-shadow(0 0 50px var(--header-title-img-glow-color));
 }
 
 header #header-subtitle {
