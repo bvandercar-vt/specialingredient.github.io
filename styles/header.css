@@ -1,0 +1,28 @@
+header #header-title-img {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    height: 200px;
+
+    --header-title-img-glow-color: orangered;
+    --header-title-img-glow: drop-shadow(0 0 10px var(--header-title-img-glow-color)) drop-shadow(0 0 20px var(--header-title-img-glow-color)) drop-shadow(0 0 50px var(--header-title-img-glow-color)) drop-shadow(0 0 100px darkcyan);
+    -webkit-filter: var(--header-title-img-glow);
+    filter: var(--header-title-img-glow);
+}
+
+header #header-subtitle {
+    text-align: center;
+    margin-bottom: 20px;
+    font-size: 2em;
+    font-family: "Permanent Marker", sans-serif;
+    color: purple;
+    z-index: 1;
+    --hover-color-text: cyan;
+    text-shadow:
+        0 0 5px var(--hover-color-text),
+        0 0 10px var(--hover-color-text),
+        0 0 15px var(--hover-color-text),
+        0 0 20px var(--hover-color-text),
+        0 0 30px var(--hover-color-text),
+        0 0 50px var(--hover-color-text);
+}

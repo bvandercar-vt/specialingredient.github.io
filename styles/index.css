@@ -1,0 +1,39 @@
+@import "scrollbar.css";
+@import "header.css";
+@import "playlist-blocks.css";
+@import "track-item.css";
+
+/* General */
+
+:root {
+    --border-radius: 20px;
+}
+
+body {
+    background-color: black;
+    color: white;
+    font-family: tahoma, sans-serif;
+}
+
+h1 {
+    text-align: center;
+    font-size: 3em;
+}
+
+h2 {
+    text-align: center;
+    font-size: 1.5em;
+}
+
+a {
+    text-decoration: none;
+}
+
+*:hover {
+    transition: 0.2s;
+}
+
+a:link,
+a:visited {
+    color: inherit;
+}

@@ -89,8 +89,6 @@ function init() {
         return element.scrollTop > (element.scrollHeight - element.offsetHeight - offset)
     }
 
-
-
     const scrolls = document.getElementsByClassName("scroll")
 
     Array.from(scrolls).forEach((el) => {
