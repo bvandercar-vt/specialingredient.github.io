@@ -111,15 +111,13 @@ function init() {
         const ARROW_BTN_CLICK_SCROLL_DIST = 150
 
         const upDiv = document.createElement("div")
-        upDiv.classList = "material-symbols-outlined scroll-arrow scroll-arrow-up"
-        upDiv.appendChild(document.createTextNode("arrow_drop_up"))
+        upDiv.classList = "scroll-arrow scroll-arrow-up fa fa-caret-up fa-2x"
         upDiv.onclick = function () {
             el.scrollTo({ top: el.scrollTop - ARROW_BTN_CLICK_SCROLL_DIST, behavior: 'smooth' })
         }
 
         const downDiv = document.createElement("div")
-        downDiv.classList = "material-symbols-outlined scroll-arrow scroll-arrow-down"
-        downDiv.appendChild(document.createTextNode("arrow_drop_down"))
+        downDiv.classList = "scroll-arrow scroll-arrow-down fa fa-caret-down fa-2x"
         downDiv.onclick = function () {
             el.scrollTo({ top: el.scrollTop + ARROW_BTN_CLICK_SCROLL_DIST, behavior: 'smooth' })
         }
