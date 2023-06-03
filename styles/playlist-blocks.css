@@ -1,5 +1,5 @@
 #playlist-grid {
-    --min-column-width: 400px;
+    --min-column-width: min(400px, 100vw);
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(var(--min-column-width), 1fr));
     grid-gap: 20px;

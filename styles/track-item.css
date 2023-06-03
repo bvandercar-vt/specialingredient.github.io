@@ -19,7 +19,7 @@
 }
 
 .track-title {
-    font-size: 1.25em;
+    font-size: 1em;
     font-weight: bold;
 }
 
@@ -37,6 +37,7 @@
 }
 
 .track-wrapper iframe {
+    margin-top: 10px;
     width: 100%;
     border-radius: var(--border-radius);
 }
