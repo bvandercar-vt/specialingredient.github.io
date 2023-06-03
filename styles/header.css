@@ -21,8 +21,8 @@ header #header-title-img {
     -webkit-filter: var(--header-title-img-glow);
     filter: var(--header-title-img-glow); */
     --header-title-img-glow-color: orangered;
-    -webkit-filter: drop-shadow(0 0 10px var(--header-title-img-glow-color)) drop-shadow(0 0 20px var(--header-title-img-glow-color)) drop-shadow(0 0 50px var(--header-title-img-glow-color)) drop-shadow(0 0 100px darkcyan);
-    filter: drop-shadow(0 0 10px var(--header-title-img-glow-color)) drop-shadow(0 0 20px var(--header-title-img-glow-color)) drop-shadow(0 0 50px var(--header-title-img-glow-color)) drop-shadow(0 0 100px darkcyan);
+    -webkit-filter: drop-shadow(0 0 10px var(--header-title-img-glow-color)) drop-shadow(0 0 20px var(--header-title-img-glow-color)) drop-shadow(0 0 50px var(--header-title-img-glow-color)) drop-shadow(0 0 80px darkcyan);
+    filter: drop-shadow(0 0 10px var(--header-title-img-glow-color)) drop-shadow(0 0 20px var(--header-title-img-glow-color)) drop-shadow(0 0 50px var(--header-title-img-glow-color)) drop-shadow(0 0 80px darkcyan);
 }
 
 header #header-subtitle {
