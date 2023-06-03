@@ -47,6 +47,18 @@ header #header-subtitle {
     margin-bottom: 20px
 }
 
+@media (max-width:960px) {
+    header {
+        display: block;
+    }
+
+    #social-links {
+        position: relative;
+        text-align: center;
+        right: 0px;
+    }
+}
+
 #social-links .fa {
     --circle-size: 40px;
     font-size: 20px;
