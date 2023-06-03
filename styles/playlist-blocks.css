@@ -1,4 +1,9 @@
 #playlist-grid {
+    /* Location on page (center) */
+    margin: auto;
+    width: 100%;
+
+    /* Grid */
     --min-column-width: min(400px, 100vw);
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(var(--min-column-width), 1fr));
