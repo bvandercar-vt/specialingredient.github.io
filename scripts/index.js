@@ -52,7 +52,7 @@ function init() {
             if (genreDescription) {
                 const genreDescriptionElement = document.createElement("span")
                 genreDescriptionElement.classList = "track-genre-description"
-                genreDescriptionElement.appendChild(document.createTextNode(" - " + genreDescription))
+                genreDescriptionElement.appendChild(document.createTextNode(" (" + genreDescription + ")"))
                 titleWrapper.appendChild(genreDescriptionElement)
             }
 
