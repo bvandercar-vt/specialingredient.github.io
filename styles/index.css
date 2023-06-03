@@ -42,3 +42,7 @@ a:link,
 a:visited {
     color: inherit;
 }
+
+.hidden {
+    display: none;
+}

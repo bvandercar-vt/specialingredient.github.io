@@ -98,9 +98,12 @@ function init() {
     // Collapsable titles
     const playlistTitles = document.getElementsByClassName("playlist-title");
     Array.from(playlistTitles).forEach((el) => {
+        /** @type {HTMLDivElement} */
         const collapseContent = el.parentElement.getElementsByClassName('playlist-items')[0]
-        collapseContent.style.display = getWindowWidth() < MOBILE_WIDTH ? "none" : "block"
-        const isCollapsed = collapseContent.style.display === "none"
+        if (getWindowWidth() < MOBILE_WIDTH) {
+            collapseContent.classList.add('hidden')
+        }
+        const isCollapsed = collapseContent.classList.contains('hidden')
 
         const collapseArrow = document.createElement("span")
         collapseArrow.classList = "fa fa-lg collapse-caret"
@@ -109,13 +112,13 @@ function init() {
 
         el.addEventListener("click", function () {
             const collapseContent = this.parentElement.getElementsByClassName('playlist-items')[0]
-            const isCollapsed = collapseContent.style.display === "none"
+            const isCollapsed = collapseContent.classList.contains('hidden')
             if (isCollapsed) {
-                collapseContent.style.display = "block";
+                collapseContent.classList.remove('hidden')
                 collapseArrow.classList.remove("fa-caret-right")
                 collapseArrow.classList.add("fa-caret-down")
             } else {
-                collapseContent.style.display = "none";
+                collapseContent.classList.add('hidden')
                 collapseArrow.classList.add("fa-caret-right")
                 collapseArrow.classList.remove("fa-caret-down")
             }
