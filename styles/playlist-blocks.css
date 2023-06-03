@@ -38,7 +38,8 @@
 }
 
 .playlist-title h2 {
-    margin: 0px;
+    /* space to right for collapse caret */
+    margin: 0px 20px;
 }
 
 .playlist-title .collapse-caret {
@@ -57,6 +58,12 @@
         0 0 20px var(--hover-color-text),
         0 0 30px var(--hover-color-text),
         0 0 50px var(--hover-color-text);
+}
+
+@media only screen and (max-width: 800px) {
+    .playlist-items {
+        display: none;
+    }
 }
 
 .scroll-arrow {
