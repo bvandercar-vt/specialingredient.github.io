@@ -1,9 +1,12 @@
 header #header-title-img {
+    /* Position */
     display: block;
     margin-left: auto;
     margin-right: auto;
     height: 200px;
+    max-width: 100vw;
 
+    /* Glow */
     --header-title-img-glow-color: orangered;
     --header-title-img-glow: drop-shadow(0 0 10px var(--header-title-img-glow-color)) drop-shadow(0 0 20px var(--header-title-img-glow-color)) drop-shadow(0 0 50px var(--header-title-img-glow-color)) drop-shadow(0 0 100px darkcyan);
     -webkit-filter: var(--header-title-img-glow);
