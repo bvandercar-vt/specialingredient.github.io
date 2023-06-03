@@ -1,3 +1,11 @@
+header {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    width: 100%;
+}
+
 header #header-title-img {
     /* Position */
     display: block;
@@ -28,4 +36,28 @@ header #header-subtitle {
         0 0 20px var(--hover-color-text),
         0 0 30px var(--hover-color-text),
         0 0 50px var(--hover-color-text);
+}
+
+#header-logo {}
+
+#social-links {
+    position: absolute;
+    right: 20px;
+    bottom: 0px;
+    margin-bottom: 20px
+}
+
+#social-links .fa {
+    --circle-size: 40px;
+    font-size: 20px;
+    height: var(--circle-size);
+    width: var(--circle-size);
+    border-radius: 50%;
+    text-align: center;
+    text-decoration: none;
+    line-height: 40px;
+}
+
+#social-links .fa:hover {
+    opacity: 1.0;
 }
