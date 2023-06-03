@@ -5,6 +5,14 @@ function htmlToElement(html) {
     return template.content.firstChild;
 }
 
+function isScrolledToTop(element, offset = 0) {
+    return element.scrollTop < offset
+}
+
+function isScrolledToBottom(element, offset = 0) {
+    return element.scrollTop > (element.scrollHeight - element.offsetHeight - offset)
+}
+
 function init() {
     // All anchors
     const allAnchors = document.getElementsByTagName("a")
@@ -82,13 +90,7 @@ function init() {
         });
     })
 
-    function isScrolledToTop(element, offset = 0) {
-        return element.scrollTop < offset
-    }
 
-    function isScrolledToBottom(element, offset = 0) {
-        return element.scrollTop > (element.scrollHeight - element.offsetHeight - offset)
-    }
 
     const scrolls = document.getElementsByClassName("scroll")
 
