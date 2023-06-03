@@ -127,6 +127,17 @@ function init() {
             const collapseContent = this.parentElement.getElementsByClassName('playlist-items')[0]
             const isCollapsed = collapseContent.classList.contains('hidden')
             setCollapsed(!isCollapsed, collapseContent, collapseArrow)
+
+            if (isCollapsed && getWindowWidth() < MOBILE_WIDTH) {
+                Array.from(playlistTitles).forEach((el) => {
+                    if (this !== el) {
+                        setCollapsed(true, el.parentElement.getElementsByClassName('playlist-items')[0],
+                            el.parentElement.getElementsByClassName('collapse-caret')[0])
+                    }
+
+                })
+            }
+
         });
     })
 
