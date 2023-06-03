@@ -84,7 +84,7 @@ function init() {
             /** @type {HTMLIframeElement} */
             const iframeElement = htmlToElement(oEmbed.html)
             iframeElement.title = titleStr
-            iframeElement.src += "&hide_related=false&show_user=false&show_reposts=true&visual=false"
+            iframeElement.src += "&auto_play=false&hide_related=false&show_comments=true&show_user=false&show_reposts=true&show_teaser=false&visual=true"
             trackWrapper.appendChild(iframeElement)
 
             const privacyPolicyCoverElement = document.createElement("div")
