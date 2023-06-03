@@ -38,6 +38,7 @@ function init() {
             trackWrapper.classList = "track-wrapper"
 
             const titleWrapper = document.createElement("div")
+            titleWrapper.classList = "track-title-wrapper"
             const titleStr = el.getAttribute("data-title") ? el.getAttribute("data-title") :
                 oEmbed.title.replaceAll(' by Special Ingredient', '')
                     .replaceAll('[w TRACKLIST]', '')
