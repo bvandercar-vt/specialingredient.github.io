@@ -90,8 +90,21 @@ function init() {
         });
     })
 
+    // Collapsable titles
+    const playlistTitles = document.getElementsByClassName("playlist-title");
+    Array.from(playlistTitles).forEach((el) => {
+        el.addEventListener("click", function () {
+            this.classList.toggle("active");
+            var content = this.nextElementSibling;
+            if (!content.style.display || content.style.display === "block") {
+                content.style.display = "none";
+            } else {
+                content.style.display = "block";
+            }
+        });
+    })
 
-
+    // Scrollable playlists
     const scrolls = document.getElementsByClassName("scroll")
 
     Array.from(scrolls).forEach((el) => {

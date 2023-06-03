@@ -26,14 +26,14 @@
     display: none;
 }
 
-.playlist-block h2 {
+.playlist-title {
     border-radius: var(--border-radius);
     padding: 0.5em;
     margin: 10px;
     background-color: darkslateblue;
 }
 
-.playlist-block a h2:hover {
+.playlist-title:hover {
     --hover-color-text: darkcyan;
     --hover-color-border: cyan;
     box-shadow: 0 0 10px 2px var(--hover-color-border);
