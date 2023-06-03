@@ -44,5 +44,8 @@ a:visited {
 }
 
 .hidden {
-    display: none;
+    /* NOTE: display: none causes iframes load weird, causing issues */
+    height: 0;
+    overflow: hidden;
+    visibility: hidden;
 }
