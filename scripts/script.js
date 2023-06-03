@@ -91,9 +91,7 @@ function init() {
             privacyPolicyCoverElement.classList = "privacy-policy-cover"
             trackWrapper.appendChild(privacyPolicyCoverElement)
 
-
             el.replaceWith(trackWrapper)
-
         });
     })
 
@@ -144,36 +142,36 @@ function init() {
 
 
     // Scrollable playlists
-    const scrolls = document.getElementsByClassName("scroll")
+    const scrollRegions = document.getElementsByClassName("scroll")
 
-    Array.from(scrolls).forEach((el) => {
+    Array.from(scrollRegions).forEach((scrollRegion) => {
         const ARROW_BTN_CLICK_SCROLL_DIST = 150
 
         const upDiv = document.createElement("div")
         upDiv.classList = "scroll-arrow scroll-arrow-up fa fa-caret-up fa-2x"
         upDiv.onclick = function () {
-            el.scrollTo({ top: el.scrollTop - ARROW_BTN_CLICK_SCROLL_DIST, behavior: 'smooth' })
+            scrollRegion.scrollTo({ top: scrollRegion.scrollTop - ARROW_BTN_CLICK_SCROLL_DIST, behavior: 'smooth' })
         }
 
         const downDiv = document.createElement("div")
         downDiv.classList = "scroll-arrow scroll-arrow-down fa fa-caret-down fa-2x"
         downDiv.onclick = function () {
-            el.scrollTo({ top: el.scrollTop + ARROW_BTN_CLICK_SCROLL_DIST, behavior: 'smooth' })
+            scrollRegion.scrollTo({ top: scrollRegion.scrollTop + ARROW_BTN_CLICK_SCROLL_DIST, behavior: 'smooth' })
         }
 
-        el.insertBefore(upDiv, el.firstChild);
-        el.appendChild(downDiv);
+        scrollRegion.insertBefore(upDiv, scrollRegion.firstChild);
+        scrollRegion.appendChild(downDiv);
 
-        el.addEventListener("scroll", function (event) {
+        scrollRegion.addEventListener("scroll", function (event) {
             /** @type {HTMLDivElement} */
-            const scrollableDiv = event.target
+            const thisScrollRegion = event.target
             /** @type {HTMLDivElement} */
-            const upArrow = scrollableDiv.getElementsByClassName("scroll-arrow-up")[0]
+            const upArrow = thisScrollRegion.getElementsByClassName("scroll-arrow-up")[0]
             /** @type {HTMLDivElement} */
-            const downArrow = scrollableDiv.getElementsByClassName("scroll-arrow-down")[0]
+            const downArrow = thisScrollRegion.getElementsByClassName("scroll-arrow-down")[0]
 
-            upArrow.style.display = isScrolledToTop(scrollableDiv, 50) ? "none" : "inherit"
-            downArrow.style.display = isScrolledToBottom(scrollableDiv, 50) ? "none" : "inherit"
+            upArrow.style.display = isScrolledToTop(thisScrollRegion, 50) ? "none" : "inherit"
+            downArrow.style.display = isScrolledToBottom(thisScrollRegion, 50) ? "none" : "inherit"
         });
     })
 }
