@@ -49,3 +49,15 @@ a:visited {
     overflow: hidden;
     visibility: hidden;
 }
+
+@media (max-width : 800px) {
+
+    html,
+    body {
+        overflow-x: hidden;
+    }
+
+    body {
+        position: relative
+    }
+}
