@@ -60,12 +60,6 @@
         0 0 50px var(--hover-color-text);
 }
 
-@media only screen and (max-width: 800px) {
-    .playlist-items {
-        display: none;
-    }
-}
-
 .scroll-arrow {
     /* Position */
     margin: auto;

@@ -1,3 +1,5 @@
+const MOBILE_WIDTH = 800
+
 function htmlToElement(html) {
     var template = document.createElement('template');
     html = html.trim(); // Never return a text node of whitespace as the result
@@ -11,6 +13,11 @@ function isScrolledToTop(element, offset = 0) {
 
 function isScrolledToBottom(element, offset = 0) {
     return element.scrollTop > (element.scrollHeight - element.offsetHeight - offset)
+}
+
+function getWindowWidth() {
+    return window.innerWidth || document.documentElement.clientWidth ||
+        document.body.clientWidth;
 }
 
 function init() {
@@ -94,7 +101,9 @@ function init() {
     const playlistTitles = document.getElementsByClassName("playlist-title");
     Array.from(playlistTitles).forEach((el) => {
         const collapseContent = el.parentElement.getElementsByClassName('playlist-items')[0]
+        collapseContent.style.display = getWindowWidth() < MOBILE_WIDTH ? "none" : "block"
         const isCollapsed = collapseContent.style.display === "none"
+
         const collapseArrow = document.createElement("span")
         collapseArrow.classList = "fa fa-lg collapse-caret"
         collapseArrow.classList.add(isCollapsed ? "fa-caret-right" : "fa-caret-down")

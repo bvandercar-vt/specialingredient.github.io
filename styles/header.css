@@ -5,7 +5,6 @@ header #header-title-img {
     margin-right: auto;
     max-height: 200px;
     max-width: 100%;
-    background-color: green;
 
     /* Glow */
     --header-title-img-glow-color: orangered;
