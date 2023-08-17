@@ -12,8 +12,7 @@ function fixHtml() {
 
 /** @type {import('vite').UserConfig} */
 export default {
-    // base: `/specialingredient.github.io/`,
-    base: `http://specialingredientbass.com/`,
+    base: `/specialingredient.github.io/`,
     build: {
         target: 'esnext',
         modulePreload: false,
