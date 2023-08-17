@@ -1,5 +1,22 @@
 const MOBILE_WIDTH = 800
 
+const Classes = {
+    OPEN: 'open',
+    HIDDEN: 'hidden',
+    COLLAPSE_CARET: 'collapse-caret',
+    PLAYLIST_TITLE: "playlist-title",
+    PLAYLIST_ITEMS: 'playlist-items',
+    TRANSFORM_TO_SC_ITEM: "transform-to-sc-item",
+    TRACK_WRAPPER: "track-wrapper",
+    TRACK_TITLE: "track-title",
+    TRACK_GENRE_DESC: "track-genre-description",
+    TRACK_ADDL_DESC: "track-addl-description",
+    PRIVACY_POLICY_COVER: "privacy-policy-cover",
+    SCROLL_ARROW: "scroll-arrow",
+    SCROLL_ARROW_UP: "scroll-arrow-up",
+    SCROLL_ARROW_DOWN: "scroll-arrow-down"
+}
+
 function htmlToElement(html) {
     var template = document.createElement('template');
     html = html.trim(); // Never return a text node of whitespace as the result
@@ -60,28 +77,28 @@ function setPlaylistTitlesCollapsable() {
         collapsed,
         /** @type {HTMLDivElement} */
         playlistTitleEl) {
-        const collapseContent = playlistTitleEl.parentElement.getElementsByClassName('playlist-items')[0]
-        const collapseArrow = playlistTitleEl.parentElement.getElementsByClassName('collapse-caret')[0]
+        const collapseContent = playlistTitleEl.parentElement.getElementsByClassName(Classes.PLAYLIST_ITEMS)[0]
+        const collapseArrow = playlistTitleEl.parentElement.getElementsByClassName(Classes.COLLAPSE_CARET)[0]
         if (collapsed) {
-            collapseContent.classList.add('hidden')
-            collapseArrow.classList.remove("open")
+            collapseContent.classList.add(Classes.HIDDEN)
+            collapseArrow.classList.remove(Classes.OPEN)
         } else {
-            collapseContent.classList.remove('hidden')
-            collapseArrow.classList.add("open")
+            collapseContent.classList.remove(Classes.HIDDEN)
+            collapseArrow.classList.add(Classes.OPEN)
         }
     }
 
     // Collapsable titles
-    const playlistTitles = document.getElementsByClassName("playlist-title")
+    const playlistTitles = document.getElementsByClassName(Classes.PLAYLIST_TITLE)
     Array.from(playlistTitles).forEach((playlistTitle) => {
         const collapseArrow = document.createElement("span")
-        collapseArrow.classList = "fa fa-lg fa-caret-down collapse-caret"
+        collapseArrow.classList = `fa fa-lg fa-caret-down ${Classes.COLLAPSE_CARET}`
         playlistTitle.appendChild(collapseArrow)
         setCollapsed(isMobile(), playlistTitle)
 
         playlistTitle.addEventListener("click", function () {
-            const collapseContent = this.parentElement.getElementsByClassName('playlist-items')[0]
-            const isCollapsed = collapseContent.classList.contains('hidden')
+            const collapseContent = this.parentElement.getElementsByClassName(Classes.PLAYLIST_ITEMS)[0]
+            const isCollapsed = collapseContent.classList.contains(Classes.HIDDEN)
             setCollapsed(!isCollapsed, this)
 
             if (isMobile() && isCollapsed) {
@@ -97,7 +114,7 @@ function setPlaylistTitlesCollapsable() {
 }
 
 async function setScTracksElements(SC) {
-    const transformItems = document.getElementsByClassName("transform-to-sc-item")
+    const transformItems = document.getElementsByClassName(Classes.TRANSFORM_TO_SC_ITEM)
     Array.from(transformItems).forEach((el) => {
         SC.oEmbed(el.getAttribute("data-sc-link"), { auto_play: false, maxheight: 150 }).then((
             /**
@@ -114,10 +131,10 @@ async function setScTracksElements(SC) {
             const addlDescription = el.getAttribute("data-addl-desc")
 
             const trackWrapper = document.createElement("div")
-            trackWrapper.classList = "track-wrapper"
+            trackWrapper.classList = Classes.TRACK_WRAPPER
 
             const titleElement = document.createElement("p")
-            titleElement.classList = "track-title"
+            titleElement.classList = Classes.TRACK_TITLE
             // if (!genreDescription) titleElement.classList.add("track-genre-description")
             titleElement.appendChild(document.createTextNode(titleStr))
             trackWrapper.appendChild(titleElement)
@@ -125,14 +142,14 @@ async function setScTracksElements(SC) {
 
             if (genreDescription) {
                 const genreDescriptionElement = document.createElement("p")
-                genreDescriptionElement.classList = "track-genre-description"
+                genreDescriptionElement.classList = Classes.TRACK_GENRE_DESC
                 genreDescriptionElement.appendChild(document.createTextNode(genreDescription))
                 trackWrapper.appendChild(genreDescriptionElement)
             }
 
             if (addlDescription) {
                 const addlDescriptionElement = document.createElement("p")
-                addlDescriptionElement.classList = "track-addl-description"
+                addlDescriptionElement.classList = Classes.TRACK_ADDL_DESC
                 const addlDescriptionTxt = addlDescription === "GET_FROM_SC" ? oEmbed.description : addlDescription
                 addlDescriptionElement.appendChild(document.createTextNode(addlDescriptionTxt))
                 trackWrapper.appendChild(addlDescriptionElement)
@@ -154,31 +171,31 @@ async function setScTracksElements(SC) {
             trackWrapper.appendChild(iframeElement)
 
             const privacyPolicyCoverElement = document.createElement("div")
-            privacyPolicyCoverElement.classList = "privacy-policy-cover"
+            privacyPolicyCoverElement.classList = Classes.PRIVACY_POLICY_COVER
             trackWrapper.appendChild(privacyPolicyCoverElement)
 
             el.replaceWith(trackWrapper)
         });
     })
 
-    await waitForElements(() => document.getElementsByClassName('track-wrapper'), transformItems.length)
+    await waitForElements(() => document.getElementsByClassName(Classes.TRACK_WRAPPER), transformItems.length)
 }
 
 function setPlaylistsScrollable() {
-    const scrollRegions = document.getElementsByClassName("playlist-items")
+    const scrollRegions = document.getElementsByClassName(Classes.PLAYLIST_ITEMS)
     Array.from(scrollRegions).forEach((scrollRegion) => {
         if (!isScrollableY(scrollRegion)) return
 
         const ARROW_BTN_CLICK_SCROLL_DIST = 150
 
         const upDiv = document.createElement("div")
-        upDiv.classList = "scroll-arrow scroll-arrow-up fa fa-caret-up fa-2x"
+        upDiv.classList = `${Classes.SCROLL_ARROW} ${Classes.SCROLL_ARROW_UP} fa fa-caret-up fa-2x`
         upDiv.addEventListener("click", function () {
             scrollRegion.scrollTo({ top: scrollRegion.scrollTop - ARROW_BTN_CLICK_SCROLL_DIST, behavior: 'smooth' })
         })
 
         const downDiv = document.createElement("div")
-        downDiv.classList = "scroll-arrow scroll-arrow-down fa fa-caret-down fa-2x"
+        downDiv.classList = `${Classes.SCROLL_ARROW} ${Classes.SCROLL_ARROW_DOWN} fa fa-caret-down fa-2x`
         downDiv.addEventListener("click", function () {
             scrollRegion.scrollTo({ top: scrollRegion.scrollTop + ARROW_BTN_CLICK_SCROLL_DIST, behavior: 'smooth' })
         })
@@ -190,9 +207,9 @@ function setPlaylistsScrollable() {
             /** @type {HTMLDivElement} */
             const thisScrollRegion = event.target
             /** @type {HTMLDivElement} */
-            const upArrow = thisScrollRegion.getElementsByClassName("scroll-arrow-up")[0]
+            const upArrow = thisScrollRegion.getElementsByClassName(Classes.SCROLL_ARROW_UP)[0]
             /** @type {HTMLDivElement} */
-            const downArrow = thisScrollRegion.getElementsByClassName("scroll-arrow-down")[0]
+            const downArrow = thisScrollRegion.getElementsByClassName(Classes.SCROLL_ARROW_DOWN)[0]
 
             upArrow.style.display = isScrolledToTop(thisScrollRegion, 50) ? "none" : "inherit"
             downArrow.style.display = isScrolledToBottom(thisScrollRegion, 50) ? "none" : "inherit"
