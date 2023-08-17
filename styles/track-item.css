@@ -18,35 +18,26 @@
         0 0 50px var(--hover-color-text);
 }
 
-.track-title {
-    font-size: 1em;
-    font-weight: bold;
-}
+.track-title {}
 
 .track-genre-description {
-    font-size: 1em;
     font-weight: bold;
-    font-style: italic;
     color: turquoise
 }
 
 .track-addl-description {
-    font-size: 1em;
     text-align: justify;
-    color: grey
+    color: grey;
+    font-size: 0.9em;
 }
 
 .track-wrapper iframe {
     margin-top: 10px;
     width: 100%;
     border-radius: var(--border-radius);
+    font-size: 1em;
 }
 
-.no-track-descriptions .track-genre-description,
-.no-track-descriptions .track-addl-description {
-    display: none;
-    visibility: hidden;
-}
 
 .privacy-policy-cover {
     /* position */

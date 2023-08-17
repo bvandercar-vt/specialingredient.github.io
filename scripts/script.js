@@ -118,12 +118,13 @@ async function setScTracksElements(SC) {
 
             const titleElement = document.createElement("p")
             titleElement.classList = "track-title"
+            // if (!genreDescription) titleElement.classList.add("track-genre-description")
             titleElement.appendChild(document.createTextNode(titleStr))
             trackWrapper.appendChild(titleElement)
 
 
             if (genreDescription) {
-                genreDescriptionElement = document.createElement("p")
+                const genreDescriptionElement = document.createElement("p")
                 genreDescriptionElement.classList = "track-genre-description"
                 genreDescriptionElement.appendChild(document.createTextNode(genreDescription))
                 trackWrapper.appendChild(genreDescriptionElement)
