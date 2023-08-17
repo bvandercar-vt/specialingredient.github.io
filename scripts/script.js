@@ -80,7 +80,16 @@ function init() {
             /** @type {HTMLIframeElement} */
             const iframeElement = htmlToElement(oEmbed.html)
             iframeElement.title = titleStr
-            iframeElement.src += "&auto_play=false&hide_related=false&show_comments=true&show_user=false&show_reposts=true&show_teaser=false&visual=true"
+            const url = new URL(iframeElement.src)
+            url.searchParams.set('auto_play', false)
+            url.searchParams.set('hide_related', false)
+            url.searchParams.set('show_comments', true)
+            url.searchParams.set('show_user', false)
+            url.searchParams.set('show_reposts', true)
+            url.searchParams.set('show_teaser', false)
+            url.searchParams.set('visual', true) // true =  artwork behind waveform, false = artwork to left
+            url.searchParams.set('show_artwork', true) // want true, unless no artwork
+            iframeElement.src = url.href
             trackWrapper.appendChild(iframeElement)
 
             const privacyPolicyCoverElement = document.createElement("div")
