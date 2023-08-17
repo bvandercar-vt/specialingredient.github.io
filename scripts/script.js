@@ -73,8 +73,9 @@ function init() {
 
             trackWrapper.appendChild(titleWrapper)
 
-            const addlDescription = el.getAttribute("data-addl-desc") ? el.getAttribute("data-addl-desc") : oEmbed.description
+            let addlDescription = el.getAttribute("data-addl-desc")
             if (addlDescription) {
+                addlDescription = addlDescription === "GET_FROM_SC" ? oEmbed.description : addlDescription
                 const addlDescriptionElement = document.createElement("p")
                 addlDescriptionElement.classList = "track-addl-description"
                 addlDescriptionElement.appendChild(document.createTextNode(addlDescription))
