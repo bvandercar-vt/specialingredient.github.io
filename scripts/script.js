@@ -104,12 +104,10 @@ function init() {
         const collapseArrow = playlistTitleEl.parentElement.getElementsByClassName('collapse-caret')[0]
         if (collapsed) {
             collapseContent.classList.add('hidden')
-            collapseArrow.classList.add("fa-caret-right")
-            collapseArrow.classList.remove("fa-caret-down")
+            collapseArrow.classList.remove("open")
         } else {
             collapseContent.classList.remove('hidden')
-            collapseArrow.classList.remove("fa-caret-right")
-            collapseArrow.classList.add("fa-caret-down")
+            collapseArrow.classList.add("open")
         }
     }
 
@@ -119,7 +117,7 @@ function init() {
         /** @type {HTMLDivElement} */
         playlistTitle) => {
         const collapseArrow = document.createElement("span")
-        collapseArrow.classList = "fa fa-lg collapse-caret"
+        collapseArrow.classList = "fa fa-lg fa-caret-down collapse-caret"
         playlistTitle.appendChild(collapseArrow)
         setCollapsed(isMobile(), playlistTitle)
 
