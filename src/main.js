@@ -1,7 +1,6 @@
 import './styles/index.css'
-import { htmlToElement } from './basics'
+import { htmlToElement, isScrolledToTop, isScrolledToBottom, isScrollableY, isMobile, waitForElements } from './basics'
 
-const MOBILE_WIDTH = 800
 
 const Classes = {
     OPEN: 'open',
@@ -20,54 +19,6 @@ const Classes = {
     SCROLL_ARROW_DOWN: "scroll-arrow-down"
 }
 
-
-
-function isScrolledToTop(element, offset = 0) {
-    return element.scrollTop < offset
-}
-
-function isScrolledToBottom(element, offset = 0) {
-    return element.scrollTop > (element.scrollHeight - element.offsetHeight - offset)
-}
-
-function isScrollableY(element) {
-    return element.scrollHeight > element.clientHeight
-}
-
-function getWindowWidth() {
-    return window.innerWidth || document.documentElement.clientWidth ||
-        document.body.clientWidth;
-}
-
-function isMobile() {
-    return getWindowWidth() < MOBILE_WIDTH
-}
-
-function waitForElements(
-    /** @type {() => NodeListOf<any>} */
-    checkFunction,
-    /** @type {number} */
-    expectedLength) {
-    return new Promise(resolve => {
-        const items = checkFunction()
-        if (items.length === expectedLength) {
-            return resolve(items);
-        }
-
-        const observer = new MutationObserver(mutations => {
-            const items = checkFunction()
-            if (items.length === expectedLength) {
-                resolve(items);
-                observer.disconnect();
-            }
-        });
-
-        observer.observe(document.body, {
-            childList: true,
-            subtree: true
-        });
-    });
-}
 
 function setPlaylistTitlesCollapsable() {
     function setCollapsed(
