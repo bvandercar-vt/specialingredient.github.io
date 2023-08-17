@@ -1,0 +1,31 @@
+{
+  "name": "specialingredient.github.io",
+  "private": true,
+  "version": "1.0.0",
+  "description": "Special Ingredient Bass Music",
+  "main": "index.js",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
+    "lint": "tsc"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/bvandercar-vt/specialingredient.github.io.git"
+  },
+  "keywords": [
+    "bass",
+    "music"
+  ],
+  "author": "Blake Vandercar",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/bvandercar-vt/specialingredient.github.io/issues"
+  },
+  "homepage": "https://github.com/bvandercar-vt/specialingredient.github.io#readme",
+  "devDependencies": {
+    "typescript": "^5.0.2",
+    "vite": "^4.4.9"
+  }
+}
