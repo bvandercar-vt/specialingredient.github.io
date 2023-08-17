@@ -26,6 +26,7 @@
   },
   "homepage": "https://github.com/bvandercar-vt/specialingredient.github.io#readme",
   "devDependencies": {
+    "typescript": "^5.0.2",
     "vite": "^4.4.9"
   }
 }

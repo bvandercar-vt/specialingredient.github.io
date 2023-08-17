@@ -1,14 +1,14 @@
 const MOBILE_WIDTH = 800
 
-export function isScrolledToTop(element, offset = 0) {
+export function isScrolledToTop(element: HTMLElement, offset = 0) {
     return element.scrollTop < offset
 }
 
-export function isScrolledToBottom(element, offset = 0) {
+export function isScrolledToBottom(element: HTMLElement, offset = 0) {
     return element.scrollTop > (element.scrollHeight - element.offsetHeight - offset)
 }
 
-export function isScrollableY(element) {
+export function isScrollableY(element: Element) {
     return element.scrollHeight > element.clientHeight
 }
 
@@ -21,17 +21,13 @@ export function isMobile() {
     return getWindowWidth() < MOBILE_WIDTH
 }
 
-export function htmlToElement(html) {
+export function htmlToElement(html: string) {
     var template = document.createElement('template');
     template.innerHTML = html.trim();
     return template.content.firstChild;
 }
 
-export function waitForElements(
-    /** @type {() => NodeListOf<any>} */
-    checkFunction,
-    /** @type {number} */
-    expectedLength) {
+export function waitForElements(checkFunction: () => HTMLCollectionOf<Element>, expectedLength: number) {
     return new Promise(resolve => {
         const items = checkFunction()
         if (items.length === expectedLength) {
