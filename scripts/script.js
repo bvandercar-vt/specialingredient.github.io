@@ -172,15 +172,15 @@ function setPlaylistsScrollable() {
 
         const upDiv = document.createElement("div")
         upDiv.classList = "scroll-arrow scroll-arrow-up fa fa-caret-up fa-2x"
-        upDiv.onclick = function () {
+        upDiv.addEventListener("click", function () {
             scrollRegion.scrollTo({ top: scrollRegion.scrollTop - ARROW_BTN_CLICK_SCROLL_DIST, behavior: 'smooth' })
-        }
+        })
 
         const downDiv = document.createElement("div")
         downDiv.classList = "scroll-arrow scroll-arrow-down fa fa-caret-down fa-2x"
-        downDiv.onclick = function () {
+        downDiv.addEventListener("click", function () {
             scrollRegion.scrollTo({ top: scrollRegion.scrollTop + ARROW_BTN_CLICK_SCROLL_DIST, behavior: 'smooth' })
-        }
+        })
 
         scrollRegion.insertBefore(upDiv, scrollRegion.firstChild);
         scrollRegion.appendChild(downDiv);
