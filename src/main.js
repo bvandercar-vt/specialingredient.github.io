@@ -1,3 +1,6 @@
+import './styles/index.css'
+import { htmlToElement } from './basics'
+
 const MOBILE_WIDTH = 800
 
 const Classes = {
@@ -17,11 +20,7 @@ const Classes = {
     SCROLL_ARROW_DOWN: "scroll-arrow-down"
 }
 
-function htmlToElement(html) {
-    var template = document.createElement('template');
-    template.innerHTML = html.trim();
-    return template.content.firstChild;
-}
+
 
 function isScrolledToTop(element, offset = 0) {
     return element.scrollTop < offset
@@ -217,7 +216,7 @@ function setPlaylistsScrollable() {
 }
 
 
-async function init() {
+function init() {
     // All anchors should open in NEW TAB
     Array.from(document.getElementsByTagName("a")).forEach((el) => {
         el.target = "_blank"
@@ -227,11 +226,11 @@ async function init() {
     setPlaylistTitlesCollapsable()
 
     // Soundcloud stuff
-    SC.initialize({ client_id: 'DgFeY88vapbGCcK7RrT2E33nmNQVWX82' });
+    // SC.initialize({ client_id: 'DgFeY88vapbGCcK7RrT2E33nmNQVWX82' });
 
-    await setScTracksElements(SC)
+    // await setScTracksElements(SC)
 
     setPlaylistsScrollable()
 }
 
-window.onload = init
+init()
