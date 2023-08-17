@@ -1,9 +1,6 @@
 function fixHtml() {
     return {
         name: 'remove-module',
-        // transformIndexHtml(html, id) {
-        //     return html.replaceAll('crossorigin', '').replaceAll('src="/', 'src="').replaceAll('href="/', 'href="')
-        // },
         transformIndexHtml(html, id) {
             return html.replaceAll('Denver', 'DENVERRR')
         },
