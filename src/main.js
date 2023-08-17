@@ -216,7 +216,7 @@ function setPlaylistsScrollable() {
 }
 
 
-function init() {
+async function init() {
     // All anchors should open in NEW TAB
     Array.from(document.getElementsByTagName("a")).forEach((el) => {
         el.target = "_blank"
@@ -226,9 +226,9 @@ function init() {
     setPlaylistTitlesCollapsable()
 
     // Soundcloud stuff
-    // SC.initialize({ client_id: 'DgFeY88vapbGCcK7RrT2E33nmNQVWX82' });
+    SC.initialize({ client_id: 'DgFeY88vapbGCcK7RrT2E33nmNQVWX82' });
 
-    // await setScTracksElements(SC)
+    await setScTracksElements(SC)
 
     setPlaylistsScrollable()
 }
