@@ -6,9 +6,9 @@
   "description": "Special Ingredient Bass Music",
   "main": "index.js",
   "scripts": {
-    "dev": "vite",
+    "dev": "vite --open",
     "build": "vite build",
-    "preview": "vite preview",
+    "preview": "vite preview --open",
     "lint": "tsc"
   },
   "repository": {

@@ -9,7 +9,8 @@
 
 /** @type {import('vite').UserConfig} */
 export default {
-    base: `/specialingredient.github.io/`,
+    // base: `/specialingredient.github.io/`,
+    base: `http://specialingredientbass.com/`,
     build: {
         target: 'esnext',
         modulePreload: false,
