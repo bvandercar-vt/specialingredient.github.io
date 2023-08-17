@@ -97,8 +97,9 @@ header {
     text-align: center;
     text-decoration: none;
     line-height: 40px;
+    background-image: linear-gradient(rgb(0 0 0/30%) 0 0);
 }
 
 #social-links .fa:hover {
-    opacity: 1.0;
+    background-image: linear-gradient(rgb(0 0 0/0%) 0 0);
 }

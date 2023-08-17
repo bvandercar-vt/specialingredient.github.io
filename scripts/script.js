@@ -19,8 +19,7 @@ const Classes = {
 
 function htmlToElement(html) {
     var template = document.createElement('template');
-    html = html.trim(); // Never return a text node of whitespace as the result
-    template.innerHTML = html;
+    template.innerHTML = html.trim();
     return template.content.firstChild;
 }
 
@@ -220,8 +219,7 @@ function setPlaylistsScrollable() {
 
 async function init() {
     // All anchors should open in NEW TAB
-    const allAnchors = document.getElementsByTagName("a")
-    Array.from(allAnchors).forEach((el) => {
+    Array.from(document.getElementsByTagName("a")).forEach((el) => {
         el.target = "_blank"
         el.rel = "noreferrer noopener"
     })
@@ -229,9 +227,7 @@ async function init() {
     setPlaylistTitlesCollapsable()
 
     // Soundcloud stuff
-    SC.initialize({
-        client_id: 'DgFeY88vapbGCcK7RrT2E33nmNQVWX82'
-    });
+    SC.initialize({ client_id: 'DgFeY88vapbGCcK7RrT2E33nmNQVWX82' });
 
     await setScTracksElements(SC)
 
