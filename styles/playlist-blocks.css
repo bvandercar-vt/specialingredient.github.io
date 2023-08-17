@@ -21,13 +21,13 @@
     box-shadow: 0 0 10px 2px var(--border-color);
 }
 
-.playlist-block .scroll {
+.playlist-items {
     position: relative;
-    overflow-y: scroll;
+    overflow-y: auto;
     max-height: 800px;
 }
 
-.playlist-block .scroll::-webkit-scrollbar {
+.playlist-items::-webkit-scrollbar {
     display: none;
 }
 
