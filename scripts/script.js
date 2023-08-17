@@ -109,17 +109,19 @@ async function setScTracksElements(SC) {
              * } } 
              */
             oEmbed) => {
+            const titleStr = el.getAttribute("data-title") ?? oEmbed.title.replaceAll(' by Special Ingredient', '').replaceAll('[w TRACKLIST]', '').replaceAll('[MASHUP]', '')
+            const genreDescription = el.getAttribute("data-genre-desc")
+            const addlDescription = el.getAttribute("data-addl-desc")
+
             const trackWrapper = document.createElement("div")
             trackWrapper.classList = "track-wrapper"
 
             const titleElement = document.createElement("p")
             titleElement.classList = "track-title"
-            const titleStr = el.getAttribute("data-title") ?? oEmbed.title.replaceAll(' by Special Ingredient', '').replaceAll('[w TRACKLIST]', '').replaceAll('[MASHUP]', '')
             titleElement.appendChild(document.createTextNode(titleStr))
             trackWrapper.appendChild(titleElement)
 
 
-            const genreDescription = el.getAttribute("data-genre-desc")
             if (genreDescription) {
                 genreDescriptionElement = document.createElement("p")
                 genreDescriptionElement.classList = "track-genre-description"
@@ -127,13 +129,11 @@ async function setScTracksElements(SC) {
                 trackWrapper.appendChild(genreDescriptionElement)
             }
 
-
-            let addlDescription = el.getAttribute("data-addl-desc")
             if (addlDescription) {
-                addlDescription = addlDescription === "GET_FROM_SC" ? oEmbed.description : addlDescription
                 const addlDescriptionElement = document.createElement("p")
                 addlDescriptionElement.classList = "track-addl-description"
-                addlDescriptionElement.appendChild(document.createTextNode(addlDescription))
+                const addlDescriptionTxt = addlDescription === "GET_FROM_SC" ? oEmbed.description : addlDescription
+                addlDescriptionElement.appendChild(document.createTextNode(addlDescriptionTxt))
                 trackWrapper.appendChild(addlDescriptionElement)
             }
 
