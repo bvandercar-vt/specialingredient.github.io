@@ -18,10 +18,6 @@
         0 0 50px var(--hover-color-text);
 }
 
-.track-title-wrapper {
-    margin-bottom: 10px;
-}
-
 .track-title {
     font-size: 1em;
     font-weight: bold;

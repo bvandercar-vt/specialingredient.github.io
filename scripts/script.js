@@ -52,26 +52,21 @@ function init() {
             const trackWrapper = document.createElement("div")
             trackWrapper.classList = "track-wrapper"
 
-            const titleWrapper = document.createElement("div")
-            titleWrapper.classList = "track-title-wrapper"
-            const titleStr = el.getAttribute("data-title") ? el.getAttribute("data-title") :
-                oEmbed.title.replaceAll(' by Special Ingredient', '')
-                    .replaceAll('[w TRACKLIST]', '')
-                    .replaceAll('[MASHUP]', '')
-            const titleElement = document.createElement("span")
+            const titleElement = document.createElement("p")
             titleElement.classList = "track-title"
+            const titleStr = el.getAttribute("data-title") ?? oEmbed.title.replaceAll(' by Special Ingredient', '').replaceAll('[w TRACKLIST]', '').replaceAll('[MASHUP]', '')
             titleElement.appendChild(document.createTextNode(titleStr))
-            titleWrapper.appendChild(titleElement)
+            trackWrapper.appendChild(titleElement)
+
 
             const genreDescription = el.getAttribute("data-genre-desc")
             if (genreDescription) {
-                const genreDescriptionElement = document.createElement("span")
+                genreDescriptionElement = document.createElement("p")
                 genreDescriptionElement.classList = "track-genre-description"
-                genreDescriptionElement.appendChild(document.createTextNode(" (" + genreDescription + ")"))
-                titleWrapper.appendChild(genreDescriptionElement)
+                genreDescriptionElement.appendChild(document.createTextNode(genreDescription))
+                trackWrapper.appendChild(genreDescriptionElement)
             }
 
-            trackWrapper.appendChild(titleWrapper)
 
             let addlDescription = el.getAttribute("data-addl-desc")
             if (addlDescription) {
