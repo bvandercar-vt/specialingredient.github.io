@@ -2,6 +2,7 @@
   "name": "specialingredient.github.io",
   "private": true,
   "version": "1.0.0",
+  "type": "module",
   "description": "Special Ingredient Bass Music",
   "main": "index.js",
   "scripts": {
