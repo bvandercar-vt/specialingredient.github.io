@@ -23,7 +23,7 @@
 .playlist-items {
   position: relative;
   overflow-y: auto;
-  max-height: 800px;
+  max-height: calc(100vh - 80px);
 }
 
 .playlist-items::-webkit-scrollbar {
