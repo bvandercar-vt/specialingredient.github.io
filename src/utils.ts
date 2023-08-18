@@ -50,3 +50,9 @@ export function waitForElements(
     })
   })
 }
+
+export function triggerClick(event: KeyboardEvent) {
+  if (event.key === 'Enter' || event.key === ' ') {
+    event.target?.dispatchEvent(new MouseEvent('click', { ...event, view: undefined }))
+  }
+}
