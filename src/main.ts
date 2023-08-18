@@ -57,10 +57,18 @@ function setPlaylistTitlesCollapsable() {
       const isCollapsed = collapseContent.classList.contains(Classes.HIDDEN)
       setCollapsed(playlistTitle, !isCollapsed)
 
-      if (isCollapsed && isMobile()) {
-        Array.from(playlistTitles).forEach((otherPlaylistTitle) => {
-          if (otherPlaylistTitle !== playlistTitle) setCollapsed(otherPlaylistTitle, true)
-        })
+      if (isCollapsed) {
+        // when becomes expanded, place title at top
+        playlistTitle.scrollIntoView({ behavior: 'smooth' })
+
+        // when becomes expanded, if mobile, close others
+        if (isMobile()) {
+          Array.from(playlistTitles).forEach((otherPlaylistTitle) => {
+            if (otherPlaylistTitle !== playlistTitle) {
+              setCollapsed(otherPlaylistTitle, true)
+            }
+          })
+        }
       }
     })
   })
