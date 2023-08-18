@@ -1,6 +1,6 @@
 import { defineConfig } from 'vite'
 export default defineConfig(() => ({
-  base: `/`,
+  base: `specialingredientbass.com/`,
   build: {
     target: 'esnext',
     modulePreload: false,
