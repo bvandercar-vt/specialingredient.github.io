@@ -6,8 +6,9 @@ import {
   isScrollableY,
   isMobile,
   waitForElements,
-} from './basics'
+} from './utils'
 import { SoundCloud, soundCloud } from './soundcloud'
+
 const Classes = {
   OPEN: 'open',
   HIDDEN: 'hidden',
@@ -25,20 +26,20 @@ const Classes = {
   SCROLL_ARROW_DOWN: 'scroll-arrow-down',
 } as const
 
-function setPlaylistTitlesCollapsable() {
-  function setCollapsed(collapsed: boolean, playlistTitleEl: HTMLDivElement) {
-    const parentElement = playlistTitleEl.parentElement!
-    const collapseContent = parentElement.getElementsByClassName(Classes.PLAYLIST_ITEMS)[0]
-    const collapseArrow = parentElement.getElementsByClassName(Classes.COLLAPSE_CARET)[0]
-    if (collapsed) {
-      collapseContent.classList.add(Classes.HIDDEN)
-      collapseArrow.classList.remove(Classes.OPEN)
-    } else {
-      collapseContent.classList.remove(Classes.HIDDEN)
-      collapseArrow.classList.add(Classes.OPEN)
-    }
+function setCollapsed(accordionTitle: HTMLDivElement, collapsed: boolean) {
+  const parentElement = accordionTitle.parentElement!
+  const collapseContent = parentElement.getElementsByClassName(Classes.PLAYLIST_ITEMS)[0]
+  const collapseArrow = parentElement.getElementsByClassName(Classes.COLLAPSE_CARET)[0]
+  if (collapsed) {
+    collapseContent.classList.add(Classes.HIDDEN)
+    collapseArrow.classList.remove(Classes.OPEN)
+  } else {
+    collapseContent.classList.remove(Classes.HIDDEN)
+    collapseArrow.classList.add(Classes.OPEN)
   }
+}
 
+function setPlaylistTitlesCollapsable() {
   // Collapsable titles
   const playlistTitles = document.getElementsByClassName(
     Classes.PLAYLIST_TITLE,
@@ -47,49 +48,51 @@ function setPlaylistTitlesCollapsable() {
     const collapseArrow = document.createElement('span')
     collapseArrow.classList.add(`fa`, `fa-lg`, `fa-caret-down`, Classes.COLLAPSE_CARET)
     playlistTitle.appendChild(collapseArrow)
-    setCollapsed(isMobile(), playlistTitle)
 
-    playlistTitle.addEventListener('click', function () {
-      const collapseContent = this.parentElement!.getElementsByClassName(Classes.PLAYLIST_ITEMS)[0]
+    setCollapsed(playlistTitle, isMobile())
+
+    playlistTitle.addEventListener('click', () => {
+      const collapseContent = playlistTitle.parentElement!.getElementsByClassName(
+        Classes.PLAYLIST_ITEMS,
+      )[0]
       const isCollapsed = collapseContent.classList.contains(Classes.HIDDEN)
-      setCollapsed(!isCollapsed, this)
+      setCollapsed(playlistTitle, !isCollapsed)
 
-      if (isMobile() && isCollapsed) {
-        Array.from(playlistTitles).forEach((otherPlaylistTitleEl) => {
-          if (otherPlaylistTitleEl !== this) {
-            setCollapsed(true, otherPlaylistTitleEl)
-          }
+      if (isCollapsed && isMobile()) {
+        Array.from(playlistTitles).forEach((otherPlaylistTitle) => {
+          if (otherPlaylistTitle !== playlistTitle) setCollapsed(otherPlaylistTitle, true)
         })
       }
     })
   })
 }
 
-async function setScTracksElements(soundCloud: SoundCloud) {
-  const transformItems = document.getElementsByClassName(Classes.TRANSFORM_TO_SC_ITEM)
-  Array.from(transformItems).forEach((el) => {
+async function replaceSoundcloudTrackElements(soundCloud: SoundCloud) {
+  const itemsToTransform = document.getElementsByClassName(Classes.TRANSFORM_TO_SC_ITEM)
+  Array.from(itemsToTransform).forEach((itemToTransform) =>
     soundCloud
-      .oEmbed(el.getAttribute('data-sc-link')!, { auto_play: false, maxheight: 150 })
+      .oEmbed(itemToTransform.getAttribute('data-sc-link')!, { auto_play: false, maxheight: 150 })
       .then((oEmbed) => {
         const titleStr =
-          el.getAttribute('data-title') ??
+          itemToTransform.getAttribute('data-title') ??
           oEmbed.title
             .replaceAll(' by Special Ingredient', '')
             .replaceAll('[w TRACKLIST]', '')
             .replaceAll('[MASHUP]', '')
-        const genreDescription = el.getAttribute('data-genre-desc')
-        const addlDescriptionSet = el.getAttribute('data-addl-desc')
+        const genreDescription = itemToTransform.getAttribute('data-genre-desc')
+        const addlDescriptionSet = itemToTransform.getAttribute('data-addl-desc')
         const addlDescription =
           addlDescriptionSet === 'GET_FROM_SC' ? oEmbed.description : addlDescriptionSet
 
         const trackWrapper = document.createElement('div')
         trackWrapper.classList.add(Classes.TRACK_WRAPPER)
 
-        const titleElement = document.createElement('p')
-        titleElement.classList.add(Classes.TRACK_TITLE)
-        // if (!genreDescription) titleElement.classList.add("track-genre-description")
-        titleElement.appendChild(document.createTextNode(titleStr))
-        trackWrapper.appendChild(titleElement)
+        if (titleStr) {
+          const titleElement = document.createElement('p')
+          titleElement.classList.add(Classes.TRACK_TITLE)
+          titleElement.appendChild(document.createTextNode(titleStr))
+          trackWrapper.appendChild(titleElement)
+        }
 
         if (genreDescription) {
           const genreDescriptionElement = document.createElement('p')
@@ -124,13 +127,13 @@ async function setScTracksElements(soundCloud: SoundCloud) {
         privacyPolicyCoverElement.classList.add(Classes.PRIVACY_POLICY_COVER)
         trackWrapper.appendChild(privacyPolicyCoverElement)
 
-        el.replaceWith(trackWrapper)
-      })
-  })
+        itemToTransform.replaceWith(trackWrapper)
+      }),
+  )
 
   await waitForElements(
     () => document.getElementsByClassName(Classes.TRACK_WRAPPER),
-    transformItems.length,
+    itemsToTransform.length,
   )
 }
 
@@ -192,7 +195,7 @@ async function init() {
   // Soundcloud stuff
   soundCloud.initialize({ client_id: 'DgFeY88vapbGCcK7RrT2E33nmNQVWX82' })
 
-  await setScTracksElements(soundCloud)
+  await replaceSoundcloudTrackElements(soundCloud)
 
   setPlaylistsScrollable()
 }
