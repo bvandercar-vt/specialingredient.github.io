@@ -69,7 +69,6 @@
   --hover-color-border: cyan;
   box-shadow: 0 0 10px 2px var(--hover-color-border);
   text-shadow:
-    0 0 3px white,
     0 0 5px var(--hover-color-text),
     0 0 10px var(--hover-color-text),
     0 0 15px var(--hover-color-text),
