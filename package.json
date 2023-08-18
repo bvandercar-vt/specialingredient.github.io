@@ -7,6 +7,7 @@
   "main": "index.js",
   "homepage": "specialingredientbass.com",
   "scripts": {
+    "start": "yarn dev",
     "dev": "vite --open",
     "build": "vite build",
     "preview": "vite preview --open",
