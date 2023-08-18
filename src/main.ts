@@ -53,15 +53,14 @@ function setPlaylistTitlesCollapsable() {
     setCollapsed(playlistTitle, isMobile())
 
     playlistTitle.addEventListener('click', () => {
-      const collapseContent = playlistTitle.parentElement!.getElementsByClassName(
-        Classes.PLAYLIST_ITEMS,
-      )[0]
+      const playlistBlock = playlistTitle.parentElement!
+      const collapseContent = playlistBlock.getElementsByClassName(Classes.PLAYLIST_ITEMS)[0]
       const isCollapsed = collapseContent.classList.contains(Classes.HIDDEN)
       setCollapsed(playlistTitle, !isCollapsed)
 
       if (isCollapsed) {
         // when becomes expanded, place title at top
-        playlistTitle.scrollIntoView({ behavior: 'smooth' })
+        playlistBlock.scrollIntoView({ behavior: 'smooth', block: 'end' })
 
         // when becomes expanded, if mobile, close others
         if (isMobile()) {
