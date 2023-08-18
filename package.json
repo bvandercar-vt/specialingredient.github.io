@@ -5,6 +5,7 @@
   "type": "module",
   "description": "Special Ingredient Bass Music",
   "main": "index.js",
+  "homepage":"specialingredientbass.com",
   "scripts": {
     "dev": "vite --open",
     "build": "vite build",
