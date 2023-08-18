@@ -31,13 +31,8 @@ function setCollapsed(accordionTitle: HTMLDivElement, collapsed: boolean) {
   const parentElement = accordionTitle.parentElement!
   const collapseContent = parentElement.getElementsByClassName(Classes.PLAYLIST_ITEMS)[0]
   const collapseArrow = parentElement.getElementsByClassName(Classes.COLLAPSE_CARET)[0]
-  if (collapsed) {
-    collapseContent.classList.add(Classes.HIDDEN)
-    collapseArrow.classList.remove(Classes.OPEN)
-  } else {
-    collapseContent.classList.remove(Classes.HIDDEN)
-    collapseArrow.classList.add(Classes.OPEN)
-  }
+  collapseContent.classList.toggle(Classes.HIDDEN, collapsed)
+  collapseArrow.classList.toggle(Classes.OPEN, !collapsed)
 }
 
 function setPlaylistTitlesCollapsable() {
