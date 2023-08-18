@@ -1,105 +1,106 @@
 header {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    position: relative;
-    width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  width: 100%;
 }
 
 #header-title-img {
-    /* Position */
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
-    max-height: 200px;
-    max-width: 100%;
-    padding: 5px;
+  /* Position */
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  max-height: 200px;
+  max-width: 100%;
+  padding: 5px;
 
-    /* Glow */
-    --header-title-img-glow-color: orangered;
-    --header-title-img-glow:
-        drop-shadow(0 0 10px var(--header-title-img-glow-color)) drop-shadow(0 0 20px var(--header-title-img-glow-color)) drop-shadow(0 0 50px darkcyan);
-    -webkit-filter: var(--header-title-img-glow);
-    filter: var(--header-title-img-glow);
+  /* Glow */
+  --header-title-img-glow-color: orangered;
+  --header-title-img-glow: drop-shadow(0 0 10px var(--header-title-img-glow-color))
+    drop-shadow(0 0 20px var(--header-title-img-glow-color)) drop-shadow(0 0 50px darkcyan);
+  -webkit-filter: var(--header-title-img-glow);
+  filter: var(--header-title-img-glow);
 }
 
 #header-subtitle {
-    text-align: center;
-    margin-bottom: 20px;
-    font-size: 2em;
-    font-family: "Permanent Marker", sans-serif;
-    color: purple;
-    z-index: 1;
-    --hover-color-text: cyan;
-    text-shadow:
-        0 0 5px var(--hover-color-text),
-        0 0 10px var(--hover-color-text),
-        0 0 15px var(--hover-color-text),
-        0 0 20px var(--hover-color-text),
-        0 0 30px var(--hover-color-text),
-        0 0 50px var(--hover-color-text);
+  text-align: center;
+  margin-bottom: 20px;
+  font-size: 2em;
+  font-family: 'Permanent Marker', sans-serif;
+  color: purple;
+  z-index: 1;
+  --hover-color-text: cyan;
+  text-shadow:
+    0 0 5px var(--hover-color-text),
+    0 0 10px var(--hover-color-text),
+    0 0 15px var(--hover-color-text),
+    0 0 20px var(--hover-color-text),
+    0 0 30px var(--hover-color-text),
+    0 0 50px var(--hover-color-text);
 }
 
-#header-logo {}
+#header-logo {
+}
 
 #header-right {
-    position: absolute;
-    right: 20px;
-    bottom: 0px;
-    margin-bottom: 20px
+  position: absolute;
+  right: 20px;
+  bottom: 0px;
+  margin-bottom: 20px;
 }
 
 #bio {
-    text-align: right;
-    max-width: 220px;
-    color: grey;
-    font-size: 0.8em;
-    margin-bottom: 0.5em;
+  text-align: right;
+  max-width: 220px;
+  color: grey;
+  font-size: 0.8em;
+  margin-bottom: 0.5em;
 }
 
 #bio p {
-    margin-bottom: 0.25em;
+  margin-bottom: 0.25em;
 }
 
 #social-links {
-    text-align: right;
+  text-align: right;
 }
 
-@media (max-width:960px) {
-    header {
-        display: block;
-    }
+@media (max-width: 960px) {
+  header {
+    display: block;
+  }
 
-    #header-right {
-        position: relative;
-        text-align: center;
-        right: 0px;
-    }
+  #header-right {
+    position: relative;
+    text-align: center;
+    right: 0px;
+  }
 
-    #bio {
-        margin-left: auto;
-        margin-right: auto;
-        left: 50%;
-        text-align: center;
-    }
+  #bio {
+    margin-left: auto;
+    margin-right: auto;
+    left: 50%;
+    text-align: center;
+  }
 
-    #social-links {
-        text-align: center;
-    }
+  #social-links {
+    text-align: center;
+  }
 }
 
 #social-links .fa {
-    --circle-size: 40px;
-    font-size: 20px;
-    height: var(--circle-size);
-    width: var(--circle-size);
-    border-radius: 50%;
-    text-align: center;
-    text-decoration: none;
-    line-height: 40px;
-    background-image: linear-gradient(rgb(0 0 0/30%) 0 0);
+  --circle-size: 40px;
+  font-size: 20px;
+  height: var(--circle-size);
+  width: var(--circle-size);
+  border-radius: 50%;
+  text-align: center;
+  text-decoration: none;
+  line-height: 40px;
+  background-image: linear-gradient(rgb(0 0 0/30%) 0 0);
 }
 
 #social-links .fa:hover {
-    background-image: linear-gradient(rgb(0 0 0/0%) 0 0);
+  background-image: linear-gradient(rgb(0 0 0/0%) 0 0);
 }

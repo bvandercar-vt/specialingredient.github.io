@@ -1,101 +1,102 @@
 #playlist-grid {
-    /* Location on page (center) */
-    margin: auto;
-    width: 100%;
+  /* Location on page (center) */
+  margin: auto;
+  width: 100%;
 
-    /* Grid */
-    --min-column-width: min(400px, 100vw);
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(var(--min-column-width), 1fr));
-    grid-gap: 20px;
-    align-items: flex-start;
+  /* Grid */
+  --min-column-width: min(400px, 100vw);
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(var(--min-column-width), 1fr));
+  grid-gap: 20px;
+  align-items: flex-start;
 }
 
 .playlist-block {
-    /* border */
-    --border-color: darkslateblue;
-    border-style: solid;
-    border-width: 2px;
-    border-radius: var(--border-radius);
-    border-color: var(--border-color);
-    box-shadow: 0 0 10px 2px var(--border-color);
+  /* border */
+  --border-color: darkslateblue;
+  border-style: solid;
+  border-width: 2px;
+  border-radius: var(--border-radius);
+  border-color: var(--border-color);
+  box-shadow: 0 0 10px 2px var(--border-color);
 }
 
 .playlist-items {
-    position: relative;
-    overflow-y: auto;
-    max-height: 800px;
+  position: relative;
+  overflow-y: auto;
+  max-height: 800px;
 }
 
 .playlist-items::-webkit-scrollbar {
-    display: none;
+  display: none;
 }
 
 .playlist-title {
-    border-radius: var(--border-radius);
-    background-color: darkslateblue;
-    margin: 10px;
-    padding: 10px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    position: relative;
-    top: 0px;
+  border-radius: var(--border-radius);
+  background-color: darkslateblue;
+  margin: 10px;
+  padding: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  top: 0px;
 }
 
 .playlist-title h2 {
-    /* space to right for collapse caret */
-    margin: 0px 20px;
+  /* space to right for collapse caret */
+  margin: 0px 20px;
 }
 
 .playlist-title .collapse-caret {
-    position: absolute;
-    right: 10px;
-    transform: rotate(-0deg);
-    transition: transform 0.2s linear;
+  position: absolute;
+  right: 10px;
+  transform: rotate(-0deg);
+  transition: transform 0.2s linear;
 }
 
 .collapse-caret.open {
-    transform: rotate(-180deg);
+  transform: rotate(-180deg);
 }
 
 .playlist-title:hover {
-    --hover-color-text: darkcyan;
-    --hover-color-border: cyan;
-    box-shadow: 0 0 10px 2px var(--hover-color-border);
-    text-shadow: 0 0 3px white,
-        0 0 5px var(--hover-color-text),
-        0 0 10px var(--hover-color-text),
-        0 0 15px var(--hover-color-text),
-        0 0 20px var(--hover-color-text),
-        0 0 30px var(--hover-color-text),
-        0 0 50px var(--hover-color-text);
+  --hover-color-text: darkcyan;
+  --hover-color-border: cyan;
+  box-shadow: 0 0 10px 2px var(--hover-color-border);
+  text-shadow:
+    0 0 3px white,
+    0 0 5px var(--hover-color-text),
+    0 0 10px var(--hover-color-text),
+    0 0 15px var(--hover-color-text),
+    0 0 20px var(--hover-color-text),
+    0 0 30px var(--hover-color-text),
+    0 0 50px var(--hover-color-text);
 }
 
 .scroll-arrow {
-    /* Position */
-    margin: auto;
-    position: sticky;
-    left: 0;
-    right: 0;
-    z-index: 1;
+  /* Position */
+  margin: auto;
+  position: sticky;
+  left: 0;
+  right: 0;
+  z-index: 1;
 
-    /* Style */
-    width: 100px;
-    height: 30px;
-    background-color: darkslateblue;
-    opacity: 0.8;
-    border-radius: 10px;
-    text-align: center;
-    cursor: pointer;
+  /* Style */
+  width: 100px;
+  height: 30px;
+  background-color: darkslateblue;
+  opacity: 0.8;
+  border-radius: 10px;
+  text-align: center;
+  cursor: pointer;
 }
 
 .scroll-arrow-up {
-    top: 5px;
-    display: none;
+  top: 5px;
+  display: none;
 }
 
 .scroll-arrow-down {
-    bottom: 5px;
-    display: inherit;
+  bottom: 5px;
+  display: inherit;
 }

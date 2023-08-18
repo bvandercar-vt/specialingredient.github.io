@@ -1,55 +1,56 @@
 .track-wrapper {
-    margin: 10px;
-    position: relative;
+  margin: 10px;
+  position: relative;
 }
 
 .track-wrapper:hover iframe {
-    box-shadow: 0 0 10px 2px cyan;
+  box-shadow: 0 0 10px 2px cyan;
 }
 
 .track-wrapper:hover .track-title {
-    --hover-color-text: darkslateblue;
-    text-shadow: 0 0 3px white,
-        0 0 5px var(--hover-color-text),
-        0 0 10px var(--hover-color-text),
-        0 0 15px var(--hover-color-text),
-        0 0 20px var(--hover-color-text),
-        0 0 30px var(--hover-color-text),
-        0 0 50px var(--hover-color-text);
+  --hover-color-text: darkslateblue;
+  text-shadow:
+    0 0 3px white,
+    0 0 5px var(--hover-color-text),
+    0 0 10px var(--hover-color-text),
+    0 0 15px var(--hover-color-text),
+    0 0 20px var(--hover-color-text),
+    0 0 30px var(--hover-color-text),
+    0 0 50px var(--hover-color-text);
 }
 
-.track-title {}
+.track-title {
+}
 
 .track-genre-description {
-    font-weight: bold;
-    color: turquoise
+  font-weight: bold;
+  color: turquoise;
 }
 
 .track-addl-description {
-    text-align: justify;
-    color: grey;
-    font-size: 0.9em;
+  text-align: justify;
+  color: grey;
+  font-size: 0.9em;
 }
 
 .track-wrapper iframe {
-    margin-top: 10px;
-    width: 100%;
-    border-radius: var(--border-radius);
-    font-size: 1em;
+  margin-top: 10px;
+  width: 100%;
+  border-radius: var(--border-radius);
+  font-size: 1em;
 }
 
-
 .privacy-policy-cover {
-    /* position */
-    position: absolute;
-    height: 1.25em;
-    width: 100px;
-    left: 0px;
-    bottom: 2px;
-    z-index: 1;
+  /* position */
+  position: absolute;
+  height: 1.25em;
+  width: 100px;
+  left: 0px;
+  bottom: 2px;
+  z-index: 1;
 
-    /* style */
-    background-color: orangered;
-    border-bottom-left-radius: var(--border-radius);
-    border-top-right-radius: var(--border-radius);
+  /* style */
+  background-color: orangered;
+  border-bottom-left-radius: var(--border-radius);
+  border-top-right-radius: var(--border-radius);
 }
