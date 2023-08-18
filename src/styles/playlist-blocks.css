@@ -4,9 +4,8 @@
   width: 100%;
 
   /* Grid */
-  --min-column-width: min(400px, 100vw);
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(var(--min-column-width), 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
   grid-gap: 20px;
   align-items: flex-start;
 }
