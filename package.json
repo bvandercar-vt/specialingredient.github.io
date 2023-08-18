@@ -5,7 +5,7 @@
   "type": "module",
   "description": "Special Ingredient Bass Music",
   "main": "index.js",
-  "homepage":"specialingredientbass.com",
+  "homepage": "specialingredientbass.com",
   "scripts": {
     "dev": "vite --open",
     "build": "vite build",
@@ -29,7 +29,6 @@
   "bugs": {
     "url": "https://github.com/bvandercar-vt/specialingredient.github.io/issues"
   },
-  "homepage": "https://github.com/bvandercar-vt/specialingredient.github.io#readme",
   "devDependencies": {
     "@typescript-eslint/eslint-plugin": "^6.4.0",
     "@typescript-eslint/parser": "^6.4.0",
