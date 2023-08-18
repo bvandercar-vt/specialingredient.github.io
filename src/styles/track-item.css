@@ -1,6 +1,7 @@
 .track-wrapper {
   margin: 10px;
   position: relative;
+  font-family: 'Outfit', sans-serif;
 }
 
 .track-wrapper:hover iframe {
@@ -20,17 +21,20 @@
 }
 
 .track-title {
+  font-size: 1.2em;
 }
 
 .track-genre-description {
+  font-size: 1.2em;
   font-weight: bold;
   color: turquoise;
 }
 
 .track-addl-description {
+  font-family: 'Barlow', sans-serif;
   text-align: justify;
   color: grey;
-  font-size: 0.9em;
+  font-size: 1em;
 }
 
 .track-wrapper iframe {
