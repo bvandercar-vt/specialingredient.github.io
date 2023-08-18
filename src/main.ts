@@ -45,6 +45,8 @@ function setPlaylistTitlesCollapsable() {
     Classes.PLAYLIST_TITLE,
   ) as HTMLCollectionOf<HTMLDivElement>
   Array.from(playlistTitles).forEach((playlistTitle) => {
+    playlistTitle.setAttribute('tabIndex', String(0))
+
     const collapseArrow = document.createElement('span')
     collapseArrow.classList.add(`fa`, `fa-lg`, `fa-caret-down`, Classes.COLLAPSE_CARET)
     playlistTitle.appendChild(collapseArrow)
