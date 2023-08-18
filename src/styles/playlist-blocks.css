@@ -99,3 +99,10 @@
   bottom: 5px;
   display: inherit;
 }
+
+@media (max-width: 800px) {
+  .playlist-block {
+    box-shadow: none;
+    border-width: 0px;
+  }
+}
