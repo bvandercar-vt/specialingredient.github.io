@@ -72,6 +72,10 @@ header {
     display: block;
   }
 
+  #header-subtitle {
+    font-size: 2em;
+  }
+
   #header-right {
     position: relative;
     text-align: center;
