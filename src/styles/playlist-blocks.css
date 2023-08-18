@@ -101,6 +101,10 @@
 }
 
 @media (max-width: 800px) {
+  #playlist-grid {
+    grid-gap: 0px;
+  }
+
   .playlist-block {
     box-shadow: none;
     border-width: 0px;
