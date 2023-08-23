@@ -6,24 +6,26 @@ header {
   width: 100%;
 }
 
-#header-title-img {
+#header-logo-img {
   /* Position */
   display: block;
   margin-left: auto;
   margin-right: auto;
-  max-height: 200px;
+  max-height: 250px;
   max-width: 95%;
   padding: 5px;
 
   /* Glow */
-  --header-title-img-glow-color: orangered;
+  --header-title-img-glow: drop-shadow(0 0 30px purple);
+  /* --header-title-img-glow-color: orangered;
   --header-title-img-glow: drop-shadow(0 0 10px var(--header-title-img-glow-color))
     drop-shadow(0 0 20px var(--header-title-img-glow-color)) drop-shadow(0 0 50px darkcyan);
+    */
   -webkit-filter: var(--header-title-img-glow);
   filter: var(--header-title-img-glow);
 }
 
-#header-subtitle {
+/* #header-subtitle {
   text-align: center;
   margin-bottom: 20px;
   font-size: 2.2em;
@@ -38,10 +40,7 @@ header {
     0 0 20px var(--hover-color-text),
     0 0 30px var(--hover-color-text),
     0 0 50px var(--hover-color-text);
-}
-
-#header-logo {
-}
+} */
 
 #header-right {
   position: absolute;
@@ -70,10 +69,6 @@ header {
 @media (max-width: 960px) {
   header {
     display: block;
-  }
-
-  #header-subtitle {
-    font-size: 1.7em;
   }
 
   #header-right {
