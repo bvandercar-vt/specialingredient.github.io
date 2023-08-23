@@ -4,6 +4,7 @@ header {
   justify-content: center;
   position: relative;
   width: 100%;
+  margin-bottom: 1em;
 }
 
 #header-logo-img {
@@ -17,18 +18,12 @@ header {
 
   /* Glow */
   --header-title-img-glow: drop-shadow(0 0 30px purple);
-  /* --header-title-img-glow-color: orangered;
-  --header-title-img-glow: drop-shadow(0 0 10px var(--header-title-img-glow-color))
-    drop-shadow(0 0 20px var(--header-title-img-glow-color)) drop-shadow(0 0 50px darkcyan);
-    */
   -webkit-filter: var(--header-title-img-glow);
   filter: var(--header-title-img-glow);
 }
 
 /* #header-subtitle {
   text-align: center;
-  margin-bottom: 20px;
-  font-size: 2.2em;
   font-family: 'Permanent Marker', sans-serif;
   color: purple;
   z-index: 1;
@@ -46,10 +41,10 @@ header {
   position: absolute;
   right: 20px;
   bottom: 0px;
-  margin-bottom: 20px;
 }
 
 #bio {
+  margin-top: 0.5em;
   text-align: right;
   max-width: 300px;
   color: grey;
@@ -64,6 +59,22 @@ header {
 
 #social-links {
   text-align: right;
+}
+
+#social-links .circle {
+  --circle-size: 40px;
+  font-size: 20px;
+  height: var(--circle-size);
+  width: var(--circle-size);
+  border-radius: 50%;
+  text-align: center;
+  text-decoration: none;
+  line-height: 40px;
+  background-image: linear-gradient(rgb(0 0 0/30%) 0 0);
+}
+
+#social-links .circle:hover {
+  background-image: linear-gradient(rgb(0 0 0/0%) 0 0);
 }
 
 @media (max-width: 960px) {
@@ -87,20 +98,4 @@ header {
   #social-links {
     text-align: center;
   }
-}
-
-#social-links .fa {
-  --circle-size: 40px;
-  font-size: 20px;
-  height: var(--circle-size);
-  width: var(--circle-size);
-  border-radius: 50%;
-  text-align: center;
-  text-decoration: none;
-  line-height: 40px;
-  background-image: linear-gradient(rgb(0 0 0/30%) 0 0);
-}
-
-#social-links .fa:hover {
-  background-image: linear-gradient(rgb(0 0 0/0%) 0 0);
 }
