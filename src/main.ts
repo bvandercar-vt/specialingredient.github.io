@@ -200,7 +200,8 @@ async function init() {
   setPlaylistTitlesCollapsable()
 
   // Soundcloud stuff
-  SC.initialize({ client_id: 'DgFeY88vapbGCcK7RrT2E33nmNQVWX82' })
+  const SC_CLIENT_ID = 'DgFeY88vapbGCcK7RrT2E33nmNQVWX82'
+  SC.initialize({ client_id: SC_CLIENT_ID })
 
   await replaceSoundcloudTrackElements(SC)
 
