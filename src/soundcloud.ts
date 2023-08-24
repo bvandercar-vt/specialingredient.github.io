@@ -17,10 +17,15 @@ function makeRequest<T>(method: ApiMethod, url: string) {
 
 export function oEmbed(params: {
   url: string
+  /** @default 100% */
   maxwidth?: number
+  /** @default 166 for tracks, 450 for sets */
   maxheight?: number
   color?: string
+  /** @default false */
   auto_play?: boolean
+  /** @default true */
+  show_comments?: boolean
 }) {
   const url = new URL(`https://soundcloud.com/oembed`)
   url.searchParams.set('client_id', SC_CLIENT_ID)
