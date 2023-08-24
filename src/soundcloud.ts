@@ -5,7 +5,7 @@ type ApiMethod = 'GET' | 'PUT'
 function makeRequest<T>(method: ApiMethod, url: string) {
   return new Promise<T>((resolve, reject) => {
     var xhr = new XMLHttpRequest()
-    xhr.open(method, url, true)
+    xhr.open(method, url)
     xhr.onload = () =>
       xhr.status >= 200 && xhr.status < 300
         ? resolve(JSON.parse(xhr.response))
