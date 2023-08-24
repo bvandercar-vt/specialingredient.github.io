@@ -1,4 +1,12 @@
+/**
+ * CSS Imports
+ */
 import './styles/index.css'
+import 'font-awesome/css/font-awesome.min.css'
+
+/**
+ * Regular imports
+ */
 import { oEmbed } from './soundcloud'
 import {
   htmlToElement,
