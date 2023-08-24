@@ -1,8 +1,8 @@
 /**
- * CSS Imports
+ * CSS Imports -- ORDER MATTERS
  */
-import './styles/index.css'
 import 'font-awesome/css/font-awesome.min.css'
+import './styles/index.css'
 
 /**
  * Regular imports
