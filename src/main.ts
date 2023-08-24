@@ -8,7 +8,6 @@ import {
   waitForElements,
   triggerClick,
 } from './utils'
-import { SoundCloud, soundCloud } from './soundcloud'
 
 const Classes = {
   OPEN: 'open',
@@ -75,7 +74,7 @@ function setPlaylistTitlesCollapsable() {
   })
 }
 
-async function replaceSoundcloudTrackElements(soundCloud: SoundCloud) {
+async function replaceSoundcloudTrackElements(soundCloud: typeof SC) {
   const itemsToTransform = document.getElementsByClassName(Classes.TRANSFORM_TO_SC_ITEM)
   Array.from(itemsToTransform).forEach((itemToTransform) =>
     soundCloud
@@ -201,9 +200,9 @@ async function init() {
   setPlaylistTitlesCollapsable()
 
   // Soundcloud stuff
-  soundCloud.initialize({ client_id: 'DgFeY88vapbGCcK7RrT2E33nmNQVWX82' })
+  SC.initialize({ client_id: 'DgFeY88vapbGCcK7RrT2E33nmNQVWX82' })
 
-  await replaceSoundcloudTrackElements(soundCloud)
+  await replaceSoundcloudTrackElements(SC)
 
   setPlaylistsScrollable()
 }
