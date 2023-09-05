@@ -14,19 +14,10 @@ export function oEmbed(params: {
   /** @default true */
   show_comments?: boolean
 }) {
-  const url = new URL(`https://soundcloud.com/oembed`)
-  url.searchParams.set('client_id', SC_CLIENT_ID)
-
-  for (const [key, val] of Object.entries(params)) {
-    if (val !== undefined) {
-      url.searchParams.set(key, String(val))
-    }
-  }
-
   return makeRequest<{
     title: string
     thumbnail_url: string
     html: string
     description: string
-  }>('GET', url.href)
+  }>('GET', `https://soundcloud.com/oembed`, { client_id: SC_CLIENT_ID, ...params })
 }
