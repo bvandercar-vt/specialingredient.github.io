@@ -1,19 +1,6 @@
+import { makeRequest } from './api_utils'
+
 const SC_CLIENT_ID = 'DgFeY88vapbGCcK7RrT2E33nmNQVWX82'
-
-type ApiMethod = 'GET' | 'PUT'
-
-function makeRequest<T>(method: ApiMethod, url: string) {
-  return new Promise<T>((resolve, reject) => {
-    var xhr = new XMLHttpRequest()
-    xhr.open(method, url)
-    xhr.onload = () =>
-      xhr.status >= 200 && xhr.status < 300
-        ? resolve(JSON.parse(xhr.response))
-        : reject({ status: xhr.status, statusText: xhr.statusText })
-    xhr.onerror = () => reject({ status: xhr.status, statusText: xhr.statusText })
-    xhr.send()
-  })
-}
 
 export function oEmbed(params: {
   url: string

@@ -16,7 +16,7 @@ import {
   isMobile,
   waitForElements,
   triggerClick,
-} from './utils'
+} from './html_utils'
 
 const Classes = {
   OPEN: 'open',
