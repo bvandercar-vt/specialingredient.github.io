@@ -14,10 +14,9 @@ export function oEmbed(params: {
   /** @default true */
   show_comments?: boolean
 }) {
-  return makeRequest<{
-    title: string
-    thumbnail_url: string
-    html: string
-    description: string
-  }>('GET', `https://soundcloud.com/oembed`, { client_id: SC_CLIENT_ID, ...params })
+  return makeRequest<{ title: string; thumbnail_url: string; html: string; description: string }>(
+    'GET',
+    `https://soundcloud.com/oembed`,
+    { client_id: SC_CLIENT_ID, ...params },
+  )
 }

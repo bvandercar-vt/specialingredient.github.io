@@ -4,7 +4,7 @@ export function makeRequest<T>(
   method: ApiMethod,
   url: string,
   params: Record<string, string | number | boolean> = {},
-  headers: Record<string, string> = {},
+  requestArgs: Omit<RequestInit, 'method'> = {},
 ): Promise<T> {
   const urlObj = new URL(url)
 
@@ -14,5 +14,9 @@ export function makeRequest<T>(
     }
   }
 
-  return fetch(urlObj.href, { method, headers }).then((res) => res.json())
+  return fetch(urlObj.href, { ...requestArgs, method }).then((res) => {
+    if (res.status < 200 || res.status > 300) throw new Error(`${res.status}: ${res.statusText}`)
+
+    return res.json()
+  })
 }

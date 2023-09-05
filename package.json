@@ -15,7 +15,9 @@
     "ts:check": "tsc",
     "eslint": "eslint .",
     "format": "prettier --write .",
-    "format:check": "prettier --check ."
+    "format:check": "prettier --check .",
+    "ts-node-run": "node --experimental-specifier-resolution=node --loader ts-node/esm",
+    "sandbox": "yarn ts-node-run ./sandbox.ts"
   },
   "repository": {
     "type": "git",
@@ -31,11 +33,13 @@
     "url": "https://github.com/bvandercar-vt/specialingredient.github.io/issues"
   },
   "devDependencies": {
+    "@types/node": "^20.5.9",
     "@typescript-eslint/eslint-plugin": "^6.4.0",
     "@typescript-eslint/parser": "^6.4.0",
     "eslint": "^8.47.0",
     "eslint-config-prettier": "^9.0.0",
     "prettier": "^3.0.2",
+    "ts-node": "^10.9.1",
     "typescript": "^5.0.2",
     "vite": "^4.4.9"
   },
