@@ -4,8 +4,8 @@ export function makeRequest<T>(
   method: ApiMethod,
   url: string,
   params: Record<string, string | number | boolean> = {},
-  headers: Record<string, string | number | boolean> = {},
-) {
+  headers: Record<string, string> = {},
+): Promise<T> {
   const urlObj = new URL(url)
 
   for (const [key, val] of Object.entries(params)) {
@@ -14,17 +14,5 @@ export function makeRequest<T>(
     }
   }
 
-  return new Promise<T>((resolve, reject) => {
-    const xhr = new XMLHttpRequest()
-    xhr.open(method, urlObj.href)
-    xhr.onload = () =>
-      xhr.status >= 200 && xhr.status < 300
-        ? resolve(JSON.parse(xhr.response))
-        : reject({ status: xhr.status, statusText: xhr.statusText })
-    xhr.onerror = () => reject({ status: xhr.status, statusText: xhr.statusText })
-    for (const [key, val] of Object.entries(headers)) {
-      xhr.setRequestHeader(key, String(val))
-    }
-    xhr.send()
-  })
+  return fetch(urlObj.href, { method, headers }).then((res) => res.json())
 }
