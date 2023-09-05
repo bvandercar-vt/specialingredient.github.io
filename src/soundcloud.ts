@@ -14,9 +14,16 @@ export function oEmbed(params: {
   /** @default true */
   show_comments?: boolean
 }) {
-  return makeRequest<{ title: string; thumbnail_url: string; html: string; description: string }>(
-    'GET',
-    `https://soundcloud.com/oembed`,
-    { client_id: SC_CLIENT_ID, ...params },
+  return makeRequest('GET', `https://soundcloud.com/oembed`, {
+    client_id: SC_CLIENT_ID,
+    ...params,
+  }).then(
+    (res) =>
+      res.json() as Promise<{
+        title: string
+        thumbnail_url: string
+        html: string
+        description: string
+      }>,
   )
 }

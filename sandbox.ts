@@ -1,16 +1,5 @@
-import { makeRequest } from './src/api_utils'
-import { getToken } from './src/spotify'
-// @ts-ignore-error
-// import * as xmlhttprequest from 'xmlhttprequest'
-// global.XMLHttpRequest = xmlhttprequest.XMLHttpRequest
+import { getPlaylist } from './src/spotify'
 
 console.log('SANDBOX')
 
-getToken().then(({ token_type, access_token }) => {
-  makeRequest(
-    'GET',
-    'https://api.spotify.com/v1/playlists/1WshUeiMnKMcGTyoUAfm8O',
-    {},
-    { headers: { Authorization: token_type + ' ' + access_token } },
-  ).then((t) => console.log(t))
-})
+getPlaylist('11LQg5DzHBn6udibRdhfU6').then((pl) => console.log(pl))
