@@ -8,6 +8,7 @@ import * as prettier from 'prettier'
 import { sleep } from './src/utils'
 
 async function replaceSoundcloudTrackElements() {
+  // eslint-disable-next-line no-constant-condition
   while (true) {
     const itemToTransform = document.getElementsByClassName(Classes.TRANSFORM_TO_SC_ITEM)[0]
     if (!itemToTransform) break
