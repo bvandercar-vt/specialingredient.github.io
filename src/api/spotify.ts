@@ -2,7 +2,7 @@ import { makeRequest, setSearchParams } from './api_utils'
 import { Buffer } from 'node:buffer'
 import * as fs from 'fs'
 import * as dotenv from 'dotenv'
-import { checkHasExactKeys, sleep, retryPromise } from './utils'
+import { checkHasExactKeys, sleep, retryPromise } from '../utils'
 
 dotenv.config({ path: `.env.local` })
 
@@ -146,6 +146,25 @@ function refreshTokenOnFail<T>(promise: () => Promise<T>) {
   })
 }
 
+async function getPaginatedEndpoint<T extends SpotifyApi.PagingObject<unknown>>(
+  url: string,
+): Promise<T['items']> {
+  const headers = getCurrentTokenAuthHeader()
+  let res = await makeRequest('GET', url, { limit: 50 }, { headers }).then(
+    (res) => res.json() as Promise<T>,
+  )
+  let items = res.items
+
+  while (res.next) {
+    res = await makeRequest('GET', res.next, {}, { headers }).then(
+      (res) => res.json() as Promise<T>,
+    )
+    items = items.concat(res.items)
+  }
+
+  return items
+}
+
 export function getPlaylist(playlist_id: string) {
   return refreshTokenOnFail(() =>
     makeRequest(
@@ -154,5 +173,13 @@ export function getPlaylist(playlist_id: string) {
       {},
       { headers: getCurrentTokenAuthHeader() },
     ).then((res) => res.json() as Promise<SpotifyApi.PlaylistBaseObject>),
+  )
+}
+
+export async function getPlaylists() {
+  return refreshTokenOnFail(() =>
+    getPaginatedEndpoint<SpotifyApi.ListOfCurrentUsersPlaylistsResponse>(
+      `https://api.spotify.com/v1/me/playlists`,
+    ),
   )
 }

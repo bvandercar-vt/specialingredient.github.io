@@ -16,8 +16,9 @@
     "eslint": "eslint .",
     "format": "prettier --write .",
     "format:check": "prettier --check .",
-    "ts-node-run": "node --experimental-specifier-resolution=node --loader ts-node/esm",
-    "sandbox": "yarn ts-node-run ./sandbox.ts"
+    "run-ts": "node --experimental-specifier-resolution=node --loader ts-node/esm",
+    "sandbox": "yarn run-ts ./sandbox.ts",
+    "generate-playlist-json": "yarn run-ts ./generate-playlists-json.ts"
   },
   "repository": {
     "type": "git",
