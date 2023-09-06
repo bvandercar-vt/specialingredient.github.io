@@ -1,0 +1,17 @@
+export const Classes = {
+  OPEN: 'open',
+  HIDDEN: 'hidden',
+  COLLAPSE_CARET: 'collapse-caret',
+  PLAYLIST_TITLE: 'playlist-title',
+  FIXED_TOP: 'fixed-top',
+  PLAYLIST_ITEMS: 'playlist-items',
+  TRANSFORM_TO_SC_ITEM: 'transform-to-sc-item',
+  TRACK_WRAPPER: 'track-wrapper',
+  TRACK_TITLE: 'track-title',
+  TRACK_GENRE_DESC: 'track-genre-description',
+  TRACK_ADDL_DESC: 'track-addl-description',
+  PRIVACY_POLICY_COVER: 'privacy-policy-cover',
+  SCROLL_ARROW: 'scroll-arrow',
+  SCROLL_ARROW_UP: 'scroll-arrow-up',
+  SCROLL_ARROW_DOWN: 'scroll-arrow-down',
+} as const

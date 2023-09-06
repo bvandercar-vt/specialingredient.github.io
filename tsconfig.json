@@ -17,5 +17,5 @@
     "noFallthroughCasesInSwitch": true,
     "noImplicitAny": true
   },
-  "include": ["src", "vite.config.ts", "./sandbox.ts"]
+  "include": ["src", "./*.ts"]
 }
