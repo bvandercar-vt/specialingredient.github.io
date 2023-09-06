@@ -1,18 +1,23 @@
 type ApiMethod = 'GET' | 'PUT' | 'POST'
 
+type SearchParams = Record<string, string | number | boolean>
+
+export function setSearchParams(url: URL, params: SearchParams = {}) {
+  for (const [key, val] of Object.entries(params)) {
+    if (val !== undefined) {
+      url.searchParams.set(key, String(val))
+    }
+  }
+}
+
 export function makeRequest(
   method: ApiMethod,
   url: string,
-  params: Record<string, string | number | boolean> = {},
+  params: SearchParams = {},
   requestArgs: Omit<RequestInit, 'method'> = {},
 ) {
   const urlObj = new URL(url)
-
-  for (const [key, val] of Object.entries(params)) {
-    if (val !== undefined) {
-      urlObj.searchParams.set(key, String(val))
-    }
-  }
+  setSearchParams(urlObj, params)
 
   return fetch(urlObj.href, { ...requestArgs, method }).then(async (response) => {
     if (response.status < 200 || response.status > 300) {

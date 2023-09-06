@@ -1,4 +1,4 @@
-import { makeRequest } from './api_utils'
+import { makeRequest, setSearchParams } from './api_utils'
 import { Buffer } from 'node:buffer'
 import * as fs from 'fs'
 import * as dotenv from 'dotenv'
@@ -82,11 +82,13 @@ export function getTokenSimple() {
 
 export function getAuthorizationCode() {
   const url = new URL('https://accounts.spotify.com/authorize')
-  url.searchParams.set('client_id', SPOTIFY_CLIENT_ID)
-  url.searchParams.set('response_type', 'code')
-  url.searchParams.set('redirect_uri', SPOTIFY_REDIRECT_URI)
-  url.searchParams.set('scope', 'playlist-read-private')
-  url.searchParams.set('show_dialog', 'true')
+  setSearchParams(url, {
+    client_id: SPOTIFY_CLIENT_ID,
+    response_type: 'code',
+    redirect_uri: SPOTIFY_REDIRECT_URI,
+    scope: 'playlist-read-private',
+    show_dialog: true,
+  })
 
   console.log('visit URL to get the code:')
   console.log(url.href)

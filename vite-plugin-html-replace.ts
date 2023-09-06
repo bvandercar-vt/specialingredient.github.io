@@ -6,6 +6,7 @@ import { Classes } from './src/constants'
 import { oEmbed } from './src/soundcloud'
 import * as prettier from 'prettier'
 import { sleep } from './src/utils'
+import { setSearchParams } from './src/api_utils'
 
 async function replaceSoundcloudTrackElements() {
   // eslint-disable-next-line no-constant-condition
@@ -54,18 +55,19 @@ async function replaceSoundcloudTrackElements() {
         trackWrapper.appendChild(addlDescriptionElement)
       }
 
-      /** @type {HTMLIframeElement} */
       const iframeElement = htmlToElement(oEmbed.html) as HTMLIFrameElement
       iframeElement.title = titleStr
       const url = new URL(iframeElement.src)
-      url.searchParams.set('auto_play', String(false))
-      url.searchParams.set('hide_related', String(false))
-      url.searchParams.set('show_comments', String(true))
-      url.searchParams.set('show_user', String(false))
-      url.searchParams.set('show_reposts', String(true))
-      url.searchParams.set('show_teaser', String(false))
-      url.searchParams.set('visual', String(true)) // true =  artwork behind waveform, false = artwork to left
-      url.searchParams.set('show_artwork', String(true)) // want true, unless no artwork
+      setSearchParams(url, {
+        auto_play: false,
+        hide_related: false,
+        show_comments: true,
+        show_user: false,
+        show_reposts: true,
+        show_teaser: false,
+        visual: true, // true =  artwork behind waveform, false = artwork to left
+        show_artwork: true,
+      })
       iframeElement.src = url.href
       trackWrapper.appendChild(iframeElement)
 
