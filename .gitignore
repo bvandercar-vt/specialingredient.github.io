@@ -1,4 +1,4 @@
 node_modules
 dist
-spotify-data.json
+spotify-token.json
 *.local

@@ -1,4 +1,4 @@
-import { getPlaylists } from './src/api/spotify'
+import { getPlaylists } from '../api/spotify'
 import * as fs from 'fs'
 
 getPlaylists().then((playlists) => {
@@ -12,5 +12,8 @@ getPlaylists().then((playlists) => {
       description: pl.description,
       public: pl.public,
     }))
-  fs.writeFileSync('./playlists.json', JSON.stringify(data, null, 2))
+  fs.writeFileSync(
+    `./src/spotify-playlist-data/spotify-playlists.json`,
+    JSON.stringify(data, null, 2),
+  )
 })

@@ -6,7 +6,7 @@ import { checkHasExactKeys, sleep, retryPromise } from '../utils'
 
 dotenv.config({ path: `.env.local` })
 
-const SPOTIFY_DATA_FILE = './spotify-data.json'
+const SPOTIFY_DATA_FILE = `./src/api/spotify-token.json`
 
 const {
   SPOTIFY_CLIENT_ID,

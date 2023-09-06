@@ -18,7 +18,7 @@
     "format:check": "prettier --check .",
     "run-ts": "node --experimental-specifier-resolution=node --loader ts-node/esm",
     "sandbox": "yarn run-ts ./sandbox.ts",
-    "generate-playlist-json": "yarn run-ts ./generate-playlists-json.ts"
+    "generate-playlist-json": "yarn run-ts ./src/spotify-playlist-data/generate-playlists-json.ts"
   },
   "repository": {
     "type": "git",
