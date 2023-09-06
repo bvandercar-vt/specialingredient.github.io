@@ -19,7 +19,6 @@ function setPlaylistTitles() {
 
     const titleWrapper = document.createElement('div')
     titleWrapper.classList.add(Classes.PLAYLIST_TITLE)
-
     titleWrapper.setAttribute('href', playlistUrl)
 
     const titleElement = document.createElement('h2')

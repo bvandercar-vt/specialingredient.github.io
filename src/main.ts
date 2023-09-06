@@ -25,7 +25,7 @@ function setCollapsed(accordionTitle: HTMLDivElement, collapsed: boolean) {
   accordionTitle.classList.toggle(Classes.FIXED_TOP, !collapsed)
 }
 
-function setPlaylistTitlesCollapsable() {
+function setPlaylistBlocksCollapsable() {
   // Collapsable titles
   const playlistTitles = document.getElementsByClassName(
     Classes.PLAYLIST_TITLE,
@@ -58,7 +58,7 @@ function setPlaylistTitlesCollapsable() {
   })
 }
 
-function setPlaylistsScrollable() {
+function setPlaylistBlocksScrollable() {
   const scrollRegions = document.getElementsByClassName(Classes.PLAYLIST_ITEMS)
   Array.from(scrollRegions).forEach((scrollRegion) => {
     if (!isScrollableY(scrollRegion)) return
@@ -105,9 +105,9 @@ function setPlaylistsScrollable() {
 }
 
 function init() {
-  setPlaylistTitlesCollapsable()
+  setPlaylistBlocksCollapsable()
 
-  setPlaylistsScrollable()
+  setPlaylistBlocksScrollable()
 }
 
 init()
