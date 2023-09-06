@@ -109,7 +109,7 @@ function setPlaylistsScrollable() {
   })
 }
 
-async function init() {
+function init() {
   setPlaylistTitlesCollapsable()
 
   setPlaylistsScrollable()
