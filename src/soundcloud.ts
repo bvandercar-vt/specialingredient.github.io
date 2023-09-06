@@ -24,6 +24,8 @@ export function oEmbed(params: {
         thumbnail_url: string
         html: string
         description: string
+        author_name: string
+        author_url: string
       }>,
   )
 }
