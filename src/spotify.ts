@@ -2,7 +2,7 @@ import { makeRequest } from './api_utils'
 import { Buffer } from 'node:buffer'
 import * as fs from 'fs'
 import * as dotenv from 'dotenv'
-import { checkHasExactKeys, delay, retryPromise } from './utils'
+import { checkHasExactKeys, sleep, retryPromise } from './utils'
 
 dotenv.config({ path: `.env.local` })
 
@@ -139,7 +139,7 @@ function refreshTokenOnFail<T>(promise: () => Promise<T>) {
     retries: 2,
     onRetry: async () => {
       await refreshToken()
-      await delay(500)
+      await sleep(500)
     },
   })
 }

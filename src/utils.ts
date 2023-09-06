@@ -1,6 +1,6 @@
 import _ from 'lodash'
 
-export const delay = (ms: number) => new Promise((resolve) => setTimeout(() => resolve(null), ms))
+export const sleep = (ms: number) => new Promise((resolve) => setTimeout(resolve, ms))
 
 export function retryPromise<T>(
   promise: () => Promise<T>,

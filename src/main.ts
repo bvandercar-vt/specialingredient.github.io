@@ -7,14 +7,11 @@ import './styles/index.css'
 /**
  * Regular imports
  */
-import { oEmbed } from './soundcloud'
 import {
-  htmlToElement,
   isScrolledToTop,
   isScrolledToBottom,
   isScrollableY,
   isMobile,
-  waitForElements,
   triggerClick,
 } from './html_utils'
 import { Classes } from './constants'
@@ -66,78 +63,6 @@ function setPlaylistTitlesCollapsable() {
   })
 }
 
-async function replaceSoundcloudTrackElements() {
-  const itemsToTransform = document.getElementsByClassName(Classes.TRANSFORM_TO_SC_ITEM)
-  Array.from(itemsToTransform).forEach((itemToTransform) =>
-    oEmbed({
-      url: itemToTransform.getAttribute('data-sc-link')!,
-      maxheight: 150,
-      auto_play: false,
-    }).then((oEmbed) => {
-      const titleStr =
-        itemToTransform.getAttribute('data-title') ??
-        oEmbed.title
-          .replaceAll(' by Special Ingredient', '')
-          .replaceAll('[w TRACKLIST]', '')
-          .replaceAll('[MASHUP]', '')
-      const genreDescription = itemToTransform.getAttribute('data-genre-desc')
-      const addlDescriptionSet = itemToTransform.getAttribute('data-addl-desc')
-      const addlDescription =
-        addlDescriptionSet === 'GET_FROM_SC' ? oEmbed.description : addlDescriptionSet
-
-      const trackWrapper = document.createElement('div')
-      trackWrapper.classList.add(Classes.TRACK_WRAPPER)
-
-      if (titleStr) {
-        const titleElement = document.createElement('p')
-        titleElement.classList.add(Classes.TRACK_TITLE)
-        titleElement.appendChild(document.createTextNode(titleStr))
-        trackWrapper.appendChild(titleElement)
-      }
-
-      if (genreDescription) {
-        const genreDescriptionElement = document.createElement('p')
-        genreDescriptionElement.classList.add(Classes.TRACK_GENRE_DESC)
-        genreDescriptionElement.appendChild(document.createTextNode(genreDescription))
-        trackWrapper.appendChild(genreDescriptionElement)
-      }
-
-      if (addlDescription) {
-        const addlDescriptionElement = document.createElement('p')
-        addlDescriptionElement.classList.add(Classes.TRACK_ADDL_DESC)
-        addlDescriptionElement.appendChild(document.createTextNode(addlDescription))
-        trackWrapper.appendChild(addlDescriptionElement)
-      }
-
-      /** @type {HTMLIframeElement} */
-      const iframeElement = htmlToElement(oEmbed.html) as HTMLIFrameElement
-      iframeElement.title = titleStr
-      const url = new URL(iframeElement.src)
-      url.searchParams.set('auto_play', String(false))
-      url.searchParams.set('hide_related', String(false))
-      url.searchParams.set('show_comments', String(true))
-      url.searchParams.set('show_user', String(false))
-      url.searchParams.set('show_reposts', String(true))
-      url.searchParams.set('show_teaser', String(false))
-      url.searchParams.set('visual', String(true)) // true =  artwork behind waveform, false = artwork to left
-      url.searchParams.set('show_artwork', String(true)) // want true, unless no artwork
-      iframeElement.src = url.href
-      trackWrapper.appendChild(iframeElement)
-
-      const privacyPolicyCoverElement = document.createElement('div')
-      privacyPolicyCoverElement.classList.add(Classes.PRIVACY_POLICY_COVER)
-      trackWrapper.appendChild(privacyPolicyCoverElement)
-
-      itemToTransform.replaceWith(trackWrapper)
-    }),
-  )
-
-  await waitForElements(
-    () => document.getElementsByClassName(Classes.TRACK_WRAPPER),
-    itemsToTransform.length,
-  )
-}
-
 function setPlaylistsScrollable() {
   const scrollRegions = document.getElementsByClassName(Classes.PLAYLIST_ITEMS)
   Array.from(scrollRegions).forEach((scrollRegion) => {
@@ -186,8 +111,6 @@ function setPlaylistsScrollable() {
 
 async function init() {
   setPlaylistTitlesCollapsable()
-
-  await replaceSoundcloudTrackElements()
 
   setPlaylistsScrollable()
 }
