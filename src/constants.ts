@@ -2,6 +2,7 @@ export const Classes = {
   OPEN: 'open',
   HIDDEN: 'hidden',
   COLLAPSE_CARET: 'collapse-caret',
+  PLAYLIST_BLOCK: 'playlist-block',
   PLAYLIST_TITLE: 'playlist-title',
   FIXED_TOP: 'fixed-top',
   PLAYLIST_ITEMS: 'playlist-items',

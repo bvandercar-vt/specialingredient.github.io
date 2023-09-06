@@ -8,7 +8,39 @@ import * as prettier from 'prettier'
 import { sleep } from './src/utils'
 import { setSearchParams } from './src/api/api_utils'
 
-async function replaceSoundcloudTrackElements() {
+function setPlaylistTitles() {
+  const playlists = document.getElementsByClassName(Classes.PLAYLIST_BLOCK)
+  for (let i = 0; i < playlists.length; i++) {
+    const playlist = playlists[i]
+    const playlistUrl = playlist.getAttribute('data-url')!
+    const playlistTitle = playlist.getAttribute('data-title')!
+
+    const labelId = `playlist-title-${i}`
+
+    const titleWrapper = document.createElement('div')
+    titleWrapper.classList.add(Classes.PLAYLIST_TITLE)
+
+    titleWrapper.setAttribute('href', playlistUrl)
+
+    const titleElement = document.createElement('h2')
+    titleElement.appendChild(document.createTextNode(playlistTitle))
+    titleElement.setAttribute('id', labelId)
+    titleWrapper.appendChild(titleElement)
+
+    const collapseArrow = document.createElement('span')
+    collapseArrow.classList.add(`fa`, `fa-lg`, `fa-caret-down`, Classes.COLLAPSE_CARET)
+    titleWrapper.appendChild(collapseArrow)
+
+    playlist.setAttribute('aria-labelledby', labelId)
+    playlist.setAttribute('role', 'region')
+    playlist.removeAttribute('data-url')
+    playlist.removeAttribute('data-title')
+
+    playlist.insertBefore(titleWrapper, playlist.firstChild)
+  }
+}
+
+async function setSoundcloudTracks() {
   // eslint-disable-next-line no-constant-condition
   while (true) {
     const itemToTransform = document.getElementsByClassName(Classes.TRANSFORM_TO_SC_ITEM)[0]
@@ -93,7 +125,9 @@ async function makeHtmlMods(src: string) {
     el.target = '_blank'
   })
 
-  await replaceSoundcloudTrackElements()
+  setPlaylistTitles()
+
+  await setSoundcloudTracks()
 
   sleep(2000)
 

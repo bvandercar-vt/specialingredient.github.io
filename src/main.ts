@@ -31,15 +31,10 @@ function setPlaylistTitlesCollapsable() {
     Classes.PLAYLIST_TITLE,
   ) as HTMLCollectionOf<HTMLDivElement>
   Array.from(playlistTitles).forEach((playlistTitle) => {
-    playlistTitle.setAttribute('tabIndex', String(0))
-    playlistTitle.addEventListener('keypress', triggerClick)
-
-    const collapseArrow = document.createElement('span')
-    collapseArrow.classList.add(`fa`, `fa-lg`, `fa-caret-down`, Classes.COLLAPSE_CARET)
-    playlistTitle.appendChild(collapseArrow)
-
     setCollapsed(playlistTitle, isMobile())
 
+    playlistTitle.setAttribute('tabIndex', String(0))
+    playlistTitle.addEventListener('keypress', triggerClick)
     playlistTitle.addEventListener('click', () => {
       const playlistBlock = playlistTitle.parentElement!
       const collapseContent = playlistBlock.getElementsByClassName(Classes.PLAYLIST_ITEMS)[0]
