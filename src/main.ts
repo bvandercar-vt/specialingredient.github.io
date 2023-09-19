@@ -13,7 +13,7 @@ import {
   isScrollableY,
   isMobile,
   triggerClick,
-} from './html_utils'
+} from './html-utils'
 import { Classes } from './constants'
 
 function setCollapsed(accordionTitle: HTMLDivElement, collapsed: boolean) {

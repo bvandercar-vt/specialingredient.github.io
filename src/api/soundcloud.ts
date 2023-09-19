@@ -1,4 +1,4 @@
-import { makeRequest } from './api_utils'
+import { makeRequest } from './api-utils'
 
 const SC_CLIENT_ID = 'DgFeY88vapbGCcK7RrT2E33nmNQVWX82'
 

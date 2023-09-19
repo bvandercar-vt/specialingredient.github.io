@@ -1,4 +1,4 @@
-import { makeRequest, setSearchParams } from './api_utils'
+import { makeRequest, setSearchParams } from './api-utils'
 import { Buffer } from 'node:buffer'
 import * as fs from 'fs'
 import * as dotenv from 'dotenv'

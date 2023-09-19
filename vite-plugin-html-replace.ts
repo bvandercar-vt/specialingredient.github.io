@@ -1,12 +1,12 @@
 import type { PluginOption } from 'vite'
 import * as path from 'path'
 import { JSDOM } from 'jsdom'
-import { htmlToElement } from './src/html_utils'
+import { htmlToElement } from './src/html-utils'
 import { Classes } from './src/constants'
 import { oEmbed } from './src/api/soundcloud'
 import * as prettier from 'prettier'
 import { sleep } from './src/utils'
-import { setSearchParams } from './src/api/api_utils'
+import { setSearchParams } from './src/api/api-utils'
 
 function setPlaylistTitles() {
   const playlists = document.getElementsByClassName(Classes.PLAYLIST_BLOCK)
