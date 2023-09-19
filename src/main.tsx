@@ -2,6 +2,7 @@
  * CSS Imports -- ORDER MATTERS
  */
 import 'font-awesome/css/font-awesome.min.css'
+import 'react-folder-tree/dist/style.css'
 import './styles/index.css'
 
 /**
@@ -15,6 +16,9 @@ import {
   triggerClick,
 } from './html_utils'
 import { Classes } from './constants'
+import React from 'react'
+import ReactDOM from 'react-dom'
+import FolderTree, { testData } from 'react-folder-tree'
 
 function setCollapsed(accordionTitle: HTMLDivElement, collapsed: boolean) {
   const parentElement = accordionTitle.parentElement!
@@ -108,6 +112,13 @@ function init() {
   setPlaylistBlocksCollapsable()
 
   setPlaylistBlocksScrollable()
+
+  ReactDOM.render(
+    <React.StrictMode>
+      <FolderTree data={testData} showCheckbox={false} readOnly />
+    </React.StrictMode>,
+    document.getElementById('folder-tree'),
+  )
 }
 
 init()
