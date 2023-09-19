@@ -2,6 +2,8 @@
 @import 'header.css';
 @import 'playlist-blocks.css';
 @import 'track-item.css';
+@import 'folder-tree.css';
+@import 'tooltip.css';
 
 /* General */
 
@@ -32,7 +34,7 @@ h2 {
 
 a {
   text-decoration: none;
-  cursor: pointer;
+  cursor: alias;
 }
 
 *:hover {

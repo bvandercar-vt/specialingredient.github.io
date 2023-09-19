@@ -41,6 +41,7 @@
   justify-content: center;
   position: relative;
   top: 0px;
+  cursor: pointer;
 }
 
 .fixed-top {

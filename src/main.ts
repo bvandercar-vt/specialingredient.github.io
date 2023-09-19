@@ -33,6 +33,7 @@ function setPlaylistBlocksCollapsable() {
   Array.from(playlistTitles).forEach((playlistTitle) => {
     setCollapsed(playlistTitle, isMobile())
 
+    playlistTitle.setAttribute('role', 'button')
     playlistTitle.setAttribute('tabIndex', String(0))
     playlistTitle.addEventListener('keypress', triggerClick)
     playlistTitle.addEventListener('click', () => {
