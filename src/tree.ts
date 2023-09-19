@@ -22,8 +22,7 @@ function createNode({ text, tooltip, rightText, leftIcon, className, url, nodes 
 
   if (leftIcon) {
     const leftIconEl = document.createElement('span')
-    leftIconEl.classList.add('fa', leftIcon)
-    leftIconEl.style.marginRight = '0.5em'
+    leftIconEl.classList.add('fa', leftIcon, 'left-icon')
     divWrapper.appendChild(leftIconEl)
   }
 

@@ -8,6 +8,10 @@
   padding-right: 10px;
 }
 
+.tree .left-icon {
+  margin-right: 0.5em;
+}
+
 .tree .right-side {
   float: right;
   font-style: italic;
