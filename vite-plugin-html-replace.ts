@@ -128,7 +128,8 @@ async function makeHtmlMods(src: string) {
 
   sleep(2000)
 
-  return prettier.format(dom.serialize(), { parser: 'html' })
+  const result = await prettier.format(dom.serialize(), { parser: 'html' })
+  return result
 }
 
 export function customPluginReplaceHtml() {
