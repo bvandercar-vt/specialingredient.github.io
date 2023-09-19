@@ -1,7 +1,7 @@
 import type { PluginOption } from 'vite'
 import * as path from 'path'
 import { JSDOM } from 'jsdom'
-import { htmlToElement } from './src/html-utils'
+import { createElement, htmlToElement } from './src/html-utils'
 import { Classes } from './src/constants'
 import { oEmbed } from './src/api/soundcloud'
 import * as prettier from 'prettier'
@@ -17,17 +17,18 @@ function setPlaylistTitles() {
 
     const labelId = `playlist-title-${i}`
 
-    const titleWrapper = document.createElement('div')
-    titleWrapper.classList.add(Classes.PLAYLIST_TITLE)
-    titleWrapper.setAttribute('href', playlistUrl)
+    const titleWrapper = createElement('div', {
+      classes: [Classes.PLAYLIST_TITLE],
+      attributes: { href: playlistUrl },
+    })
 
-    const titleElement = document.createElement('h2')
+    const titleElement = createElement('h2', { attributes: { id: labelId } })
     titleElement.appendChild(document.createTextNode(playlistTitle))
-    titleElement.setAttribute('id', labelId)
     titleWrapper.appendChild(titleElement)
 
-    const collapseArrow = document.createElement('span')
-    collapseArrow.classList.add(`fa`, `fa-lg`, `fa-caret-down`, Classes.COLLAPSE_CARET)
+    const collapseArrow = createElement('span', {
+      classes: [`fa`, `fa-lg`, `fa-caret-down`, Classes.COLLAPSE_CARET],
+    })
     titleWrapper.appendChild(collapseArrow)
 
     playlist.setAttribute('aria-labelledby', labelId)
@@ -62,26 +63,22 @@ async function setSoundcloudTracks() {
       const addlDescription =
         addlDescriptionSet === 'GET_FROM_SC' ? oEmbed.description : addlDescriptionSet
 
-      const trackWrapper = document.createElement('div')
-      trackWrapper.classList.add(Classes.TRACK_WRAPPER)
+      const trackWrapper = createElement('div', { classes: [Classes.TRACK_WRAPPER] })
 
       if (titleStr) {
-        const titleElement = document.createElement('p')
-        titleElement.classList.add(Classes.TRACK_TITLE)
+        const titleElement = createElement('p', { classes: [Classes.TRACK_TITLE] })
         titleElement.appendChild(document.createTextNode(titleStr))
         trackWrapper.appendChild(titleElement)
       }
 
       if (genreDescription) {
-        const genreDescriptionElement = document.createElement('p')
-        genreDescriptionElement.classList.add(Classes.TRACK_GENRE_DESC)
+        const genreDescriptionElement = createElement('p', { classes: [Classes.TRACK_GENRE_DESC] })
         genreDescriptionElement.appendChild(document.createTextNode(genreDescription))
         trackWrapper.appendChild(genreDescriptionElement)
       }
 
       if (addlDescription) {
-        const addlDescriptionElement = document.createElement('p')
-        addlDescriptionElement.classList.add(Classes.TRACK_ADDL_DESC)
+        const addlDescriptionElement = createElement('p', { classes: [Classes.TRACK_ADDL_DESC] })
         addlDescriptionElement.appendChild(document.createTextNode(addlDescription))
         trackWrapper.appendChild(addlDescriptionElement)
       }
@@ -102,8 +99,9 @@ async function setSoundcloudTracks() {
       iframeElement.src = url.href
       trackWrapper.appendChild(iframeElement)
 
-      const privacyPolicyCoverElement = document.createElement('div')
-      privacyPolicyCoverElement.classList.add(Classes.PRIVACY_POLICY_COVER)
+      const privacyPolicyCoverElement = createElement('div', {
+        classes: [Classes.PRIVACY_POLICY_COVER],
+      })
       trackWrapper.appendChild(privacyPolicyCoverElement)
 
       itemToTransform.outerHTML = trackWrapper.outerHTML

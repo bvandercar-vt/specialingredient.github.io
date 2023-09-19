@@ -1,3 +1,5 @@
+import { createElement } from './html-utils'
+
 export type TreeNode = {
   text: string
   rightText?: string
@@ -21,8 +23,7 @@ function createNode({ text, tooltip, rightText, leftIcon, className, url, nodes 
   let outerWrapper: HTMLElement = divWrapper
 
   if (leftIcon) {
-    const leftIconEl = document.createElement('span')
-    leftIconEl.classList.add('fa', leftIcon, 'left-icon')
+    const leftIconEl = createElement('span', { classes: ['fa', leftIcon, 'left-icon'] })
     divWrapper.appendChild(leftIconEl)
   }
 
@@ -30,37 +31,31 @@ function createNode({ text, tooltip, rightText, leftIcon, className, url, nodes 
 
   if (tooltip) {
     divWrapper.classList.add('tooltip')
-    const tooltipText = document.createElement('span')
-    tooltipText.classList.add('tooltiptext')
+    const tooltipText = createElement('span', { classes: ['tooltiptext'] })
     tooltipText.append(document.createTextNode(tooltip))
     divWrapper.appendChild(tooltipText)
   }
 
   if (rightText) {
-    const rightSideEl = document.createElement('span')
-    rightSideEl.classList.add('right-side')
+    const rightSideEl = createElement('span', { classes: ['right-side'] })
     rightSideEl.appendChild(document.createTextNode(rightText))
     divWrapper.appendChild(rightSideEl)
   }
 
   if (url) {
-    const linkWrapper = document.createElement('a')
-    linkWrapper.setAttribute('href', url)
-    linkWrapper.setAttribute('target', '_blank')
+    const linkWrapper = createElement('a', { attributes: { href: url, target: '_blank' } })
     linkWrapper.appendChild(divWrapper)
     outerWrapper = linkWrapper
   }
 
-  const li = document.createElement('li')
+  const li = createElement('li', { classes: className ? [className] : undefined })
   li.appendChild(outerWrapper)
-  li.className = className ?? ''
   if (nodes) li.appendChild(createNodes(nodes))
   return li
 }
 
 export function createTree(nodes: TreeNode[]) {
-  const treeDiv = document.createElement('div')
-  treeDiv.className = 'tree'
+  const treeDiv = createElement('div', { classes: ['tree'] })
   treeDiv.appendChild(createNodes(nodes))
   return treeDiv
 }

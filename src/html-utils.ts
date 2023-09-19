@@ -20,6 +20,33 @@ export function isMobile() {
   return getWindowWidth() < MOBILE_WIDTH
 }
 
+export function createElement<T extends keyof HTMLElementTagNameMap>(
+  tagName: T,
+  {
+    attributes,
+    classes,
+    onClick,
+  }: { attributes?: Record<string, string>; classes?: string[]; onClick?: () => void } = {},
+) {
+  const element = document.createElement(tagName)
+
+  if (attributes) {
+    Object.entries(attributes).forEach(([attribute, value]) =>
+      element.setAttribute(attribute, value),
+    )
+  }
+
+  if (classes) {
+    element.classList.add(...classes)
+  }
+
+  if (onClick) {
+    element.addEventListener('click', onClick)
+  }
+
+  return element
+}
+
 export function htmlToElement(html: string) {
   const template = document.createElement('template')
   template.innerHTML = html.trim()

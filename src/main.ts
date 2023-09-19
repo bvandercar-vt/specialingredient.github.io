@@ -13,6 +13,7 @@ import {
   isScrollableY,
   isMobile,
   triggerClick,
+  createElement,
 } from './html-utils'
 import { Classes } from './constants'
 
@@ -67,24 +68,26 @@ function setPlaylistBlocksScrollable() {
     const ARROW_CLICK_SCROLL_DIST = 150
     const baseScrollArrowClasses = [Classes.SCROLL_ARROW, 'fa', 'fa-2x']
 
-    const upDiv = document.createElement('div')
-    upDiv.classList.add(...baseScrollArrowClasses, Classes.SCROLL_ARROW_UP, 'fa-caret-up')
-    upDiv.addEventListener('click', () => {
+    const upDiv = createElement('div', {
+      classes: [...baseScrollArrowClasses, Classes.SCROLL_ARROW_UP, 'fa-caret-up'],
+      onClick: () => {
       const newScrollTop = scrollRegion.scrollTop - ARROW_CLICK_SCROLL_DIST
       scrollRegion.scrollTo({
         top: newScrollTop < 40 ? 0 : newScrollTop,
         behavior: 'smooth',
       })
+      },
     })
 
-    const downDiv = document.createElement('div')
-    downDiv.classList.add(...baseScrollArrowClasses, Classes.SCROLL_ARROW_DOWN, 'fa-caret-down')
-    downDiv.addEventListener('click', () => {
+    const downDiv = createElement('div', {
+      classes: [...baseScrollArrowClasses, Classes.SCROLL_ARROW_DOWN, 'fa-caret-down'],
+      onClick: () => {
       const newScrollTop = scrollRegion.scrollTop + ARROW_CLICK_SCROLL_DIST
       scrollRegion.scrollTo({
         top: newScrollTop,
         behavior: 'smooth',
       })
+      },
     })
 
     scrollRegion.insertBefore(upDiv, scrollRegion.firstChild)
