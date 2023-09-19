@@ -1,7 +1,7 @@
 export const spotifyPlaylistFolders = {
   'Chill Electronic': [
     'Chill Electronic',
-    'Indie-Type Future Bass',
+    'Vibey Future Bass',
     'Mellow Electronic',
     //
   ],
