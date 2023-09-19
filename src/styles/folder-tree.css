@@ -1,33 +1,8 @@
-.folder-tree {
-  line-height: 1.5;
-}
-
-.folder-tree ol {
-  list-style: none;
-  padding-left: 20px;
-  padding-right: 10px;
-}
-
-.folder-tree div {
+.folder-tree .item {
   border-radius: 5px;
   padding: 0px 10px;
 }
 
-.folder-tree div:hover {
+.folder-tree .item:hover {
   box-shadow: 0 0 10px 2px darkslateblue;
-}
-
-.folder-tree .playlist-track-count {
-  float: right;
-  font-style: italic;
-}
-
-.folder-tree .tooltiptext {
-  top: 2em;
-  left: 0px;
-  margin-left: 10px;
-}
-
-.folder-tree .tooltiptext::after {
-  left: 0.3em;
 }

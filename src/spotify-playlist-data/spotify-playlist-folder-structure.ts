@@ -1,4 +1,4 @@
-import type { TreeNode } from '../list-tree'
+import type { TreeNode } from '../tree'
 import spotifyPlaylistInfo from './spotify-playlists.json'
 
 const spotifyPlaylistFoldersRaw = [
@@ -128,47 +128,21 @@ const spotifyPlaylistFoldersRaw = [
 ] satisfies Array<{ folderName: string; items: string[] }>
 
 export const spotifyPlaylistFolders: TreeNode[] = spotifyPlaylistFoldersRaw.map(
-  ({ folderName, items }) => {
-    const folderIcon = document.createElement('span')
-    folderIcon.classList.add('fa', 'fa-folder-open')
+  ({ folderName, items }) => ({
+    className: 'folder',
+    leftIcon: 'fa-folder-open',
+    text: folderName,
+    nodes: items.map((item) => {
+      const playlistInfo = spotifyPlaylistInfo.find(({ name }) => name == item)
+      if (!playlistInfo) throw new Error(`no playlist info with name ${item}`)
 
-    return {
-      class: 'folder',
-      text: `${folderIcon.outerHTML} ${folderName}`,
-      nodes: items.map((item) => {
-        const playlistInfo = spotifyPlaylistInfo.find(({ name }) => name == item)
-        if (!playlistInfo) throw new Error(`no playlist info with name ${item}`)
-        const divWrapper = document.createElement('div')
-        let outerWrapper: HTMLElement = divWrapper
-
-        if (playlistInfo.description) {
-          divWrapper.classList.add('tooltip')
-          const tooltipText = document.createElement('span')
-          tooltipText.classList.add('tooltiptext')
-          tooltipText.append(document.createTextNode(playlistInfo.description))
-          divWrapper.appendChild(tooltipText)
-        }
-
-        divWrapper.appendChild(document.createTextNode(playlistInfo.name))
-
-        const playCount = document.createElement('span')
-        playCount.classList.add('playlist-track-count')
-        playCount.appendChild(document.createTextNode(playlistInfo.track_count.toString()))
-        divWrapper.appendChild(playCount)
-
-        if (playlistInfo.public) {
-          const linkWrapper = document.createElement('a')
-          linkWrapper.setAttribute('href', playlistInfo.url)
-          linkWrapper.setAttribute('target', '_blank')
-          linkWrapper.appendChild(divWrapper)
-          outerWrapper = linkWrapper
-        }
-
-        return {
-          class: 'item',
-          text: outerWrapper.outerHTML,
-        }
-      }),
-    }
-  },
+      return {
+        text: playlistInfo.name,
+        tooltip: playlistInfo.description,
+        rightText: playlistInfo.track_count.toString(),
+        url: playlistInfo.public ? playlistInfo.url : undefined,
+        className: 'item',
+      } satisfies TreeNode
+    }),
+  }),
 )
