@@ -17,11 +17,19 @@ import {
   triggerClick,
 } from './html-utils'
 
-function setCollapsed(accordionTitle: HTMLDivElement, collapsed: boolean) {
+function isHidden(element: Element) {
+  return element.classList.contains(Classes.HIDDEN)
+}
+
+function setHidden(element: Element, hidden: boolean) {
+  element.classList.toggle(Classes.HIDDEN, hidden)
+}
+
+function setCollapsed(accordionTitle: Element, collapsed: boolean) {
   const parentElement = accordionTitle.parentElement!
   const collapseContent = parentElement.getElementsByClassName(Classes.CARD_COLLAPSE_CONTENT)[0]
   const collapseArrow = parentElement.getElementsByClassName(Classes.COLLAPSE_CARET)[0]
-  collapseContent.classList.toggle(Classes.HIDDEN, collapsed)
+  setHidden(collapseContent, collapsed)
   collapseArrow.classList.toggle(Classes.OPEN, !collapsed)
   accordionTitle.classList.toggle(Classes.FIXED_TOP, !collapsed)
 }
@@ -42,7 +50,7 @@ function setGridCardsCollapsible() {
       const collapseContent = collapsibleCard.getElementsByClassName(
         Classes.CARD_COLLAPSE_CONTENT,
       )[0]
-      const isCollapsed = collapseContent.classList.contains(Classes.HIDDEN)
+      const isCollapsed = isHidden(collapseContent)
       setCollapsed(cardTitle, !isCollapsed)
 
       if (isCollapsed) {
@@ -75,7 +83,11 @@ function setGridCardsCollapsible() {
 function setCardContentScrollable() {
   const scrollRegions = document.getElementsByClassName(Classes.CARD_COLLAPSE_CONTENT)
   Array.from(scrollRegions).forEach((scrollRegion) => {
+    // need to not be hidden to determine isScrollableY
+    const wasHidden = isHidden(scrollRegion)
+    setHidden(scrollRegion, false)
     if (!isScrollableY(scrollRegion)) return
+    setHidden(scrollRegion, wasHidden)
 
     const ARROW_CLICK_SCROLL_DIST = 150
     const baseScrollArrowClasses = [Classes.SCROLL_ARROW, 'fa', 'fa-2x']
