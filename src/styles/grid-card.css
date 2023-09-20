@@ -70,6 +70,18 @@
 .collapse-content {
   position: relative;
   overflow-y: auto;
+
+  /* Gradient for overflow */
+  /* --gradient-height: 20px;
+  --mask-image: linear-gradient(
+    to bottom,
+    transparent 0%,
+    black var(--gradient-height),
+    black calc(100% - var(--gradient-height)),
+    transparent 100%
+  );
+  -webkit-mask-image: var(--mask-image);
+  mask-image: var(--mask-image); */
 }
 
 .collapse-content::-webkit-scrollbar {
