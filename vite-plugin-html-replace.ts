@@ -5,7 +5,6 @@ import { createElement, htmlToElement } from './src/html-utils'
 import { Classes } from './src/constants'
 import { oEmbed } from './src/api/soundcloud'
 import * as prettier from 'prettier'
-import { sleep } from './src/utils'
 import { setSearchParams } from './src/api/api-utils'
 
 function setPlaylistTitles() {
@@ -125,8 +124,6 @@ async function makeHtmlMods(src: string) {
   setPlaylistTitles()
 
   await setSoundcloudTracks()
-
-  sleep(2000)
 
   const result = await prettier.format(dom.serialize(), { parser: 'html' })
   return result
