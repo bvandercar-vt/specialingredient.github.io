@@ -13,11 +13,6 @@
   --border-radius: 20px;
 }
 
-html,
-body {
-  height: var(--app-height);
-}
-
 body {
   background-color: black;
   color: white;
