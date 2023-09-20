@@ -5,6 +5,7 @@ import { Classes } from './src/constants'
 import { oEmbed } from './src/api/soundcloud'
 import * as prettier from 'prettier'
 import { setSearchParams } from './src/api/api-utils'
+import zip from 'lodash/zip'
 
 function setGridCardTitles() {
   const gridCards = document.getElementsByClassName(Classes.GRID_CARD)
@@ -39,16 +40,20 @@ function setGridCardTitles() {
 }
 
 async function setSoundcloudTracks() {
-  // eslint-disable-next-line no-constant-condition
-  while (true) {
-    const itemToTransform = document.getElementsByClassName(Classes.TRANSFORM_TO_SC_ITEM)[0]
-    if (!itemToTransform) break
+  const itemsToTransform = Array.from(document.getElementsByClassName(Classes.TRANSFORM_TO_SC_ITEM))
 
-    await oEmbed({
-      url: itemToTransform.getAttribute('data-sc-link')!,
+  await Promise.all(
+    itemsToTransform.map((item) =>
+      oEmbed({
+        url: item.getAttribute('data-sc-link')!,
       maxheight: 145,
       auto_play: false,
-    }).then((oEmbed) => {
+      }),
+    ),
+  ).then((oEmbeds) => {
+    zip(itemsToTransform, oEmbeds).forEach(([itemToTransform, oEmbed]) => {
+      if (!itemToTransform || !oEmbed) throw new Error('different array lengths')
+
       const titleStr =
         itemToTransform.getAttribute('data-title') ??
         oEmbed.title
@@ -107,7 +112,7 @@ async function setSoundcloudTracks() {
 
       console.log(`replaced ${titleStr}`)
     })
-  }
+  })
 }
 
 async function makeHtmlMods(src: string) {

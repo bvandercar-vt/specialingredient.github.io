@@ -1,4 +1,4 @@
-import _ from 'lodash'
+import isEqual from 'lodash/isEqual'
 
 export const sleep = (ms: number) => new Promise((resolve) => setTimeout(resolve, ms))
 
@@ -26,8 +26,8 @@ export function retryPromise<T>(
   })
 }
 
-export const checkHasExactKeys = (obj: Record<string, unknown>, keys: string[]) => {
-  if (!_.isEqual(Object.keys(obj).sort(), keys.sort()))
+export function checkHasExactKeys(obj: Record<string, unknown>, keys: string[]) {
+  if (!isEqual(Object.keys(obj).sort(), keys.sort()))
     throw new Error(
       `expected object to have keys ${keys.sort()} | object: ${JSON.stringify(obj, null, 2)}`,
     )
