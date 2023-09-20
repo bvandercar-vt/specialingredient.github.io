@@ -57,7 +57,7 @@ const spotifyPlaylistFoldersRaw = [
   {
     folderName: 'DnB',
     items: [
-      'Neurofunk',
+      'Neurofunk & Heavier DnB',
       'Spacey DnB',
       'Vibey DnB & Liquid DnB',
       //
@@ -136,12 +136,23 @@ export function getSpotifyPlaylistFolderTreeNodes(): TreeNode[] {
       const playlistInfo = spotifyPlaylistInfo.find(({ name }) => name == item)
       if (!playlistInfo) throw new Error(`no playlist info with name ${item}`)
 
-      const tooltip = document.createElement('span')
-      if (!playlistInfo.public) {
-        tooltip.appendChild(document.createTextNode('Private Playlist'))
-        tooltip.appendChild(document.createElement('br'))
+      let tooltip: Node | undefined = undefined
+      if (playlistInfo.public) {
+        if (playlistInfo.description) {
+          tooltip = document.createTextNode(playlistInfo.description)
+        }
+      } else {
+        tooltip = document.createElement('span')
+
+        if (playlistInfo.description) {
+          tooltip.appendChild(document.createTextNode(playlistInfo.description))
+          tooltip.appendChild(document.createElement('br'))
+        }
+
+        const italic = document.createElement('i')
+        italic.appendChild(document.createTextNode('- Private Playlist -'))
+        tooltip.appendChild(italic)
       }
-      tooltip.appendChild(document.createTextNode(playlistInfo.description))
 
       return {
         text: playlistInfo.name,

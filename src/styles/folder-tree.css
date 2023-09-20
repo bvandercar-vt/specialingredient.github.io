@@ -10,3 +10,7 @@
 .folder-tree .item-disabled {
   color: grey;
 }
+
+.folder-tree .tooltip .tooltiptext {
+  text-align: left;
+}
