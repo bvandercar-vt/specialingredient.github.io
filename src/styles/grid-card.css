@@ -18,7 +18,7 @@
   border-radius: var(--border-radius);
   border-color: var(--border-color);
   box-shadow: 0 0 10px 2px var(--border-color);
-  max-height: calc(var(--app-height) * 0.8);
+  max-height: calc(var(--app-height) - 4em);
   display: flex;
   flex-flow: column;
 }
