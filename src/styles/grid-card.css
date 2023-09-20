@@ -18,16 +18,9 @@
   border-radius: var(--border-radius);
   border-color: var(--border-color);
   box-shadow: 0 0 10px 2px var(--border-color);
-}
-
-.collapse-content {
-  position: relative;
-  overflow-y: auto;
-  max-height: 80vh;
-}
-
-.collapse-content::-webkit-scrollbar {
-  display: none;
+  max-height: calc(var(--app-height) * 0.9);
+  display: flex;
+  flex-flow: column;
 }
 
 .card-title {
@@ -44,14 +37,22 @@
   cursor: pointer;
 }
 
-.fixed-top {
-  position: relative;
-  top: 0;
-}
-
 .card-title h2 {
   /* space to right for collapse caret */
   margin: 0px 20px;
+}
+
+.card-title:hover {
+  --hover-color-text: darkcyan;
+  --hover-color-border: cyan;
+  box-shadow: 0 0 10px 2px var(--hover-color-border);
+  text-shadow:
+    0 0 5px var(--hover-color-text),
+    0 0 10px var(--hover-color-text),
+    0 0 15px var(--hover-color-text),
+    0 0 20px var(--hover-color-text),
+    0 0 30px var(--hover-color-text),
+    0 0 50px var(--hover-color-text);
 }
 
 .card-title .collapse-caret {
@@ -66,17 +67,18 @@
   transform: rotate(-180deg);
 }
 
-.card-title:hover {
-  --hover-color-text: darkcyan;
-  --hover-color-border: cyan;
-  box-shadow: 0 0 10px 2px var(--hover-color-border);
-  text-shadow:
-    0 0 5px var(--hover-color-text),
-    0 0 10px var(--hover-color-text),
-    0 0 15px var(--hover-color-text),
-    0 0 20px var(--hover-color-text),
-    0 0 30px var(--hover-color-text),
-    0 0 50px var(--hover-color-text);
+.collapse-content {
+  position: relative;
+  overflow-y: auto;
+}
+
+.collapse-content::-webkit-scrollbar {
+  display: none;
+}
+
+.fixed-top {
+  position: relative;
+  top: 0;
 }
 
 .scroll-arrow {
