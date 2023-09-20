@@ -19,39 +19,41 @@ import { Classes } from './constants'
 
 function setCollapsed(accordionTitle: HTMLDivElement, collapsed: boolean) {
   const parentElement = accordionTitle.parentElement!
-  const collapseContent = parentElement.getElementsByClassName(Classes.PLAYLIST_ITEMS)[0]
+  const collapseContent = parentElement.getElementsByClassName(Classes.CARD_COLLAPSE_CONTENT)[0]
   const collapseArrow = parentElement.getElementsByClassName(Classes.COLLAPSE_CARET)[0]
   collapseContent.classList.toggle(Classes.HIDDEN, collapsed)
   collapseArrow.classList.toggle(Classes.OPEN, !collapsed)
   accordionTitle.classList.toggle(Classes.FIXED_TOP, !collapsed)
 }
 
-function setPlaylistBlocksCollapsable() {
+function setGridCardsCollapsible() {
   // Collapsable titles
-  const playlistTitles = document.getElementsByClassName(
-    Classes.PLAYLIST_TITLE,
+  const cardTitles = document.getElementsByClassName(
+    Classes.CARD_TITLE,
   ) as HTMLCollectionOf<HTMLDivElement>
-  Array.from(playlistTitles).forEach((playlistTitle) => {
-    setCollapsed(playlistTitle, isMobile())
+  Array.from(cardTitles).forEach((cardTitle) => {
+    setCollapsed(cardTitle, isMobile())
 
-    playlistTitle.setAttribute('role', 'button')
-    playlistTitle.setAttribute('tabIndex', String(0))
-    playlistTitle.addEventListener('keypress', triggerClick)
-    playlistTitle.addEventListener('click', () => {
-      const playlistBlock = playlistTitle.parentElement!
-      const collapseContent = playlistBlock.getElementsByClassName(Classes.PLAYLIST_ITEMS)[0]
+    cardTitle.setAttribute('role', 'button')
+    cardTitle.setAttribute('tabIndex', String(0))
+    cardTitle.addEventListener('keypress', triggerClick)
+    cardTitle.addEventListener('click', () => {
+      const collapsibleCard = cardTitle.parentElement!
+      const collapseContent = collapsibleCard.getElementsByClassName(
+        Classes.CARD_COLLAPSE_CONTENT,
+      )[0]
       const isCollapsed = collapseContent.classList.contains(Classes.HIDDEN)
-      setCollapsed(playlistTitle, !isCollapsed)
+      setCollapsed(cardTitle, !isCollapsed)
 
       if (isCollapsed) {
         // when becomes expanded, place title at top
-        playlistBlock.scrollIntoView({ behavior: 'smooth', block: 'end' })
+        collapsibleCard.scrollIntoView({ behavior: 'smooth', block: 'end' })
 
         // when becomes expanded, if mobile, close others
         if (isMobile()) {
-          Array.from(playlistTitles).forEach((otherPlaylistTitle) => {
-            if (otherPlaylistTitle !== playlistTitle) {
-              setCollapsed(otherPlaylistTitle, true)
+          Array.from(cardTitles).forEach((otherCardTitle) => {
+            if (otherCardTitle !== cardTitle) {
+              setCollapsed(otherCardTitle, true)
             }
           })
         }
@@ -60,8 +62,8 @@ function setPlaylistBlocksCollapsable() {
   })
 }
 
-function setPlaylistBlocksScrollable() {
-  const scrollRegions = document.getElementsByClassName(Classes.PLAYLIST_ITEMS)
+function setCardContentScrollable() {
+  const scrollRegions = document.getElementsByClassName(Classes.CARD_COLLAPSE_CONTENT)
   Array.from(scrollRegions).forEach((scrollRegion) => {
     if (!isScrollableY(scrollRegion)) return
 
@@ -109,9 +111,9 @@ function setPlaylistBlocksScrollable() {
 }
 
 function init() {
-  setPlaylistBlocksCollapsable()
+  setGridCardsCollapsible()
 
-  setPlaylistBlocksScrollable()
+  setCardContentScrollable()
 }
 
 init()

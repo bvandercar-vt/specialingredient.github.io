@@ -6,22 +6,22 @@ import { oEmbed } from './src/api/soundcloud'
 import * as prettier from 'prettier'
 import { setSearchParams } from './src/api/api-utils'
 
-function setPlaylistTitles() {
-  const playlists = document.getElementsByClassName(Classes.PLAYLIST_BLOCK)
-  for (let i = 0; i < playlists.length; i++) {
-    const playlist = playlists[i]
-    const playlistUrl = playlist.getAttribute('data-url')!
-    const playlistTitle = playlist.getAttribute('data-title')!
+function setGridCardTitles() {
+  const gridCards = document.getElementsByClassName(Classes.GRID_CARD)
+  for (let i = 0; i < gridCards.length; i++) {
+    const gridCard = gridCards[i]
+    const cardUrl = gridCard.getAttribute('data-url')!
+    const cardTitle = gridCard.getAttribute('data-title')!
 
-    const labelId = `playlist-title-${i}`
+    const labelId = `card-title-${i}`
 
     const titleWrapper = createElement('div', {
-      classes: [Classes.PLAYLIST_TITLE],
-      attributes: { href: playlistUrl },
+      classes: [Classes.CARD_TITLE],
+      attributes: { href: cardUrl },
     })
 
     const titleElement = createElement('h2', { attributes: { id: labelId } })
-    titleElement.appendChild(document.createTextNode(playlistTitle))
+    titleElement.appendChild(document.createTextNode(cardTitle))
     titleWrapper.appendChild(titleElement)
 
     const collapseArrow = createElement('span', {
@@ -29,12 +29,12 @@ function setPlaylistTitles() {
     })
     titleWrapper.appendChild(collapseArrow)
 
-    playlist.setAttribute('aria-labelledby', labelId)
-    playlist.setAttribute('role', 'region')
-    playlist.removeAttribute('data-url')
-    playlist.removeAttribute('data-title')
+    gridCard.setAttribute('aria-labelledby', labelId)
+    gridCard.setAttribute('role', 'region')
+    gridCard.removeAttribute('data-url')
+    gridCard.removeAttribute('data-title')
 
-    playlist.insertBefore(titleWrapper, playlist.firstChild)
+    gridCard.insertBefore(titleWrapper, gridCard.firstChild)
   }
 }
 
@@ -120,7 +120,7 @@ async function makeHtmlMods(src: string) {
     el.target = '_blank'
   })
 
-  setPlaylistTitles()
+  setGridCardTitles()
 
   await setSoundcloudTracks()
 
