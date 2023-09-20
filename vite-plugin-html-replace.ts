@@ -1,5 +1,4 @@
 import type { PluginOption } from 'vite'
-import * as path from 'path'
 import { JSDOM } from 'jsdom'
 import { createElement, htmlToElement } from './src/html-utils'
 import { Classes } from './src/constants'
@@ -132,13 +131,8 @@ async function makeHtmlMods(src: string) {
 export function customPluginReplaceHtml() {
   return {
     name: 'transform-html',
-    async transform(src, id) {
-      if (path.basename(id) == 'index.html') {
-        return {
-          code: await makeHtmlMods(src),
-          map: null, // provide source map if available
-        }
-      }
+    async transformIndexHtml(html) {
+      return await makeHtmlMods(html)
     },
   } satisfies PluginOption
 }
