@@ -28,10 +28,10 @@ function setCollapsed(accordionTitle: HTMLDivElement, collapsed: boolean) {
 
 function setGridCardsCollapsible() {
   // Collapsable titles
-  const cardTitles = document.getElementsByClassName(
-    Classes.CARD_TITLE,
-  ) as HTMLCollectionOf<HTMLDivElement>
-  Array.from(cardTitles).forEach((cardTitle) => {
+  const cardTitles = Array.from(
+    document.getElementsByClassName(Classes.CARD_TITLE),
+  ) as HTMLDivElement[]
+  cardTitles.forEach((cardTitle) => {
     setCollapsed(cardTitle, isMobile())
 
     cardTitle.setAttribute('role', 'button')
@@ -51,7 +51,7 @@ function setGridCardsCollapsible() {
 
         // when becomes expanded, if mobile, close others
         if (isMobile()) {
-          Array.from(cardTitles).forEach((otherCardTitle) => {
+          cardTitles.forEach((otherCardTitle) => {
             if (otherCardTitle !== cardTitle) {
               setCollapsed(otherCardTitle, true)
             }
@@ -60,6 +60,16 @@ function setGridCardsCollapsible() {
       }
     })
   })
+
+  window.addEventListener(
+    'resize',
+    () => {
+      cardTitles.forEach((otherCardTitle) => {
+        setCollapsed(otherCardTitle, isMobile())
+      })
+    },
+    true,
+  )
 }
 
 function setCardContentScrollable() {
