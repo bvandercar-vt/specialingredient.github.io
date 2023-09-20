@@ -110,16 +110,15 @@
   text-align: center;
   cursor: pointer;
   user-select: none;
+  display: inherit;
 }
 
 .scroll-arrow-up {
   top: 5px;
-  display: none;
 }
 
 .scroll-arrow-down {
   bottom: 5px;
-  display: inherit;
 }
 
 @media (max-width: 800px) {

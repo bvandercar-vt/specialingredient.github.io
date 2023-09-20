@@ -81,8 +81,10 @@ function setGridCardsCollapsible() {
 }
 
 function setCardContentScrollable() {
-  const scrollRegions = document.getElementsByClassName(Classes.CARD_COLLAPSE_CONTENT)
-  Array.from(scrollRegions).forEach((scrollRegion) => {
+  const scrollRegions = Array.from(
+    document.getElementsByClassName(Classes.CARD_COLLAPSE_CONTENT),
+  ) as HTMLDivElement[]
+  scrollRegions.forEach((scrollRegion) => {
     // need to not be hidden to determine isScrollableY
     const wasHidden = isHidden(scrollRegion)
     setHidden(scrollRegion, false)
@@ -92,7 +94,7 @@ function setCardContentScrollable() {
     const ARROW_CLICK_SCROLL_DIST = 150
     const baseScrollArrowClasses = [Classes.SCROLL_ARROW, 'fa', 'fa-2x']
 
-    const upDiv = createElement('div', {
+    const upArrow = createElement('div', {
       classes: [...baseScrollArrowClasses, Classes.SCROLL_ARROW_UP, 'fa-caret-up'],
       onClick: () => {
         const newScrollTop = scrollRegion.scrollTop - ARROW_CLICK_SCROLL_DIST
@@ -103,7 +105,7 @@ function setCardContentScrollable() {
       },
     })
 
-    const downDiv = createElement('div', {
+    const downArrow = createElement('div', {
       classes: [...baseScrollArrowClasses, Classes.SCROLL_ARROW_DOWN, 'fa-caret-down'],
       onClick: () => {
         const newScrollTop = scrollRegion.scrollTop + ARROW_CLICK_SCROLL_DIST
@@ -114,20 +116,14 @@ function setCardContentScrollable() {
       },
     })
 
-    scrollRegion.insertBefore(upDiv, scrollRegion.firstChild)
-    scrollRegion.appendChild(downDiv)
+    setHidden(upArrow, true)
+    setHidden(downArrow, false)
 
-    scrollRegion.addEventListener('scroll', (event) => {
-      const thisScrollRegion = event.target as HTMLDivElement
-      const upArrow = thisScrollRegion.getElementsByClassName(
-        Classes.SCROLL_ARROW_UP,
-      )[0] as HTMLDivElement
-      const downArrow = thisScrollRegion.getElementsByClassName(
-        Classes.SCROLL_ARROW_DOWN,
-      )[0] as HTMLDivElement
-
-      upArrow.style.display = isScrolledToTop(thisScrollRegion, 50) ? 'none' : 'inherit'
-      downArrow.style.display = isScrolledToBottom(thisScrollRegion, 50) ? 'none' : 'inherit'
+    scrollRegion.insertBefore(upArrow, scrollRegion.firstChild)
+    scrollRegion.appendChild(downArrow)
+    scrollRegion.addEventListener('scroll', () => {
+      setHidden(upArrow, isScrolledToTop(scrollRegion, 50))
+      setHidden(downArrow, isScrolledToBottom(scrollRegion, 50))
     })
   })
 }

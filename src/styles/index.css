@@ -51,11 +51,11 @@ a:visited {
 .hidden {
   /* NOTE: display: none causes iframes load weird, causing issues */
   /* NOTE: height: 0 causes height calculations to be wierd */
-  overflow: hidden;
-  visibility: hidden;
-  position: absolute;
-  left: -9999px; /* Position it far off the screen */
-  top: -9999px; /* Position it far off the screen */
+  overflow: hidden !important;
+  visibility: hidden !important;
+  position: absolute !important;
+  left: -9999px !important; /* Position it far off the screen */
+  top: -9999px !important; /* Position it far off the screen */
 }
 
 @media (max-width: 800px) {
