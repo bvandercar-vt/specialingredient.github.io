@@ -1,5 +1,5 @@
-import { getPlaylists } from '../api/spotify'
 import * as fs from 'fs'
+import { getPlaylists } from '../api/spotify'
 
 getPlaylists().then((playlists) => {
   const data = playlists

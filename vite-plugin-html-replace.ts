@@ -1,11 +1,11 @@
-import type { PluginOption } from 'vite'
 import { JSDOM } from 'jsdom'
-import { createElement, htmlToElement } from './src/html-utils'
-import { Classes } from './src/constants'
-import { oEmbed } from './src/api/soundcloud'
-import * as prettier from 'prettier'
-import { setSearchParams } from './src/api/api-utils'
 import zip from 'lodash/zip'
+import * as prettier from 'prettier'
+import type { PluginOption } from 'vite'
+import { setSearchParams } from './src/api/api-utils'
+import { oEmbed } from './src/api/soundcloud'
+import { Classes } from './src/constants'
+import { createElement, htmlToElement } from './src/html-utils'
 
 function setGridCardTitles() {
   const gridCards = document.getElementsByClassName(Classes.GRID_CARD)

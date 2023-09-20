@@ -7,15 +7,15 @@ import './styles/index.css'
 /**
  * Regular imports
  */
-import {
-  isScrolledToTop,
-  isScrolledToBottom,
-  isScrollableY,
-  isMobile,
-  triggerClick,
-  createElement,
-} from './html-utils'
 import { Classes } from './constants'
+import {
+  createElement,
+  isMobile,
+  isScrollableY,
+  isScrolledToBottom,
+  isScrolledToTop,
+  triggerClick,
+} from './html-utils'
 
 function setCollapsed(accordionTitle: HTMLDivElement, collapsed: boolean) {
   const parentElement = accordionTitle.parentElement!
