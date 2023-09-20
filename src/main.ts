@@ -71,22 +71,22 @@ function setPlaylistBlocksScrollable() {
     const upDiv = createElement('div', {
       classes: [...baseScrollArrowClasses, Classes.SCROLL_ARROW_UP, 'fa-caret-up'],
       onClick: () => {
-      const newScrollTop = scrollRegion.scrollTop - ARROW_CLICK_SCROLL_DIST
-      scrollRegion.scrollTo({
-        top: newScrollTop < 40 ? 0 : newScrollTop,
-        behavior: 'smooth',
-      })
+        const newScrollTop = scrollRegion.scrollTop - ARROW_CLICK_SCROLL_DIST
+        scrollRegion.scrollTo({
+          top: newScrollTop < 40 ? 0 : newScrollTop,
+          behavior: 'smooth',
+        })
       },
     })
 
     const downDiv = createElement('div', {
       classes: [...baseScrollArrowClasses, Classes.SCROLL_ARROW_DOWN, 'fa-caret-down'],
       onClick: () => {
-      const newScrollTop = scrollRegion.scrollTop + ARROW_CLICK_SCROLL_DIST
-      scrollRegion.scrollTo({
-        top: newScrollTop,
-        behavior: 'smooth',
-      })
+        const newScrollTop = scrollRegion.scrollTop + ARROW_CLICK_SCROLL_DIST
+        scrollRegion.scrollTo({
+          top: newScrollTop,
+          behavior: 'smooth',
+        })
       },
     })
 
