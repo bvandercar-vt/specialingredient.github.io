@@ -46,7 +46,7 @@ async function setSoundcloudTracks() {
 
     await oEmbed({
       url: itemToTransform.getAttribute('data-sc-link')!,
-      maxheight: 150,
+      maxheight: 145,
       auto_play: false,
     }).then((oEmbed) => {
       const titleStr =
