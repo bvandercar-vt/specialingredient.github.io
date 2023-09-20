@@ -9,7 +9,13 @@
 /* General */
 
 :root {
+  --app-height: 100%;
   --border-radius: 20px;
+}
+
+html,
+body {
+  height: var(--app-height);
 }
 
 body {
@@ -55,16 +61,6 @@ a:visited {
   position: absolute;
   left: -9999px; /* Position it far off the screen */
   top: -9999px; /* Position it far off the screen */
-}
-
-body {
-  min-height: 100vh;
-  /* mobile viewport bug fix */
-  min-height: -webkit-fill-available;
-}
-
-html {
-  height: -webkit-fill-available;
 }
 
 @media (max-width: 800px) {
