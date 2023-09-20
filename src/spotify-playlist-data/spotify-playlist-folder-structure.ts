@@ -127,8 +127,8 @@ const spotifyPlaylistFoldersRaw = [
   },
 ] satisfies Array<{ folderName: string; items: string[] }>
 
-export const spotifyPlaylistFolders: TreeNode[] = spotifyPlaylistFoldersRaw.map(
-  ({ folderName, items }) => ({
+export function getSpotifyPlaylistFolderTreeNodes(): TreeNode[] {
+  return spotifyPlaylistFoldersRaw.map(({ folderName, items }) => ({
     className: 'folder',
     leftIcon: 'fa-folder-open',
     text: folderName,
@@ -136,13 +136,20 @@ export const spotifyPlaylistFolders: TreeNode[] = spotifyPlaylistFoldersRaw.map(
       const playlistInfo = spotifyPlaylistInfo.find(({ name }) => name == item)
       if (!playlistInfo) throw new Error(`no playlist info with name ${item}`)
 
+      const tooltip = document.createElement('span')
+      if (!playlistInfo.public) {
+        tooltip.appendChild(document.createTextNode('Private Playlist'))
+        tooltip.appendChild(document.createElement('br'))
+      }
+      tooltip.appendChild(document.createTextNode(playlistInfo.description))
+
       return {
         text: playlistInfo.name,
-        tooltip: playlistInfo.description,
-        rightText: playlistInfo.track_count.toString(),
+        tooltip,
+        rightElement: playlistInfo.track_count.toString(),
         url: playlistInfo.public ? playlistInfo.url : undefined,
-        className: 'item',
+        classes: playlistInfo.public ? ['item'] : ['item', 'item-disabled'],
       } satisfies TreeNode
     }),
-  }),
-)
+  }))
+}

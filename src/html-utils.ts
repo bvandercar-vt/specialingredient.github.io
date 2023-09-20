@@ -47,6 +47,10 @@ export function createElement<T extends keyof HTMLElementTagNameMap>(
   return element
 }
 
+export function toNode(item: string | Node) {
+  return typeof item == 'string' ? document.createTextNode(item) : item
+}
+
 export function htmlToElement(html: string) {
   const template = document.createElement('template')
   template.innerHTML = html.trim()
