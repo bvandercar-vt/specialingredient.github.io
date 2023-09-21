@@ -81,7 +81,7 @@ function maybeSetScrollArrows(scrollRegion: HTMLElement) {
     // return if not scrollable
     !isScrollableY(scrollRegion) ||
     // return if already has arrows
-    scrollRegion.getElementsByClassName(Classes.SCROLL_ARROW).length > 0
+    scrollRegion.parentElement!.getElementsByClassName(Classes.SCROLL_ARROW).length > 0
   )
     return
 
