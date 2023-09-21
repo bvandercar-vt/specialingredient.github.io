@@ -1,3 +1,4 @@
+import { Classes } from './constants'
 import { createElement } from './html-utils'
 
 export type TreeNode = {
@@ -23,21 +24,21 @@ function createNode({ text, tooltip, rightElement, leftIcon, classes, url, nodes
   let outerWrapper: HTMLElement = divWrapper
 
   if (leftIcon) {
-    const leftIconEl = createElement('span', { classes: ['fa', leftIcon, 'left-icon'] })
+    const leftIconEl = createElement('span', { classes: ['fa', leftIcon, Classes.LEFT_ICON] })
     divWrapper.appendChild(leftIconEl)
   }
 
   divWrapper.appendChild(document.createTextNode(text))
 
   if (tooltip) {
-    divWrapper.classList.add('tooltip')
-    const tooltipText = createElement('span', { classes: ['tooltiptext'] })
+    divWrapper.classList.add(Classes.TOOLTIP)
+    const tooltipText = createElement('span', { classes: [Classes.TOOLTIP_TEXT] })
     tooltipText.append(tooltip)
     divWrapper.appendChild(tooltipText)
   }
 
   if (rightElement) {
-    const rightSideEl = createElement('span', { classes: ['right-side'] })
+    const rightSideEl = createElement('span', { classes: [Classes.RIGHT_SIDE] })
     rightSideEl.append(rightElement)
     divWrapper.appendChild(rightSideEl)
   }
@@ -55,7 +56,7 @@ function createNode({ text, tooltip, rightElement, leftIcon, classes, url, nodes
 }
 
 export function createTree(nodes: TreeNode[]) {
-  const treeDiv = createElement('div', { classes: ['tree'] })
+  const treeDiv = createElement('div', { classes: [Classes.TREE] })
   treeDiv.appendChild(createNodes(nodes))
   return treeDiv
 }

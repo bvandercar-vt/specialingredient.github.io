@@ -96,12 +96,12 @@ function maybeSetScrollArrows(scrollRegion: HTMLElement): boolean {
     // return if not scrollable
     !isScrollableY(scrollRegion) ||
     // return if already has arrows
-    scrollRegion.getElementsByClassName('scrollable-region').length > 0
+    scrollRegion.getElementsByClassName(Classes.SCROLLABLE_REGION).length > 0
   )
     return false
 
   // move scrollable contents to an inner div
-  const innerScrollRegion = createElement('div', { classes: ['scrollable-region'] })
+  const innerScrollRegion = createElement('div', { classes: [Classes.SCROLLABLE_REGION] })
   Array.from(scrollRegion.childNodes).forEach((node) => innerScrollRegion.appendChild(node))
   scrollRegion.replaceChildren(innerScrollRegion)
 
