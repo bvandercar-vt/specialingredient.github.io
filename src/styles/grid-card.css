@@ -105,7 +105,7 @@
   text-align: center;
   cursor: pointer;
   user-select: none;
-  display: inherit;
+  display: block;
 }
 
 .scroll-arrow-up {
