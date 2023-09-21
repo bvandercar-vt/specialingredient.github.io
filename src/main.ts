@@ -51,7 +51,7 @@ function setGridCardsCollapsible() {
         maybeSetScrollArrows(collapseContent)
 
         // when becomes expanded, place title at top of window
-        collapsibleCard.scrollIntoView({ behavior: 'smooth', block: 'center' })
+        collapsibleCard.scrollIntoView({ behavior: 'smooth', block: 'start' })
 
         // when becomes expanded, if mobile, close others
         if (isMobile()) {
