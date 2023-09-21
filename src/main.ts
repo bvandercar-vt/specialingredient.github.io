@@ -60,6 +60,13 @@ function setGridCardsCollapsible() {
             () => collapseContent.getElementsByClassName(Classes.SCROLL_ARROW),
             2,
           )
+        } else {
+          // since is now scrolled to top, reset arrow states
+          const arrows = collapseContent.getElementsByClassName(Classes.SCROLL_ARROW)
+          if (arrows.length > 0) {
+            setHidden(arrows[0], true)
+            setHidden(arrows[1], false)
+          }
         }
 
         // when becomes expanded, place title at top of window
