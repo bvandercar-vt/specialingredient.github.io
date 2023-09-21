@@ -91,6 +91,7 @@
 .scroll-arrow {
   /* Position */
   margin: auto;
+  position: -webkit-sticky;
   position: sticky;
   left: 0;
   right: 0;
