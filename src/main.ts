@@ -14,6 +14,7 @@ import {
   isScrollableY,
   isScrolledToBottom,
   isScrolledToTop,
+  onClassChange,
   triggerClick,
   waitForElements,
 } from './html-utils'
@@ -31,7 +32,6 @@ function setGridCardsCollapsible() {
     collapseArrow.classList.toggle(Classes.OPEN, !collapsed)
   }
 
-  // Collapsable titles
   const cardTitles = Array.from(document.getElementsByClassName<HTMLDivElement>(Classes.CARD_TITLE))
   cardTitles.forEach((cardTitle) => {
     setCollapsed(cardTitle, isMobile())
@@ -56,13 +56,6 @@ function setGridCardsCollapsible() {
             () => collapseContent.getElementsByClassName(Classes.SCROLL_ARROW),
             2,
           )
-        } else {
-          // since is now scrolled to top, reset arrow states
-          const arrows = collapseContent.getElementsByClassName(Classes.SCROLL_ARROW)
-          if (arrows.length > 0) {
-            setArrowHidden(arrows[0], true)
-            setArrowHidden(arrows[1], false)
-          }
         }
 
         // when becomes expanded, place title at top of window
@@ -91,10 +84,6 @@ function setGridCardsCollapsible() {
   )
 }
 
-function setArrowHidden(element: Element, hidden: boolean) {
-  element.classList.toggle(Classes.DISPLAY_NONE, hidden)
-}
-
 /**
  * @returns `true` if new arrows set, `false` otherwise
  */
@@ -107,10 +96,8 @@ function maybeSetScrollArrows(scrollRegion: HTMLElement): boolean {
   )
     return false
 
-  // distance scrolled when arrow clicked
-  const ARROW_CLICK_SCROLL_DIST = 150
-  // when new scroll is within this distance from top/bottom, just scroll all the way to top/bottom
-  const ARROW_MAGNET_DISTANCE = 100
+  const ARROW_CLICK_SCROLL_DIST = 150 // distance scrolled when arrow clicked
+  const ARROW_MAGNET_DISTANCE = 100 // when new scroll is within this distance from top/bottom, just scroll all the way to top/bottom
   const baseScrollArrowClasses = [Classes.SCROLL_ARROW, 'fa', 'fa-2x']
 
   const upArrow = createElement('div', {
@@ -144,21 +131,22 @@ function maybeSetScrollArrows(scrollRegion: HTMLElement): boolean {
     },
   })
 
-  setArrowHidden(upArrow, true)
-  setArrowHidden(downArrow, false)
-
   scrollRegion.insertBefore(upArrow, scrollRegion.firstChild)
   scrollRegion.appendChild(downArrow)
-  scrollRegion.addEventListener('scroll', () => {
-    setArrowHidden(upArrow, isScrolledToTop(scrollRegion, 50))
-    setArrowHidden(downArrow, isScrolledToBottom(scrollRegion, 50))
-  })
+
+  function showOrHideArrows() {
+    upArrow.classList.toggle(Classes.DISPLAY_NONE, isScrolledToTop(scrollRegion, 50))
+    downArrow.classList.toggle(Classes.DISPLAY_NONE, isScrolledToBottom(scrollRegion, 50))
+  }
+  showOrHideArrows()
+  scrollRegion.addEventListener('scroll', showOrHideArrows)
+  onClassChange(scrollRegion, showOrHideArrows) // for when becomes hidden or unhidden
 
   return true
 }
 
 function init() {
-  // iphone window stuff
+  // for iphone window
   const setAppHeight = () =>
     document.documentElement.style.setProperty('--app-height', `${window.innerHeight}px`)
   window.addEventListener('resize', setAppHeight)

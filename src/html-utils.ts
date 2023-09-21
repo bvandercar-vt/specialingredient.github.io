@@ -90,3 +90,13 @@ export function triggerClick(event: KeyboardEvent) {
     event.target?.dispatchEvent(new MouseEvent('click', { ...event, view: undefined }))
   }
 }
+
+export function onClassChange(element: Element, func: () => void) {
+  new MutationObserver((mutationList) => {
+    mutationList.forEach((mutation) => {
+      if (mutation.type === 'attributes' && mutation.attributeName === 'class') {
+        func()
+      }
+    })
+  }).observe(element, { attributes: true })
+}
