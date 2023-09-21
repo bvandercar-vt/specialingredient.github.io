@@ -16,7 +16,6 @@ import {
   isScrolledToTop,
   onClassChange,
   triggerClick,
-  waitForElements,
 } from './html-utils'
 
 function setGridCardsCollapsible() {
@@ -49,14 +48,7 @@ function setGridCardsCollapsible() {
 
       if (wasCollapsed) {
         // when becomes expanded, set scroll arrows if needed
-        const newArrowsCreated = maybeSetScrollArrows(collapseContent)
-        // if new arrows were created, wait until finished before scrolling-- else, scrolling is glitchy
-        if (newArrowsCreated) {
-          await waitForElements(
-            () => collapseContent.getElementsByClassName(Classes.SCROLL_ARROW),
-            2,
-          )
-        }
+        maybeSetScrollArrows(collapseContent)
 
         // when becomes expanded, place title at top of window
         collapsibleCard.scrollIntoView({ behavior: 'smooth', block: 'center' })
@@ -84,17 +76,14 @@ function setGridCardsCollapsible() {
   )
 }
 
-/**
- * @returns `true` if new arrows set, `false` otherwise
- */
-function maybeSetScrollArrows(scrollRegion: HTMLElement): boolean {
+function maybeSetScrollArrows(scrollRegion: HTMLElement) {
   if (
     // return if not scrollable
     !isScrollableY(scrollRegion) ||
     // return if already has arrows
     scrollRegion.getElementsByClassName(Classes.SCROLL_ARROW).length > 0
   )
-    return false
+    return
 
   const ARROW_CLICK_SCROLL_DIST = 150 // distance scrolled when arrow clicked
   const ARROW_MAGNET_DISTANCE = 100 // when new scroll is within this distance from top/bottom, just scroll all the way to top/bottom
@@ -152,8 +141,6 @@ function maybeSetScrollArrows(scrollRegion: HTMLElement): boolean {
   showOrHideArrows()
   scrollRegion.addEventListener('scroll', showOrHideArrows)
   onClassChange(scrollRegion, showOrHideArrows) // for when becomes hidden or unhidden
-
-  return true
 }
 
 function init() {
