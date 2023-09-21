@@ -8,7 +8,6 @@ export const Classes = {
   CARD_TITLE: 'card-title',
   COLLAPSE_CARET: 'collapse-caret',
   CARD_COLLAPSE_CONTENT: 'collapse-content',
-  SCROLLABLE_REGION: 'scrollable-region',
   SCROLL_ARROW: 'scroll-arrow',
   SCROLL_ARROW_UP: 'scroll-arrow-up',
   SCROLL_ARROW_DOWN: 'scroll-arrow-down',

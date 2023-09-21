@@ -103,16 +103,10 @@ function maybeSetScrollArrows(scrollRegion: HTMLElement): boolean {
     // return if not scrollable
     !isScrollableY(scrollRegion) ||
     // return if already has arrows
-    scrollRegion.getElementsByClassName(Classes.SCROLLABLE_REGION).length > 0
+    scrollRegion.getElementsByClassName(Classes.SCROLL_ARROW).length > 0
   )
     return false
 
-  // move scrollable contents to an inner div
-  const innerScrollRegion = createElement('div', { classes: [Classes.SCROLLABLE_REGION] })
-  Array.from(scrollRegion.childNodes).forEach((node) => innerScrollRegion.appendChild(node))
-  scrollRegion.replaceChildren(innerScrollRegion)
-
-  // create the scroll arrows
   // distance scrolled when arrow clicked
   const ARROW_CLICK_SCROLL_DIST = 150
   // when new scroll is within this distance from top/bottom, just scroll all the way to top/bottom
