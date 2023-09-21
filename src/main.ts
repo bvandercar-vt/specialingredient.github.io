@@ -157,17 +157,17 @@ function maybeSetScrollArrows(scrollRegion: HTMLElement): boolean {
 }
 
 function init() {
-  setGridCardsCollapsible()
-
-  Array.from(
-    document.getElementsByClassName<HTMLDivElement>(Classes.CARD_COLLAPSE_CONTENT),
-  ).forEach((collapseContent) => maybeSetScrollArrows(collapseContent))
-
   // iphone window stuff
   const setAppHeight = () =>
     document.documentElement.style.setProperty('--app-height', `${window.innerHeight}px`)
   window.addEventListener('resize', setAppHeight)
   setAppHeight()
+
+  setGridCardsCollapsible()
+
+  Array.from(
+    document.getElementsByClassName<HTMLDivElement>(Classes.CARD_COLLAPSE_CONTENT),
+  ).forEach((collapseContent) => maybeSetScrollArrows(collapseContent))
 }
 
 init()
