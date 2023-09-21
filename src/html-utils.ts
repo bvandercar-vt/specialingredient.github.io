@@ -1,14 +1,17 @@
 const MOBILE_WIDTH = 800
 
-export function isScrolledToTop(element: HTMLElement, offset = 0) {
+export function isScrolledToTop(element: Pick<HTMLElement, 'scrollTop'>, offset = 0) {
   return element.scrollTop < offset
 }
 
-export function isScrolledToBottom(element: HTMLElement, offset = 0) {
+export function isScrolledToBottom(
+  element: Pick<HTMLElement, 'scrollTop' | 'scrollHeight' | 'offsetHeight'>,
+  offset = 0,
+) {
   return element.scrollTop > element.scrollHeight - element.offsetHeight - offset
 }
 
-export function isScrollableY(element: Element) {
+export function isScrollableY(element: Pick<HTMLElement, 'scrollHeight' | 'clientHeight'>) {
   return element.scrollHeight > element.clientHeight
 }
 
