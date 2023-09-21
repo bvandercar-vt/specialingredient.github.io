@@ -18,23 +18,19 @@ import {
   waitForElements,
 } from './html-utils'
 
-function isHidden(element: Element) {
-  return element.classList.contains(Classes.HIDDEN)
-}
-
-function setHidden(element: Element, hidden: boolean) {
-  element.classList.toggle(Classes.HIDDEN, hidden)
-}
-
-function setCollapsed(accordionTitle: Element, collapsed: boolean) {
-  const parentElement = accordionTitle.parentElement!
-  const collapseContent = parentElement.getElementsByClassName(Classes.CARD_COLLAPSE_CONTENT)[0]
-  const collapseArrow = parentElement.getElementsByClassName(Classes.COLLAPSE_CARET)[0]
-  setHidden(collapseContent, collapsed)
-  collapseArrow.classList.toggle(Classes.OPEN, !collapsed)
-}
-
 function setGridCardsCollapsible() {
+  function isCollapsed(element: Element) {
+    return element.classList.contains(Classes.HIDDEN)
+  }
+
+  function setCollapsed(accordionTitle: Element, collapsed: boolean) {
+    const parentElement = accordionTitle.parentElement!
+    const collapseContent = parentElement.getElementsByClassName(Classes.CARD_COLLAPSE_CONTENT)[0]
+    const collapseArrow = parentElement.getElementsByClassName(Classes.COLLAPSE_CARET)[0]
+    collapseContent.classList.toggle(Classes.HIDDEN, collapsed)
+    collapseArrow.classList.toggle(Classes.OPEN, !collapsed)
+  }
+
   // Collapsable titles
   const cardTitles = Array.from(document.getElementsByClassName<HTMLDivElement>(Classes.CARD_TITLE))
   cardTitles.forEach((cardTitle) => {
@@ -48,10 +44,10 @@ function setGridCardsCollapsible() {
       const collapseContent = collapsibleCard.getElementsByClassName<HTMLDivElement>(
         Classes.CARD_COLLAPSE_CONTENT,
       )[0]
-      const isCollapsed = isHidden(collapseContent)
-      setCollapsed(cardTitle, !isCollapsed)
+      const wasCollapsed = isCollapsed(collapseContent)
+      setCollapsed(cardTitle, !wasCollapsed)
 
-      if (isCollapsed) {
+      if (wasCollapsed) {
         // when becomes expanded, set scroll arrows if needed
         const newArrowsCreated = maybeSetScrollArrows(collapseContent)
         // if new arrows were created, wait until finished before scrolling-- else, scrolling is glitchy
@@ -64,8 +60,8 @@ function setGridCardsCollapsible() {
           // since is now scrolled to top, reset arrow states
           const arrows = collapseContent.getElementsByClassName(Classes.SCROLL_ARROW)
           if (arrows.length > 0) {
-            setHidden(arrows[0], true)
-            setHidden(arrows[1], false)
+            setArrowHidden(arrows[0], true)
+            setArrowHidden(arrows[1], false)
           }
         }
 
@@ -93,6 +89,10 @@ function setGridCardsCollapsible() {
     },
     true,
   )
+}
+
+function setArrowHidden(element: Element, hidden: boolean) {
+  element.classList.toggle(Classes.DISPLAY_NONE, hidden)
 }
 
 /**
@@ -150,14 +150,14 @@ function maybeSetScrollArrows(scrollRegion: HTMLElement): boolean {
     },
   })
 
-  setHidden(upArrow, true)
-  setHidden(downArrow, false)
+  setArrowHidden(upArrow, true)
+  setArrowHidden(downArrow, false)
 
   scrollRegion.insertBefore(upArrow, scrollRegion.firstChild)
   scrollRegion.appendChild(downArrow)
   scrollRegion.addEventListener('scroll', () => {
-    setHidden(upArrow, isScrolledToTop(scrollRegion, 50))
-    setHidden(downArrow, isScrolledToBottom(scrollRegion, 50))
+    setArrowHidden(upArrow, isScrolledToTop(scrollRegion, 50))
+    setArrowHidden(downArrow, isScrolledToBottom(scrollRegion, 50))
   })
 
   return true

@@ -2,6 +2,7 @@ export const Classes = {
   // general
   OPEN: 'open',
   HIDDEN: 'hidden',
+  DISPLAY_NONE: 'display-none',
   // grid cards
   GRID_CARD: 'grid-card',
   CARD_TITLE: 'card-title',

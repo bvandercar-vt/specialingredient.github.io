@@ -58,6 +58,10 @@ a:visited {
   top: -9999px !important; /* Position it far off the screen */
 }
 
+.display-none {
+  display: none;
+}
+
 @media (max-width: 800px) {
   html,
   body {
