@@ -37,9 +37,7 @@ function setCollapsed(accordionTitle: Element, collapsed: boolean) {
 
 function setGridCardsCollapsible() {
   // Collapsable titles
-  const cardTitles = Array.from(
-    document.getElementsByClassName(Classes.CARD_TITLE),
-  ) as HTMLDivElement[]
+  const cardTitles = Array.from(document.getElementsByClassName<HTMLDivElement>(Classes.CARD_TITLE))
   cardTitles.forEach((cardTitle) => {
     setCollapsed(cardTitle, isMobile())
 
@@ -48,9 +46,9 @@ function setGridCardsCollapsible() {
     cardTitle.addEventListener('keypress', triggerClick)
     cardTitle.addEventListener('click', async () => {
       const collapsibleCard = cardTitle.parentElement!
-      const collapseContent = collapsibleCard.getElementsByClassName(
+      const collapseContent = collapsibleCard.getElementsByClassName<HTMLDivElement>(
         Classes.CARD_COLLAPSE_CONTENT,
-      )[0] as HTMLDivElement
+      )[0]
       const isCollapsed = isHidden(collapseContent)
       setCollapsed(cardTitle, !isCollapsed)
 
@@ -163,7 +161,7 @@ function init() {
   setGridCardsCollapsible()
 
   Array.from(
-    document.getElementsByClassName(Classes.CARD_COLLAPSE_CONTENT) as HTMLCollectionOf<HTMLElement>,
+    document.getElementsByClassName<HTMLDivElement>(Classes.CARD_COLLAPSE_CONTENT),
   ).forEach((collapseContent) => maybeSetScrollArrows(collapseContent))
 
   // iphone window stuff
