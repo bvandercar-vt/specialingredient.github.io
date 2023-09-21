@@ -101,7 +101,7 @@ function maybeSetScrollArrows(scrollRegion: HTMLElement): boolean {
   const baseScrollArrowClasses = [Classes.SCROLL_ARROW, 'fa', 'fa-2x']
 
   const upArrow = createElement('div', {
-    classes: [...baseScrollArrowClasses, Classes.SCROLL_ARROW_UP, 'fa-caret-up'],
+    classes: [...baseScrollArrowClasses, 'fa-caret-up'],
     onClick: () => {
       const newScrollTop = scrollRegion.scrollTop - ARROW_CLICK_SCROLL_DIST
       scrollRegion.scrollTo({
@@ -112,7 +112,7 @@ function maybeSetScrollArrows(scrollRegion: HTMLElement): boolean {
   })
 
   const downArrow = createElement('div', {
-    classes: [...baseScrollArrowClasses, Classes.SCROLL_ARROW_DOWN, 'fa-caret-down'],
+    classes: [...baseScrollArrowClasses, 'fa-caret-down'],
     onClick: () => {
       const newScrollTop = scrollRegion.scrollTop + ARROW_CLICK_SCROLL_DIST
       scrollRegion.scrollTo({
@@ -131,9 +131,20 @@ function maybeSetScrollArrows(scrollRegion: HTMLElement): boolean {
     },
   })
 
-  scrollRegion.insertBefore(upArrow, scrollRegion.firstChild)
-  scrollRegion.appendChild(downArrow)
+  scrollRegion.parentElement!.insertBefore(upArrow, scrollRegion)
+  scrollRegion.parentElement!.appendChild(downArrow)
 
+  // since the arrows are now in the parent container, must y-position them with respect to the scrollable region they surround
+  const DISTANCE_FROM_EDGE = 5 // pixels
+  upArrow.style.top = scrollRegion.offsetTop + DISTANCE_FROM_EDGE + 'px'
+  downArrow.style.top =
+    scrollRegion.offsetTop +
+    scrollRegion.getBoundingClientRect().height -
+    downArrow.getBoundingClientRect().height -
+    DISTANCE_FROM_EDGE +
+    'px'
+
+  // show or hide arrows based on scroll position
   function showOrHideArrows() {
     upArrow.classList.toggle(Classes.DISPLAY_NONE, isScrolledToTop(scrollRegion, 50))
     downArrow.classList.toggle(Classes.DISPLAY_NONE, isScrolledToBottom(scrollRegion, 50))

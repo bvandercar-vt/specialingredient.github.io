@@ -21,6 +21,7 @@
   max-height: calc(var(--app-height) - 4em);
   display: flex;
   flex-flow: column;
+  position: relative;
 }
 
 .card-title {
@@ -92,7 +93,7 @@
   /* Position */
   margin: auto;
   position: -webkit-sticky;
-  position: sticky;
+  position: absolute;
   left: 0;
   right: 0;
   z-index: 10;
@@ -107,14 +108,6 @@
   cursor: pointer;
   user-select: none;
   display: block;
-}
-
-.scroll-arrow-up {
-  top: 5px;
-}
-
-.scroll-arrow-down {
-  bottom: 5px;
 }
 
 @media (max-width: 800px) {

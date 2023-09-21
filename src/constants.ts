@@ -9,8 +9,6 @@ export const Classes = {
   COLLAPSE_CARET: 'collapse-caret',
   CARD_COLLAPSE_CONTENT: 'collapse-content',
   SCROLL_ARROW: 'scroll-arrow',
-  SCROLL_ARROW_UP: 'scroll-arrow-up',
-  SCROLL_ARROW_DOWN: 'scroll-arrow-down',
   // soundcloud items
   TRANSFORM_TO_SC_ITEM: 'transform-to-sc-item',
   TRACK_WRAPPER: 'track-wrapper',
