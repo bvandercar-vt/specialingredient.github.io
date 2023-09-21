@@ -32,7 +32,6 @@ function setCollapsed(accordionTitle: Element, collapsed: boolean) {
   const collapseArrow = parentElement.getElementsByClassName(Classes.COLLAPSE_CARET)[0]
   setHidden(collapseContent, collapsed)
   collapseArrow.classList.toggle(Classes.OPEN, !collapsed)
-  accordionTitle.classList.toggle(Classes.FIXED_TOP, !collapsed)
 }
 
 function setGridCardsCollapsible() {

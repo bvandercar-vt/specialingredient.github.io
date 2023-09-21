@@ -1,18 +1,20 @@
 export const Classes = {
+  // general
   OPEN: 'open',
   HIDDEN: 'hidden',
+  // grid cards
   GRID_CARD: 'grid-card',
   CARD_TITLE: 'card-title',
   COLLAPSE_CARET: 'collapse-caret',
   CARD_COLLAPSE_CONTENT: 'collapse-content',
-  FIXED_TOP: 'fixed-top',
+  SCROLL_ARROW: 'scroll-arrow',
+  SCROLL_ARROW_UP: 'scroll-arrow-up',
+  SCROLL_ARROW_DOWN: 'scroll-arrow-down',
+  // soundcloud items
   TRANSFORM_TO_SC_ITEM: 'transform-to-sc-item',
   TRACK_WRAPPER: 'track-wrapper',
   TRACK_TITLE: 'track-title',
   TRACK_GENRE_DESC: 'track-genre-description',
   TRACK_ADDL_DESC: 'track-addl-description',
   PRIVACY_POLICY_COVER: 'privacy-policy-cover',
-  SCROLL_ARROW: 'scroll-arrow',
-  SCROLL_ARROW_UP: 'scroll-arrow-up',
-  SCROLL_ARROW_DOWN: 'scroll-arrow-down',
 } as const

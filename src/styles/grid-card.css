@@ -88,11 +88,6 @@
   display: none;
 }
 
-.fixed-top {
-  position: relative;
-  top: 0;
-}
-
 .scroll-arrow {
   /* Position */
   margin: auto;
