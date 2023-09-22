@@ -41,6 +41,7 @@
 .card-title h2 {
   /* space to right for collapse caret */
   margin: 0px 20px;
+  text-align: center;
 }
 
 .card-title:hover {
