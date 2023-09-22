@@ -31,17 +31,16 @@
 }
 
 .track-addl-description {
+  font-size: 1em;
   font-family: 'Barlow', sans-serif;
   text-align: justify;
   color: grey;
-  font-size: 1em;
 }
 
 .track-wrapper iframe {
   margin-top: 10px;
   width: 100%;
   border-radius: var(--border-radius);
-  font-size: 1em;
 }
 
 .privacy-policy-cover {

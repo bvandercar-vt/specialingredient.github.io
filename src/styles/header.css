@@ -50,11 +50,7 @@ header {
   color: grey;
   margin-bottom: 0.5em;
   font-family: 'Outfit', sans-serif;
-  font-size: 1em;
-}
-
-#bio p {
-  margin-bottom: 0.1em;
+  line-height: 1.5em;
 }
 
 #social-links {
