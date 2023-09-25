@@ -1,6 +1,7 @@
 #main-grid {
   /* Location on page (center) */
   margin: auto;
+  margin-top: 1em;
   width: 100%;
 
   /* Grid */
@@ -113,15 +114,12 @@
 
 @media (max-width: 800px) {
   #main-grid {
+    margin-top: 0.5em;
     grid-gap: 0px;
   }
 
   .grid-card {
     box-shadow: none;
     border-width: 0px;
-  }
-
-  body {
-    margin: 0;
   }
 }
