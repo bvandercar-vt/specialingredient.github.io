@@ -1,6 +1,6 @@
 .folder-tree .item {
-  border-radius: 5px;
   padding: 0px 10px;
+  border-radius: 5px;
 }
 
 .folder-tree .item:hover {

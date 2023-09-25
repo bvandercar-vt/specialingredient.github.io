@@ -1,6 +1,6 @@
 .track-wrapper {
-  margin: 10px;
   position: relative;
+  margin: 10px;
   font-family: 'Outfit', sans-serif;
 }
 
@@ -44,7 +44,7 @@
 }
 
 .privacy-policy-cover {
-  /* position */
+  /* Position */
   position: absolute;
   height: 1.25em;
   width: 100px;
@@ -52,7 +52,7 @@
   bottom: 4px;
   z-index: 1;
 
-  /* style */
+  /* Style */
   background-color: orangered;
   border-bottom-left-radius: var(--border-radius);
   border-top-right-radius: var(--border-radius);

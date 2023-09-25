@@ -4,7 +4,7 @@
   margin-top: 1em;
   width: 100%;
 
-  /* Grid */
+  /* Grid Contents */
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(min(500px, 100vw), 1fr));
   grid-gap: 1em;
@@ -12,36 +12,40 @@
 }
 
 .grid-card {
-  /* border */
+  /* Position */
+  max-height: calc(var(--app-height) - 4em);
+  display: flex;
+  flex-flow: column;
+  position: relative; /* Needed for contents */
+
+  /* Border */
   --border-color: darkslateblue;
   border-style: solid;
   border-width: 2px;
   border-radius: var(--border-radius);
   border-color: var(--border-color);
   box-shadow: 0 0 10px 2px var(--border-color);
-  max-height: calc(var(--app-height) - 4em);
-  display: flex;
-  flex-flow: column;
-  position: relative;
 }
 
 .card-title {
-  font-family: 'Roboto Condensed', sans-serif;
-  border-radius: var(--border-radius);
-  background-color: darkslateblue;
-  margin: 10px;
-  padding: 10px;
+  /* Position */
   display: flex;
   align-items: center;
   justify-content: center;
   position: relative;
   top: 0px;
+  margin: 10px;
+  padding: 10px;
+
+  /* Style */
+  font-family: 'Roboto Condensed', sans-serif;
+  border-radius: var(--border-radius);
+  background-color: darkslateblue;
   cursor: pointer;
 }
 
 .card-title h2 {
-  /* space to right for collapse caret */
-  margin: 0px 20px;
+  margin: 0px 20px; /* space to right for collapse caret */
   text-align: center;
 }
 
@@ -94,11 +98,11 @@
 .scroll-arrow {
   /* Position */
   margin: auto;
-  position: -webkit-sticky;
   position: absolute;
   left: 0;
   right: 0;
   z-index: 10;
+  display: block;
 
   /* Style */
   width: 100px;
@@ -109,17 +113,16 @@
   text-align: center;
   cursor: pointer;
   user-select: none;
-  display: block;
 }
 
 @media (max-width: 800px) {
   #main-grid {
-    margin-top: 0.5em;
-    grid-gap: 0px;
+    margin-top: 0.5em; /* no glow border, so reduce */
+    grid-gap: 0px; /* no glow border, so reduce */
   }
 
   .grid-card {
+    border-width: 0px; /* no glow border - reduce y space */
     box-shadow: none;
-    border-width: 0px;
   }
 }
