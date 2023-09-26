@@ -99,7 +99,7 @@ async function setSoundcloudTracks() {
         visual: true, // true =  artwork behind waveform, false = artwork to left
         show_artwork: true,
       })
-      iframeElement.src = url.href
+      iframeElement.src = '' //url.href
       trackWrapper.appendChild(iframeElement)
 
       const privacyPolicyCoverElement = createElement('div', {
