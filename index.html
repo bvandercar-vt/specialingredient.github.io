@@ -5,8 +5,11 @@
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-VSJMFQV9LJ"></script>
     <script>
       window.dataLayer = window.dataLayer || []
-      dataLayer.push('js', new Date())
-      dataLayer.push('config', 'G-VSJMFQV9LJ')
+      function gtag() {
+        dataLayer.push(arguments)
+      }
+      gtag('js', new Date())
+      gtag('config', 'G-VSJMFQV9LJ')
     </script>
 
     <!-- Basic -->
