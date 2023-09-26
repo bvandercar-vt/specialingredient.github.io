@@ -30,8 +30,11 @@
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 
     <!-- Import CDNs -->
+    <!-- https://pagespeedchecklist.com/asynchronous-google-fonts -->
     <link
       rel="stylesheet"
+      media="print"
+      onload="this.onload=null;this.removeAttribute('media');"
       href="https://fonts.googleapis.com/css?family=Permanent+Marker|Roboto+Condensed|Barlow|Outfit"
       type="text/css"
     />
