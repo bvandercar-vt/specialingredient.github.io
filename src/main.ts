@@ -7,7 +7,7 @@ import './styles/index.css'
 /**
  * Regular imports
  */
-import { Classes } from './constants'
+import { Classes, IFRAME_HEIGHT } from './constants'
 import {
   createElement,
   isMobile,
@@ -144,6 +144,9 @@ function maybeSetScrollArrows(scrollRegion: HTMLElement) {
 }
 
 function init() {
+  // set global css var
+  document.documentElement.style.setProperty('--iframe-height', `${IFRAME_HEIGHT}px`)
+
   // for iphone window
   const setAppHeight = () =>
     document.documentElement.style.setProperty('--app-height', `${window.innerHeight}px`)

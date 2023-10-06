@@ -4,7 +4,7 @@ import * as prettier from 'prettier'
 import type { PluginOption } from 'vite'
 import { setSearchParams } from './src/api/api-utils'
 import { oEmbed } from './src/api/soundcloud'
-import { Classes } from './src/constants'
+import { Classes, IFRAME_HEIGHT } from './src/constants'
 import { createElement, htmlToElement } from './src/html-utils'
 
 function setGridCardTitles() {
@@ -45,7 +45,7 @@ async function setSoundcloudTracks() {
     itemsToTransform.map((item) =>
       oEmbed({
         url: item.getAttribute('data-sc-link')!,
-        maxheight: 145,
+        maxheight: IFRAME_HEIGHT,
         auto_play: false,
       }),
     ),

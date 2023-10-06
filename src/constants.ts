@@ -27,3 +27,5 @@ export const Classes = {
   TOOLTIP: 'tooltip',
   TOOLTIP_TEXT: 'tooltiptext',
 } as const
+
+export const IFRAME_HEIGHT = 145
