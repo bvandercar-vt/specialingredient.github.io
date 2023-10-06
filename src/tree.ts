@@ -12,10 +12,7 @@ export type TreeNode = {
 }
 
 function createNodes(nodes: TreeNode[]) {
-  const ol = document.createElement('ol')
-  for (let i = 0; i < nodes.length; i++) {
-    ol.appendChild(createNode(nodes[i]))
-  }
+  const ol = createElement('ol', { children: nodes.map((node) => createNode(node)) })
   return ol
 }
 
@@ -56,7 +53,6 @@ function createNode({ text, tooltip, rightElement, leftIcon, classes, url, nodes
 }
 
 export function createTree(nodes: TreeNode[]) {
-  const treeDiv = createElement('div', { classes: [Classes.TREE] })
-  treeDiv.appendChild(createNodes(nodes))
+  const treeDiv = createElement('div', { classes: [Classes.TREE], children: [createNodes(nodes)] })
   return treeDiv
 }

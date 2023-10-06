@@ -19,16 +19,15 @@ function setGridCardTitles() {
     const titleWrapper = createElement('div', {
       classes: [Classes.CARD_TITLE],
       attributes: { href: cardUrl },
+      children: [
+        // title
+        createElement('h2', { attributes: { id: labelId }, children: [cardTitle] }),
+        // collapseArrow
+        createElement('span', {
+          classes: [`fa`, `fa-lg`, `fa-caret-down`, Classes.COLLAPSE_CARET],
+        }),
+      ],
     })
-
-    const titleElement = createElement('h2', { attributes: { id: labelId } })
-    titleElement.appendChild(document.createTextNode(cardTitle))
-    titleWrapper.appendChild(titleElement)
-
-    const collapseArrow = createElement('span', {
-      classes: [`fa`, `fa-lg`, `fa-caret-down`, Classes.COLLAPSE_CARET],
-    })
-    titleWrapper.appendChild(collapseArrow)
 
     gridCard.setAttribute('aria-labelledby', labelId)
     gridCard.setAttribute('role', 'region')
@@ -46,8 +45,8 @@ async function setSoundcloudTracks() {
     itemsToTransform.map((item) =>
       oEmbed({
         url: item.getAttribute('data-sc-link')!,
-      maxheight: 145,
-      auto_play: false,
+        maxheight: 145,
+        auto_play: false,
       }),
     ),
   ).then((oEmbeds) => {
@@ -66,25 +65,29 @@ async function setSoundcloudTracks() {
       const addlDescription =
         addlDescriptionSet === 'GET_FROM_SC' ? oEmbed.description : addlDescriptionSet
 
-      const trackWrapper = createElement('div', { classes: [Classes.TRACK_WRAPPER] })
-
-      if (titleStr) {
-        const titleElement = createElement('p', { classes: [Classes.TRACK_TITLE] })
-        titleElement.appendChild(document.createTextNode(titleStr))
-        trackWrapper.appendChild(titleElement)
-      }
-
-      if (genreDescription) {
-        const genreDescriptionElement = createElement('p', { classes: [Classes.TRACK_GENRE_DESC] })
-        genreDescriptionElement.appendChild(document.createTextNode(genreDescription))
-        trackWrapper.appendChild(genreDescriptionElement)
-      }
-
-      if (addlDescription) {
-        const addlDescriptionElement = createElement('p', { classes: [Classes.TRACK_ADDL_DESC] })
-        addlDescriptionElement.appendChild(document.createTextNode(addlDescription))
-        trackWrapper.appendChild(addlDescriptionElement)
-      }
+      const trackWrapper = createElement('div', {
+        classes: [Classes.TRACK_WRAPPER],
+        children: [
+          titleStr
+            ? createElement('p', {
+                classes: [Classes.TRACK_TITLE],
+                children: [titleStr],
+              })
+            : undefined,
+          genreDescription
+            ? createElement('p', {
+                classes: [Classes.TRACK_GENRE_DESC],
+                children: [genreDescription],
+              })
+            : undefined,
+          addlDescription
+            ? createElement('p', {
+                classes: [Classes.TRACK_ADDL_DESC],
+                children: [addlDescription],
+              })
+            : undefined,
+        ],
+      })
 
       const iframeElement = htmlToElement(oEmbed.html) as HTMLIFrameElement
       iframeElement.title = titleStr

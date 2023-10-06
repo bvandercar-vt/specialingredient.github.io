@@ -29,7 +29,13 @@ export function createElement<T extends keyof HTMLElementTagNameMap>(
     attributes,
     classes,
     onClick,
-  }: { attributes?: Record<string, string>; classes?: string[]; onClick?: () => void } = {},
+    children = [],
+  }: {
+    attributes?: Record<string, string>
+    classes?: string[]
+    onClick?: () => void
+    children?: (Node | string | undefined)[]
+  } = {},
 ) {
   const element = document.createElement(tagName)
 
@@ -46,6 +52,15 @@ export function createElement<T extends keyof HTMLElementTagNameMap>(
   if (onClick) {
     element.addEventListener('click', onClick)
   }
+
+  children.forEach((child) => {
+    if (child === undefined) return
+    if (typeof child === 'string') {
+      element.appendChild(document.createTextNode(child))
+    } else {
+      element.appendChild(child)
+    }
+  })
 
   return element
 }

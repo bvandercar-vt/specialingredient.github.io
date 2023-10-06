@@ -1,3 +1,4 @@
+import { createElement } from '../html-utils'
 import type { TreeNode } from '../tree'
 import spotifyPlaylistInfo from './spotify-playlists.json'
 
@@ -142,16 +143,14 @@ export function getSpotifyPlaylistFolderTreeNodes(): TreeNode[] {
           tooltip = document.createTextNode(playlistInfo.description)
         }
       } else {
-        tooltip = document.createElement('span')
-
-        if (playlistInfo.description) {
-          tooltip.appendChild(document.createTextNode(playlistInfo.description))
-          tooltip.appendChild(document.createElement('br'))
-        }
-
-        const italic = document.createElement('i')
-        italic.appendChild(document.createTextNode('- Private Playlist -'))
-        tooltip.appendChild(italic)
+        tooltip = createElement('span', {
+          children: [
+            ...(playlistInfo.description
+              ? [playlistInfo.description, document.createElement('br')]
+              : []),
+            createElement('i', { children: ['- Private Playlist -'] }),
+          ],
+        })
       }
 
       return {
