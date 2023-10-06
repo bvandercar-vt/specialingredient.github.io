@@ -12,6 +12,7 @@ export const Classes = {
   // soundcloud items
   TRANSFORM_TO_SC_ITEM: 'transform-to-sc-item',
   TRACK_WRAPPER: 'track-wrapper',
+  SC_IFRAME_WRAPPER: 'sc-iframe-wrapper',
   TRACK_TITLE: 'track-title',
   TRACK_GENRE_DESC: 'track-genre-description',
   TRACK_ADDL_DESC: 'track-addl-description',

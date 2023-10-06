@@ -103,12 +103,15 @@ async function setSoundcloudTracks() {
         show_artwork: true,
       })
       iframeElement.src = url.href
-      trackWrapper.appendChild(iframeElement)
-
-      const privacyPolicyCoverElement = createElement('div', {
-        classes: [Classes.PRIVACY_POLICY_COVER],
+      const scIframeWrapper = createElement('div', {
+        classes: [Classes.SC_IFRAME_WRAPPER],
+        children: [
+          iframeElement,
+          // privacy policy cover
+          // createElement('div', { classes: [Classes.PRIVACY_POLICY_COVER] }),
+        ],
       })
-      trackWrapper.appendChild(privacyPolicyCoverElement)
+      trackWrapper.appendChild(scIframeWrapper)
 
       itemToTransform.outerHTML = trackWrapper.outerHTML
       itemToTransform.replaceWith(trackWrapper)

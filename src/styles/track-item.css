@@ -4,7 +4,7 @@
   font-family: 'Outfit', sans-serif;
 }
 
-.track-wrapper:hover iframe {
+.track-wrapper:hover .sc-iframe-wrapper {
   box-shadow: 0 0 10px 2px cyan;
 }
 
@@ -37,23 +37,30 @@
   color: grey;
 }
 
-.track-wrapper iframe {
-  margin-top: 10px;
+.sc-iframe-wrapper iframe {
+  position: relative;
+  top: -5px; /* Hide top of iframe */
+}
+
+.sc-iframe-wrapper {
+  position: relative;
   width: 100%;
+  height: 125px; /* Hide bottom of iframe */
+  overflow: hidden; /* Hide the excess iframe */
+
+  margin-top: 10px;
   border-radius: var(--border-radius);
 }
 
-.privacy-policy-cover {
-  /* Position */
+/* .privacy-policy-cover {
   position: absolute;
-  height: 1.25em;
+  height: 0px;
   width: 100px;
   left: 0px;
-  bottom: 4px;
+  bottom: 0px;
   z-index: 1;
 
-  /* Style */
   background-color: orangered;
   border-bottom-left-radius: var(--border-radius);
   border-top-right-radius: var(--border-radius);
-}
+} */
