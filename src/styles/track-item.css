@@ -45,7 +45,7 @@
 .sc-iframe-wrapper {
   position: relative;
   width: 100%;
-  height: 125px; /* Hide bottom of iframe */
+  height: 124px; /* Hide bottom of iframe */
   overflow: hidden; /* Hide the excess iframe */
 
   margin-top: 10px;
