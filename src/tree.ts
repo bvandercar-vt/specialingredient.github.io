@@ -5,7 +5,7 @@ export type TreeNode = {
   text: string
   rightElement?: string | Node
   leftIcon?: string
-  classes?: string[]
+  classes?: string | string[]
   tooltip?: string | Node
   url?: string
   nodes?: TreeNode[]
@@ -29,13 +29,13 @@ function createNode({ text, tooltip, rightElement, leftIcon, classes, url, nodes
 
   if (tooltip) {
     divWrapper.classList.add(Classes.TOOLTIP)
-    const tooltipText = createElement('span', { classes: [Classes.TOOLTIP_TEXT] })
+    const tooltipText = createElement('span', { classes: Classes.TOOLTIP_TEXT })
     tooltipText.append(tooltip)
     divWrapper.appendChild(tooltipText)
   }
 
   if (rightElement) {
-    const rightSideEl = createElement('span', { classes: [Classes.RIGHT_SIDE] })
+    const rightSideEl = createElement('span', { classes: Classes.RIGHT_SIDE })
     rightSideEl.append(rightElement)
     divWrapper.appendChild(rightSideEl)
   }
@@ -53,6 +53,6 @@ function createNode({ text, tooltip, rightElement, leftIcon, classes, url, nodes
 }
 
 export function createTree(nodes: TreeNode[]) {
-  const treeDiv = createElement('div', { classes: [Classes.TREE], children: [createNodes(nodes)] })
+  const treeDiv = createElement('div', { classes: Classes.TREE, children: createNodes(nodes) })
   return treeDiv
 }

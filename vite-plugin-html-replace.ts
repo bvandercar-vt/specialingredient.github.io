@@ -17,11 +17,11 @@ function setGridCardTitles() {
     const labelId = `card-title-${i}`
 
     const titleWrapper = createElement('div', {
-      classes: [Classes.CARD_TITLE],
+      classes: Classes.CARD_TITLE,
       attributes: { href: cardUrl },
       children: [
         // title
-        createElement('h2', { attributes: { id: labelId }, children: [cardTitle] }),
+        createElement('h2', { attributes: { id: labelId }, children: cardTitle }),
         // collapseArrow
         createElement('span', {
           classes: [`fa`, `fa-lg`, `fa-caret-down`, Classes.COLLAPSE_CARET],
@@ -66,25 +66,16 @@ async function setSoundcloudTracks() {
         addlDescriptionSet === 'GET_FROM_SC' ? oEmbed.description : addlDescriptionSet
 
       const trackWrapper = createElement('div', {
-        classes: [Classes.TRACK_WRAPPER],
+        classes: Classes.TRACK_WRAPPER,
         children: [
           titleStr
-            ? createElement('p', {
-                classes: [Classes.TRACK_TITLE],
-                children: [titleStr],
-              })
+            ? createElement('p', { classes: Classes.TRACK_TITLE, children: titleStr })
             : undefined,
           genreDescription
-            ? createElement('p', {
-                classes: [Classes.TRACK_GENRE_DESC],
-                children: [genreDescription],
-              })
+            ? createElement('p', { classes: Classes.TRACK_GENRE_DESC, children: genreDescription })
             : undefined,
           addlDescription
-            ? createElement('p', {
-                classes: [Classes.TRACK_ADDL_DESC],
-                children: [addlDescription],
-              })
+            ? createElement('p', { classes: Classes.TRACK_ADDL_DESC, children: addlDescription })
             : undefined,
         ],
       })
@@ -104,12 +95,10 @@ async function setSoundcloudTracks() {
       })
       iframeElement.src = url.href
       const scIframeWrapper = createElement('div', {
-        classes: [Classes.SC_IFRAME_WRAPPER],
-        children: [
-          iframeElement,
-          // privacy policy cover
-          // createElement('div', { classes: [Classes.PRIVACY_POLICY_COVER] }),
-        ],
+        classes: Classes.SC_IFRAME_WRAPPER,
+        children: iframeElement,
+        // privacy policy cover
+        // createElement('div', { classes: Classes.PRIVACY_POLICY_COVER }),
       })
       trackWrapper.appendChild(scIframeWrapper)
 
@@ -134,6 +123,10 @@ async function makeHtmlMods(src: string) {
   setGridCardTitles()
 
   await setSoundcloudTracks()
+
+  // const spotifyPlaylistFolderTree = document.getElementsByClassName('playlist-folder-tree')[0]
+  // if (spotifyPlaylistFolderTree)
+  //   spotifyPlaylistFolderTree.replaceWith(createFolderTree(getSpotifyPlaylistFolderTreeNodes()))
 
   const result = await prettier.format(dom.serialize(), { parser: 'html' })
   return result

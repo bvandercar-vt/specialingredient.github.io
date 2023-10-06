@@ -148,7 +148,7 @@ export function getSpotifyPlaylistFolderTreeNodes(): TreeNode[] {
             ...(playlistInfo.description
               ? [playlistInfo.description, document.createElement('br')]
               : []),
-            createElement('i', { children: ['- Private Playlist -'] }),
+            createElement('i', { children: '- Private Playlist -' }),
           ],
         })
       }

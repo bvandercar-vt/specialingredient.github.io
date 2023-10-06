@@ -1,3 +1,5 @@
+import castArray from 'lodash/castArray'
+
 const MOBILE_WIDTH = 800
 
 export function isScrolledToTop(element: Pick<HTMLElement, 'scrollTop'>, offset = 0) {
@@ -23,6 +25,8 @@ export function isMobile() {
   return getWindowWidth() < MOBILE_WIDTH
 }
 
+type CreateElementChildren = Node | string | undefined
+
 export function createElement<T extends keyof HTMLElementTagNameMap>(
   tagName: T,
   {
@@ -32,9 +36,9 @@ export function createElement<T extends keyof HTMLElementTagNameMap>(
     children = [],
   }: {
     attributes?: Record<string, string>
-    classes?: string[]
+    classes?: string | string[]
     onClick?: () => void
-    children?: (Node | string | undefined)[]
+    children?: CreateElementChildren | CreateElementChildren[]
   } = {},
 ) {
   const element = document.createElement(tagName)
@@ -46,14 +50,14 @@ export function createElement<T extends keyof HTMLElementTagNameMap>(
   }
 
   if (classes) {
-    element.classList.add(...classes)
+    element.classList.add(...castArray(classes))
   }
 
   if (onClick) {
     element.addEventListener('click', onClick)
   }
 
-  children.forEach((child) => {
+  castArray(children).forEach((child) => {
     if (child === undefined) return
     if (typeof child === 'string') {
       element.appendChild(document.createTextNode(child))

@@ -45,13 +45,13 @@
     "eslint-config-prettier": "^9",
     "eslint-plugin-prettier": "^5",
     "jsdom": "^22",
-    "lodash": "^4",
     "prettier": "^3",
     "ts-node": "^10",
     "typescript": "^5",
     "vite": "^4"
   },
   "dependencies": {
-    "font-awesome": "^4.7"
+    "font-awesome": "^4.7",
+    "lodash": "^4"
   }
 }
