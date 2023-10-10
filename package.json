@@ -36,7 +36,7 @@
   "devDependencies": {
     "@types/jsdom": "^21",
     "@types/lodash": "^4",
-    "@types/node": "^20.7.0",
+    "@types/node": "^20",
     "@types/spotify-api": "^0",
     "@typescript-eslint/eslint-plugin": "^6",
     "@typescript-eslint/parser": "^6",
