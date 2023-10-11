@@ -17,7 +17,7 @@ function createNodes(nodes: TreeNode[]) {
 }
 
 function createNode({ text, tooltip, rightElement, leftIcon, classes, url, nodes }: TreeNode) {
-  const divWrapper = document.createElement('div')
+  const divWrapper = createElement('div', { classes: 'tree-row' })
   let outerWrapper: HTMLElement = divWrapper
 
   if (leftIcon) {
@@ -47,6 +47,7 @@ function createNode({ text, tooltip, rightElement, leftIcon, classes, url, nodes
   }
 
   const li = createElement('li', { classes })
+
   li.appendChild(outerWrapper)
   if (nodes) li.appendChild(createNodes(nodes))
   return li

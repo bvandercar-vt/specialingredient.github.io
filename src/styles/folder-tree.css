@@ -1,3 +1,9 @@
+.folder-tree {
+  margin-top: 10px;
+  margin-right: 10px;
+  margin-left: 10px;
+}
+
 .folder-tree .folder {
   border-radius: 1em;
 }
@@ -15,7 +21,6 @@
 }
 
 .folder-tree .item {
-  padding: 0px 10px;
   border-radius: 1em;
 }
 
@@ -29,4 +34,9 @@
 
 .folder-tree .tooltip .tooltiptext {
   text-align: left;
+}
+
+.folder-tree .right-side {
+  font-size: 0.8em;
+  font-style: italic;
 }

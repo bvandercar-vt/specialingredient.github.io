@@ -129,7 +129,8 @@ const spotifyPlaylistFoldersRaw = [
 ] satisfies Array<{ folderName: string; items: string[] }>
 
 export function getSpotifyPlaylistFolderTreeNodes(): TreeNode[] {
-  return spotifyPlaylistFoldersRaw.map(({ folderName, items }) => ({
+  return spotifyPlaylistFoldersRaw.map(({ folderName, items }, index) => ({
+    rightElement: index === 0 ? `# tracks` : undefined,
     classes: 'folder',
     leftIcon: 'fa-folder-open',
     text: folderName,
@@ -156,7 +157,7 @@ export function getSpotifyPlaylistFolderTreeNodes(): TreeNode[] {
       return {
         text: playlistInfo.name,
         tooltip,
-        rightElement: playlistInfo.track_count.toString(),
+        rightElement: String(playlistInfo.track_count),
         url: playlistInfo.public ? playlistInfo.url : undefined,
         classes: playlistInfo.public ? ['item'] : ['item', 'item-disabled'],
       } satisfies TreeNode
