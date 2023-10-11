@@ -65,15 +65,14 @@ function setGridCardsCollapsible() {
     })
   })
 
-  window.addEventListener(
-    'resize',
-    () => {
-      cardTitles.forEach((otherCardTitle) => {
-        setCollapsed(otherCardTitle, isMobile())
-      })
-    },
-    true,
-  )
+  // window.addEventListener(
+  //   'resize',
+  //   () => {
+  //     const newSizeIsMobile = isMobile()
+  //     cardTitles.forEach((cardTitle) => setCollapsed(cardTitle, newSizeIsMobile))
+  //   },
+  //   true,
+  // )
 }
 
 function maybeSetScrollArrows(scrollRegion: HTMLElement) {
