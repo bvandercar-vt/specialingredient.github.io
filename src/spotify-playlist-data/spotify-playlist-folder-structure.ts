@@ -130,7 +130,7 @@ const spotifyPlaylistFoldersRaw = [
 
 export function getSpotifyPlaylistFolderTreeNodes(): TreeNode[] {
   return spotifyPlaylistFoldersRaw.map(({ folderName, items }) => ({
-    className: 'folder',
+    classes: 'folder',
     leftIcon: 'fa-folder-open',
     text: folderName,
     nodes: items.map((item) => {
