@@ -23,10 +23,10 @@ function setGridCardsCollapsible() {
     return element.classList.contains(Classes.HIDDEN)
   }
 
-  function setCollapsed(accordionTitle: Element, collapsed: boolean) {
-    const parentElement = accordionTitle.parentElement!
-    const collapseContent = parentElement.getElementsByClassName(Classes.CARD_COLLAPSE_CONTENT)[0]
-    const collapseArrow = parentElement.getElementsByClassName(Classes.COLLAPSE_CARET)[0]
+  function setCollapsed(cardTitle: Element, collapsed: boolean) {
+    const collapsibleCard = cardTitle.parentElement!
+    const collapseContent = collapsibleCard.getElementsByClassName(Classes.CARD_COLLAPSE_CONTENT)[0]
+    const collapseArrow = collapsibleCard.getElementsByClassName(Classes.COLLAPSE_CARET)[0]
     collapseContent.classList.toggle(Classes.HIDDEN, collapsed)
     collapseArrow.classList.toggle(Classes.OPEN, !collapsed)
   }
@@ -154,9 +154,9 @@ function init() {
 
   setGridCardsCollapsible()
 
-  // Array.from(
-  //   document.getElementsByClassName<HTMLDivElement>(Classes.CARD_COLLAPSE_CONTENT),
-  // ).forEach((collapseContent) => maybeSetScrollArrows(collapseContent))
+  Array.from(
+    document.getElementsByClassName<HTMLDivElement>(Classes.CARD_COLLAPSE_CONTENT),
+  ).forEach((collapseContent) => maybeSetScrollArrows(collapseContent))
 }
 
 init()
