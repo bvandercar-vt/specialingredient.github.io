@@ -65,14 +65,14 @@ function setGridCardsCollapsible() {
     })
   })
 
-  // window.addEventListener(
-  //   'resize',
-  //   () => {
-  //     const newSizeIsMobile = isMobile()
-  //     cardTitles.forEach((cardTitle) => setCollapsed(cardTitle, newSizeIsMobile))
-  //   },
-  //   true,
-  // )
+  window.addEventListener(
+    'resize',
+    () => {
+      const newSizeIsMobile = isMobile()
+      cardTitles.forEach((cardTitle) => setCollapsed(cardTitle, newSizeIsMobile))
+    },
+    true,
+  )
 }
 
 function maybeSetScrollArrows(scrollRegion: HTMLElement) {
@@ -143,8 +143,6 @@ function maybeSetScrollArrows(scrollRegion: HTMLElement) {
 }
 
 function init() {
-  setGridCardsCollapsible()
-
   // set global css var
   document.documentElement.style.setProperty('--iframe-height', `${IFRAME_HEIGHT}px`)
 
@@ -154,9 +152,11 @@ function init() {
   window.addEventListener('resize', setAppHeight)
   setAppHeight()
 
-  Array.from(
-    document.getElementsByClassName<HTMLDivElement>(Classes.CARD_COLLAPSE_CONTENT),
-  ).forEach((collapseContent) => maybeSetScrollArrows(collapseContent))
+  setGridCardsCollapsible()
+
+  // Array.from(
+  //   document.getElementsByClassName<HTMLDivElement>(Classes.CARD_COLLAPSE_CONTENT),
+  // ).forEach((collapseContent) => maybeSetScrollArrows(collapseContent))
 }
 
 init()
