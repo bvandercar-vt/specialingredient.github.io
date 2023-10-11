@@ -144,6 +144,8 @@ function maybeSetScrollArrows(scrollRegion: HTMLElement) {
 }
 
 function init() {
+  setGridCardsCollapsible()
+
   // set global css var
   document.documentElement.style.setProperty('--iframe-height', `${IFRAME_HEIGHT}px`)
 
@@ -152,8 +154,6 @@ function init() {
     document.documentElement.style.setProperty('--app-height', `${window.innerHeight}px`)
   window.addEventListener('resize', setAppHeight)
   setAppHeight()
-
-  setGridCardsCollapsible()
 
   Array.from(
     document.getElementsByClassName<HTMLDivElement>(Classes.CARD_COLLAPSE_CONTENT),
