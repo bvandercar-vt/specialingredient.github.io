@@ -10,7 +10,7 @@
     "start": "yarn dev",
     "dev": "vite --open",
     "build": "vite build",
-    "preview": "vite preview --open",
+    "preview": "yarn build && vite preview --open",
     "lint": "yarn format && yarn ts:check && yarn eslint && yarn format:check",
     "ts:check": "tsc",
     "eslint": "eslint .",
