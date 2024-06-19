@@ -1,7 +1,7 @@
 /** @type {import("prettier").Config} */
 const config = {
-  semi: false, // Specify if you want to print semicolons at the end of statements
-  singleQuote: true, // If you want to use single quotes
+  semi: false,
+  singleQuote: true,
   printWidth: 100,
 }
 
