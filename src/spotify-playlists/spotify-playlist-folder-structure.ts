@@ -1,6 +1,6 @@
+import spotifyPlaylistInfo from '../../spotify-playlists.json'
 import { createElement } from '../html-utils'
 import type { TreeNode } from '../tree'
-import spotifyPlaylistInfo from './spotify-playlists.json'
 
 const spotifyPlaylistFoldersRaw = [
   {

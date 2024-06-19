@@ -16,9 +16,8 @@
     "eslint": "eslint .",
     "format": "prettier --write .",
     "format:check": "prettier --check .",
-    "run-ts": "node --experimental-specifier-resolution=node --loader ts-node/esm",
-    "sandbox": "yarn run-ts ./sandbox.ts",
-    "generate-playlist-json": "yarn run-ts ./src/spotify-playlist-data/generate-playlists-json.ts"
+    "sandbox": "npx tsx ./sandbox.ts",
+    "generate-playlist-json": "vite --open --config ./spotify-tools/vite.config.ts ./spotify-tools"
   },
   "repository": {
     "type": "git",
@@ -34,10 +33,10 @@
     "url": "https://github.com/bvandercar-vt/specialingredient.github.io/issues"
   },
   "devDependencies": {
+    "@spotify/web-api-ts-sdk": "^1.2.0",
     "@types/jsdom": "^21",
     "@types/lodash": "^4",
     "@types/node": "^20",
-    "@types/spotify-api": "^0",
     "@typescript-eslint/eslint-plugin": "^6",
     "@typescript-eslint/parser": "^6",
     "dotenv": "^16",
@@ -46,9 +45,9 @@
     "eslint-plugin-prettier": "^5",
     "jsdom": "^22",
     "prettier": "^3",
-    "ts-node": "^10",
     "typescript": "^5",
-    "vite": "^4"
+    "vite": "^4",
+    "vite-plugin-fs": "^1.1.0"
   },
   "dependencies": {
     "font-awesome": "^4.7",

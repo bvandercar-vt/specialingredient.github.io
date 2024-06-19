@@ -17,5 +17,5 @@
     "noFallthroughCasesInSwitch": true,
     "noImplicitAny": true
   },
-  "include": ["src", "./*.ts"]
+  "include": ["src", "spotify-tools", "./*.ts"]
 }
