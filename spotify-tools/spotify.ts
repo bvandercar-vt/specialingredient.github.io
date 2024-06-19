@@ -4,12 +4,7 @@ const ROOT_URL = 'https://api.spotify.com/v1/'
 
 const SCOPES = [...Scopes.playlistRead, ...Scopes.userDetails, ...Scopes.userLibraryRead]
 
-const { SPOTIFY_CLIENT_ID, SPOTIFY_CLIENT_SECRET, SPOTIFY_REDIRECT_URI } = process.env as {
-  SPOTIFY_CLIENT_ID: string
-  SPOTIFY_CLIENT_SECRET: string
-  SPOTIFY_REDIRECT_URI: string
-}
-
+const { SPOTIFY_CLIENT_ID, SPOTIFY_CLIENT_SECRET, SPOTIFY_REDIRECT_URI } = process.env
 if (!SPOTIFY_CLIENT_ID || !SPOTIFY_CLIENT_SECRET || !SPOTIFY_REDIRECT_URI)
   throw new Error('need env file')
 
