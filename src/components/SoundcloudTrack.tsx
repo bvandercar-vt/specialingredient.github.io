@@ -3,17 +3,19 @@ import data from '../../soundcloud-data.json'
 import { setSearchParams } from '../utils/api-utils'
 import { htmlToElement } from '../utils/html-utils'
 
+export interface SoundcloudTrackProps {
+  url: string
+  title?: string
+  genreDescription?: string
+  additionalDescription?: string
+}
+
 export const SoundcloudTrack = ({
   url,
   title: _title,
   genreDescription,
   additionalDescription: _additionalDescription,
-}: {
-  url: string
-  title?: string
-  genreDescription?: string
-  additionalDescription?: string
-}) => {
+}: SoundcloudTrackProps) => {
   const info = data.find((d) => d.originalLink === url)
   if (!info) throw new Error(`no info found from url ${url}`)
 

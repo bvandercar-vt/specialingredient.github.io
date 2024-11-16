@@ -11,18 +11,20 @@ import {
 } from 'react'
 import { isMobile, isScrolledToBottom, isScrolledToTop, triggerClick } from '../utils/html-utils'
 
+export type GridCardProps = PropsWithChildren<{
+  title: string
+  collapsed?: boolean
+  onCollapse?: (isCollapsed: boolean) => void
+  outerRef?: React.RefObject<HTMLDivElement>
+}>
+
 export const GridCard = ({
   title,
   collapsed,
   onCollapse,
   outerRef = createRef(),
   children,
-}: PropsWithChildren<{
-  title: string
-  collapsed?: boolean
-  onCollapse?: (isCollapsed: boolean) => void
-  outerRef?: React.RefObject<HTMLDivElement>
-}>) => {
+}: GridCardProps) => {
   const [isCollapsed, setCollapsed] = useState(collapsed ?? isMobile())
   const [shouldScroll, setShouldScroll] = useState(false)
   const [scrollPosition, setScrollPosition] = useState(0)

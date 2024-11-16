@@ -1,22 +1,17 @@
 import classNames from 'classnames'
 
-export type TreeNode = {
+export interface TreeNodes {
+  nodes: TreeNode[]
+}
+
+export interface TreeNode extends Partial<TreeNodes> {
   text: string
   rightElement?: string | React.ReactNode
   leftIcon?: string
   classes?: string | string[]
   tooltip?: string | React.ReactNode
   url?: string
-  nodes?: TreeNode[]
 }
-
-const NodeList = ({ nodes }: { nodes: TreeNode[] }) => (
-  <ol>
-    {nodes.map((node) => (
-      <Node {...node} />
-    ))}
-  </ol>
-)
 
 const Node = ({ text, tooltip, rightElement, leftIcon, classes, url, nodes }: TreeNode) => {
   let contents = (
@@ -44,6 +39,18 @@ const Node = ({ text, tooltip, rightElement, leftIcon, classes, url, nodes }: Tr
   )
 }
 
-export const Tree = ({ nodes, className }: { nodes: TreeNode[]; className: string }) => (
+const NodeList = ({ nodes }: TreeNodes) => (
+  <ol>
+    {nodes.map((node) => (
+      <Node {...node} />
+    ))}
+  </ol>
+)
+
+export interface TreeProps extends TreeNodes {
+  className: string
+}
+
+export const Tree = ({ nodes, className }: TreeProps) => (
   <div className={classNames('tree', className)}>{<NodeList nodes={nodes} />}</div>
 )

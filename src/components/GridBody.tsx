@@ -1,6 +1,6 @@
 import { useCallback, useState } from 'react'
 import { isMobile as checkIsMobile } from '../utils/html-utils'
-import { GridCard } from './GridCard'
+import { GridCard, type GridCardProps } from './GridCard'
 import { SoundcloudTrack } from './SoundcloudTrack'
 
 export const GridBody = () => {
@@ -10,10 +10,10 @@ export const GridBody = () => {
   const getProps = useCallback(
     (index: number) =>
       isMobile
-        ? {
+        ? ({
             onCollapse: (isCollapsed: boolean) => setExpandedIndex(isCollapsed ? index : undefined),
             collapsed: expandedIndex === undefined ? undefined : expandedIndex !== index,
-          }
+          } satisfies Partial<GridCardProps>)
         : {},
     [isMobile, expandedIndex],
   )
