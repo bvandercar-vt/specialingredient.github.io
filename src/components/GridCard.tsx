@@ -24,27 +24,42 @@ export const GridCard = ({
   outerRef?: React.RefObject<HTMLDivElement>
 }>) => {
   const [isCollapsed, setCollapsed] = useState(collapsed ?? isMobile())
+  const [shouldScroll, setShouldScroll] = useState(false)
   const [scrollPosition, setScrollPosition] = useState(0)
   const [height, setHeight] = useState(0)
+  const titleRef = useRef<HTMLDivElement>(null)
   const collapseContentRef = useRef<HTMLDivElement>(null)
 
   const titleId = useId()
 
-  const performCollapse = (collapsed: boolean) => {
-    onCollapse?.(collapsed)
-    setCollapsed(!collapsed)
-    outerRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' })
-  }
+  const performCollapse = useCallback(
+    (collapsed: boolean) => {
+      onCollapse?.(collapsed)
+      setCollapsed(!collapsed)
+    },
+    [onCollapse],
+  )
 
-  const handleCollapse = useCallback(() => {
+  const handleCollapseClick = useCallback(() => {
+    if (isCollapsed) {
+      setShouldScroll(true)
+    }
     performCollapse(isCollapsed)
-  }, [isCollapsed, onCollapse])
+  }, [isCollapsed])
 
   useEffect(() => {
     if (collapsed !== undefined) {
       performCollapse(!collapsed)
     }
   }, [collapsed])
+
+  useEffect(() => {
+    if (shouldScroll) {
+      const topItem = isMobile() ? titleRef : outerRef
+      topItem.current?.scrollIntoView({ behavior: 'smooth', block: 'start' })
+      setShouldScroll(false)
+    }
+  }, [shouldScroll])
 
   useEffect(() => {
     const observer = new ResizeObserver((entries) => {
@@ -123,7 +138,8 @@ export const GridCard = ({
         role="button"
         tabIndex={0}
         onKeyDown={triggerClick}
-        onClick={handleCollapse}
+        onClick={handleCollapseClick}
+        ref={titleRef}
       >
         <h2 id={titleId}>{title}</h2>
         <span
