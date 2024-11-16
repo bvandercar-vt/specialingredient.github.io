@@ -33,24 +33,28 @@
     "url": "https://github.com/bvandercar-vt/specialingredient.github.io/issues"
   },
   "devDependencies": {
-    "@spotify/web-api-ts-sdk": "^1.2.0",
-    "@types/jsdom": "^21",
+    "@spotify/web-api-ts-sdk": "^1.2",
     "@types/lodash": "^4",
     "@types/node": "^20",
-    "@typescript-eslint/eslint-plugin": "^8",
-    "@typescript-eslint/parser": "^8",
+    "@types/react": "^18",
+    "@types/react-dom": "^18",
+    "@vitejs/plugin-react": "^4",
     "dotenv": "^16",
     "eslint": "^8",
     "eslint-config-prettier": "^9",
     "eslint-plugin-prettier": "^5",
-    "jsdom": "^25",
+    "eslint-plugin-react": "^7",
     "prettier": "^3",
     "typescript": "^5",
+    "typescript-eslint": "^8",
     "vite": "^5",
-    "vite-plugin-fs": "^1.1.0"
+    "vite-plugin-fs": "^1"
   },
   "dependencies": {
+    "classnames": "^2",
     "font-awesome": "^4.7",
-    "lodash": "^4"
+    "lodash": "^4",
+    "react": "^18",
+    "react-dom": "^18"
   }
 }

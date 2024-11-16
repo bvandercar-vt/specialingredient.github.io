@@ -1,6 +1,15 @@
-import { makeRequest } from './api-utils'
+import { makeRequest } from '../utils/api-utils'
 
 const SC_CLIENT_ID = 'DgFeY88vapbGCcK7RrT2E33nmNQVWX82'
+
+export type OEmbed = {
+  title: string
+  thumbnail_url: string
+  html: string
+  description: string
+  author_name: string
+  author_url: string
+}
 
 export function oEmbed(params: {
   url: string
@@ -17,15 +26,5 @@ export function oEmbed(params: {
   return makeRequest('GET', `https://soundcloud.com/oembed`, {
     client_id: SC_CLIENT_ID,
     ...params,
-  }).then(
-    (res) =>
-      res.json() as Promise<{
-        title: string
-        thumbnail_url: string
-        html: string
-        description: string
-        author_name: string
-        author_url: string
-      }>,
-  )
+  }).then((res) => res.json() as Promise<OEmbed>)
 }

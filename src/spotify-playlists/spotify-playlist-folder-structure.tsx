@@ -1,6 +1,5 @@
 import spotifyPlaylistInfo from '../../spotify-playlists.json'
-import { createElement } from '../html-utils'
-import type { TreeNode } from '../tree'
+import type { TreeNode } from '../components/Tree'
 
 const spotifyPlaylistFoldersRaw = [
   {
@@ -139,20 +138,19 @@ export function getSpotifyPlaylistFolderTreeNodes(): TreeNode[] {
       const playlistInfo = spotifyPlaylistInfo.find(({ name }) => name == item)
       if (!playlistInfo) throw new Error(`no playlist info with name ${item}`)
 
-      let tooltip: Node | undefined = undefined
+      let tooltip: React.ReactNode
       if (playlistInfo.public) {
         if (playlistInfo.description) {
-          tooltip = document.createTextNode(playlistInfo.description)
+          tooltip = <>{playlistInfo.description}</>
         }
       } else {
-        tooltip = createElement('span', {
-          children: [
-            ...(playlistInfo.description
-              ? [playlistInfo.description, document.createElement('br')]
-              : []),
-            createElement('i', { children: '- Private Playlist -' }),
-          ],
-        })
+        tooltip = (
+          <span>
+            {playlistInfo.description}
+            {playlistInfo.description && <br />}
+            <i>- Private Playlist -</i>
+          </span>
+        )
       }
 
       return {
