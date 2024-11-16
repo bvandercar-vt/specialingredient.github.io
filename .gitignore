@@ -1,4 +1,4 @@
-node_modules
 dist
+node_modules
 spotify-token.json
 *.local
