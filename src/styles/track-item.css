@@ -1,14 +1,14 @@
-.track-wrapper {
+.track {
   position: relative;
   margin: 10px;
   font-family: 'Outfit', sans-serif;
 }
 
-.track-wrapper:hover .sc-iframe-wrapper {
+.track:hover .sc-iframe-wrapper {
   box-shadow: 0 0 10px 2px cyan;
 }
 
-.track-wrapper:hover .track-title {
+.track:hover .track-title {
   --hover-color-text: darkslateblue;
   text-shadow:
     0 0 3px white,

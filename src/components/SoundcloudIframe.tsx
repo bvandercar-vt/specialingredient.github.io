@@ -1,12 +1,14 @@
+import classNames from 'classnames'
 import { setSearchParams } from '../utils/api-utils'
 import { htmlToElement } from '../utils/html-utils'
 
 export interface SoundcloudIframeProps {
   html: string
   title: string
+  className?: string
 }
 
-export const SoundcloudIframe = ({ html, title }: SoundcloudIframeProps) => {
+export const SoundcloudIframe = ({ html, title, className }: SoundcloudIframeProps) => {
   const iframeElement = htmlToElement(html) as HTMLIFrameElement
   iframeElement.title = title
   const iframeUrl = new URL(iframeElement.src)
@@ -22,5 +24,10 @@ export const SoundcloudIframe = ({ html, title }: SoundcloudIframeProps) => {
   })
   iframeElement.src = iframeUrl.href
 
-  return <div className="sc-iframe-wrapper" ref={(ref) => ref?.appendChild(iframeElement)} />
+  return (
+    <div
+      className={classNames('sc-iframe-wrapper', className)}
+      dangerouslySetInnerHTML={{ __html: iframeElement.outerHTML }}
+    />
+  )
 }

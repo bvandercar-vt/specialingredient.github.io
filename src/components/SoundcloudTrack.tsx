@@ -28,7 +28,7 @@ export const SoundcloudTrack = ({
     _additionalDescription === 'GET_FROM_SC' ? info.description : _additionalDescription
 
   return (
-    <div className="track-wrapper">
+    <div className="track">
       <p className="track-title">{title}</p>
       {genreDescription && <p className="track-genre-description">{genreDescription}</p>}
       {addlDescription && <p className="track-addl-description">{addlDescription}</p>}
