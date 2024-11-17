@@ -2,7 +2,7 @@ import { makeRequest } from '../utils/api-utils'
 
 const SC_CLIENT_ID = 'DgFeY88vapbGCcK7RrT2E33nmNQVWX82'
 
-export type OEmbed = {
+export interface OEmbed {
   title: string
   thumbnail_url: string
   html: string
