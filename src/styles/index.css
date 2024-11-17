@@ -44,9 +44,7 @@ a:visited {
   /* NOTE: height: 0 causes height calculations to be wierd */
   overflow: hidden !important;
   visibility: hidden !important;
-  position: absolute !important;
-  left: -9999px !important; /* Position it far off the screen */
-  top: -9999px !important; /* Position it far off the screen */
+  max-height: 0px;
 }
 
 .display-none {
