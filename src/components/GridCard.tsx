@@ -1,7 +1,6 @@
 import classNames from 'classnames'
 import {
   createContext,
-  createRef,
   type Dispatch,
   type PropsWithChildren,
   type SetStateAction,
@@ -13,11 +12,10 @@ import {
   useRef,
   useState,
 } from 'react'
-import { isScrolledToBottom, isScrolledToTop, triggerClick } from '../utils/html-utils'
+import { getIsMobile, isScrolledToBottom, isScrolledToTop, triggerClick } from '../utils/html-utils'
 
 export type GridCardProps = PropsWithChildren<{
   title: string
-  outerRef?: React.RefObject<HTMLDivElement>
 }>
 
 // Context to share expansion control across cards
@@ -32,9 +30,10 @@ export const GridCardContext = createContext<{
   allowMultiple: false,
 })
 
-export const GridCard = ({ title, outerRef = createRef(), children }: GridCardProps) => {
+export const GridCard = ({ title, children }: GridCardProps) => {
   const { expandedCards, setExpandedCards, allowMultiple, initiallyOpened } =
     useContext(GridCardContext)
+  const ref = useRef<HTMLDivElement>(null)
   const id = useId()
 
   const isExpanded = expandedCards.includes(id)
@@ -54,9 +53,14 @@ export const GridCard = ({ title, outerRef = createRef(), children }: GridCardPr
   }, [])
 
   const handleCollapseClick = useCallback(() => {
-    // if (!isExpanded) {
-    //   setShouldScroll(true)
-    // }
+    if (!isExpanded) {
+      setTimeout(() => {
+        const topItem = getIsMobile() ? titleRef : ref
+        requestAnimationFrame(() => {
+          topItem.current?.scrollIntoView({ behavior: 'smooth', block: 'start' })
+        })
+      }, 20)
+    }
     if (allowMultiple) {
       setExpandedCards((prev) =>
         isExpanded ? prev.filter((cardId) => cardId !== id) : [...prev, id],
@@ -65,19 +69,6 @@ export const GridCard = ({ title, outerRef = createRef(), children }: GridCardPr
       setExpandedCards(isExpanded ? [] : [id])
     }
   }, [isExpanded, expandedCards])
-
-  // useEffect(() => {
-  //   if (shouldScroll) {
-  //     const topItem = getIsMobile() ? titleRef : outerRef
-
-  //     setTimeout(() => {
-  //       requestAnimationFrame(() => {
-  //         topItem.current?.scrollIntoView({ behavior: 'smooth', block: 'start' })
-  //       })
-  //       setShouldScroll(false)
-  //     }, 7)
-  //   }
-  // }, [shouldScroll])
 
   useEffect(() => {
     const observer = new ResizeObserver((entries) => {
@@ -150,7 +141,7 @@ export const GridCard = ({ title, outerRef = createRef(), children }: GridCardPr
   }, [height, scrollPosition])
 
   return (
-    <div className="grid-card" role="region" aria-labelledby={titleId} ref={outerRef}>
+    <div className="grid-card" role="region" aria-labelledby={titleId} ref={ref}>
       <div
         className="card-title"
         role="button"
