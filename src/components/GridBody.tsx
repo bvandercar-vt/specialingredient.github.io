@@ -49,7 +49,7 @@ export const GridBody = () => {
               url="https://soundcloud.com/special-ingredient/subwoofer-sauce-vol-1?in=special-ingredient/sets/heavier-dubstep"
               title="Subwoofer Sauce Vol. 1"
               genreDescription="OG Deeper Late Night Wonky Riddim"
-              additionalDescription="I'm super picky about riddim, so if you're not a fan yet maybe I can bring you to the dark side 😉 Lotta wild sounds bouncing around the 3D space in this one, headphones recommended!"
+              additionalDescription="I'm super picky about riddim, so if you're not a fan yet maybe I can bring you to the dark side 😉 Headphones recommended, Lotta wild sounds bouncing around the 3D space in this one."
             />
             <SoundcloudTrack
               url="https://soundcloud.com/special-ingredient/aged-cheddar-mix-vol-1?in=special-ingredient/sets/heavier-dubstep"
