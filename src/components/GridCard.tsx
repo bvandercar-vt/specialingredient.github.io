@@ -33,18 +33,23 @@ export const GridCardContext = createContext<{
 export const GridCard = ({ title, children }: GridCardProps) => {
   const { expandedCards, setExpandedCards, allowMultiple, initiallyOpened } =
     useContext(GridCardContext)
+
+  const [isExpanded, setIsExpanded] = useState<boolean | undefined>(initiallyOpened)
+
   const ref = useRef<HTMLDivElement>(null)
   const id = useId()
 
-  const isExpanded = expandedCards.includes(id)
-
   // const [shouldScroll, setShouldScroll] = useState(false)
   const [scrollPosition, setScrollPosition] = useState(0)
-  const [height, setHeight] = useState(0)
+  const [height, setHeight] = useState<number>(0)
   const titleRef = useRef<HTMLDivElement>(null)
   const collapseContentRef = useRef<HTMLDivElement>(null)
 
   const titleId = useId()
+
+  useEffect(() => {
+    setIsExpanded(expandedCards.includes(id))
+  }, [expandedCards])
 
   useEffect(() => {
     if (initiallyOpened) {
@@ -165,7 +170,11 @@ export const GridCard = ({ title, children }: GridCardProps) => {
         onScroll={(e) => setScrollPosition(e.currentTarget.scrollTop)}
         // due to other cards collapsing, may need to scroll again once finished since proper position
         // on page can't be calculated while that collapse animation is occurring.
-        onTransitionEnd={scrollToTop}
+        onTransitionEnd={() => {
+          if (isExpanded) {
+            scrollToTop()
+          }
+        }}
       >
         {children}
       </div>
