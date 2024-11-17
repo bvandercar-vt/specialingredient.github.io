@@ -52,14 +52,17 @@ export const GridCard = ({ title, children }: GridCardProps) => {
     }
   }, [])
 
+  const scrollToTop = () => {
+    const topItem = getIsMobile() ? titleRef : ref
+    requestAnimationFrame(() => {
+      topItem.current?.scrollIntoView({ behavior: 'smooth', block: 'start' })
+    })
+  }
+
   const handleCollapseClick = useCallback(() => {
     if (!isExpanded) {
-      setTimeout(() => {
-        const topItem = getIsMobile() ? titleRef : ref
-        requestAnimationFrame(() => {
-          topItem.current?.scrollIntoView({ behavior: 'smooth', block: 'start' })
-        })
-      }, 20)
+      // scroll immediately if we can
+      scrollToTop()
     }
     if (allowMultiple) {
       setExpandedCards((prev) =>
@@ -160,6 +163,9 @@ export const GridCard = ({ title, children }: GridCardProps) => {
         className={classNames('collapse-content', { hidden: !isExpanded })}
         ref={collapseContentRef}
         onScroll={(e) => setScrollPosition(e.currentTarget.scrollTop)}
+        // due to other cards collapsing, may need to scroll again once finished since proper position
+        // on page can't be calculated while that collapse animation is occurring.
+        onTransitionEnd={scrollToTop}
       >
         {children}
       </div>

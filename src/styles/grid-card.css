@@ -18,7 +18,8 @@
 
 .grid-card {
   /* Position */
-  max-height: calc(var(--app-height) - 4em);
+  --card-max-height: calc(var(--app-height) - 4em);
+  max-height: var(--card-max-height);
   display: flex;
   flex-flow: column;
   position: relative; /* Needed for contents */
@@ -82,7 +83,8 @@
 .collapse-content {
   position: relative;
   overflow-y: auto;
-
+  max-height: var(--card-max-height);
+  transition: max-height 400ms;
   /* Gradient for overflow */
   /* --gradient-height: 20px;
   --mask-image: linear-gradient(

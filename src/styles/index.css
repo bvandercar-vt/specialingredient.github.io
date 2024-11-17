@@ -40,10 +40,6 @@ a:visited {
 }
 
 .hidden {
-  /* NOTE: display: none causes iframes load weird, causing issues */
-  /* NOTE: height: 0 causes height calculations to be wierd */
-  overflow: hidden !important;
-  visibility: hidden !important;
   max-height: 0px;
 }
 
