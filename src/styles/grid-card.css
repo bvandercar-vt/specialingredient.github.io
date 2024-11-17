@@ -11,6 +11,11 @@
   align-items: flex-start;
 }
 
+#main-body {
+  margin: auto;
+  width: 100%;
+}
+
 .grid-card {
   /* Position */
   max-height: calc(var(--app-height) - 4em);

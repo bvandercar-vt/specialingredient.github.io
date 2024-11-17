@@ -19,7 +19,7 @@ export function getWindowWidth() {
   return window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth
 }
 
-export function isMobile() {
+export function getIsMobile() {
   return getWindowWidth() < MOBILE_WIDTH
 }
 

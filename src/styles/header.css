@@ -84,6 +84,26 @@ header {
   background-color: rgb(66, 103, 178);
 }
 
+#click-below {
+  --hover-color-text: darkslateblue;
+  display: block;
+  text-align: center;
+  margin-left: auto;
+  margin-right: auto;
+  font-family: 'Roboto Condensed', sans-serif;
+  font-size: 1.5em;
+  padding-top: 0.5em;
+  color: orange;
+  font-weight: bold;
+  text-shadow:
+    0 0 5px var(--hover-color-text),
+    0 0 10px var(--hover-color-text),
+    0 0 15px var(--hover-color-text),
+    0 0 20px var(--hover-color-text),
+    0 0 30px var(--hover-color-text),
+    0 0 50px var(--hover-color-text);
+}
+
 @media (max-width: 1000px) {
   #header-right {
     /* Position */

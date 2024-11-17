@@ -1,31 +1,44 @@
 import classNames from 'classnames'
 import {
+  createContext,
   createRef,
-  PropsWithChildren,
+  type Dispatch,
+  type PropsWithChildren,
+  type SetStateAction,
   useCallback,
+  useContext,
   useEffect,
   useId,
   useMemo,
   useRef,
   useState,
 } from 'react'
-import { isMobile, isScrolledToBottom, isScrolledToTop, triggerClick } from '../utils/html-utils'
+import { getIsMobile, isScrolledToBottom, isScrolledToTop, triggerClick } from '../utils/html-utils'
 
 export type GridCardProps = PropsWithChildren<{
   title: string
-  collapsed?: boolean
-  onCollapse?: (isCollapsed: boolean) => void
   outerRef?: React.RefObject<HTMLDivElement>
 }>
 
-export const GridCard = ({
-  title,
-  collapsed,
-  onCollapse,
-  outerRef = createRef(),
-  children,
-}: GridCardProps) => {
-  const [isCollapsed, setCollapsed] = useState(collapsed ?? isMobile())
+// Context to share expansion control across cards
+export const GridCardContext = createContext<{
+  expandedCards: string[]
+  setExpandedCards: Dispatch<SetStateAction<string[]>>
+  allowMultiple: boolean
+  initiallyOpened?: boolean
+}>({
+  expandedCards: [],
+  setExpandedCards: () => {},
+  allowMultiple: false,
+})
+
+export const GridCard = ({ title, outerRef = createRef(), children }: GridCardProps) => {
+  const { expandedCards, setExpandedCards, allowMultiple, initiallyOpened } =
+    useContext(GridCardContext)
+  const id = useId()
+
+  const isExpanded = expandedCards.includes(id)
+
   const [shouldScroll, setShouldScroll] = useState(false)
   const [scrollPosition, setScrollPosition] = useState(0)
   const [height, setHeight] = useState(0)
@@ -34,32 +47,35 @@ export const GridCard = ({
 
   const titleId = useId()
 
-  const performCollapse = useCallback(
-    (collapsed: boolean) => {
-      onCollapse?.(collapsed)
-      setCollapsed(!collapsed)
-    },
-    [onCollapse],
-  )
+  useEffect(() => {
+    if (initiallyOpened) {
+      setExpandedCards((prev) => [...prev, id])
+    }
+  }, [])
 
   const handleCollapseClick = useCallback(() => {
-    if (isCollapsed) {
+    if (!isExpanded) {
       setShouldScroll(true)
     }
-    performCollapse(isCollapsed)
-  }, [isCollapsed])
-
-  useEffect(() => {
-    if (collapsed !== undefined) {
-      performCollapse(!collapsed)
+    if (allowMultiple) {
+      setExpandedCards((prev) =>
+        isExpanded ? prev.filter((cardId) => cardId !== id) : [...prev, id],
+      )
+    } else {
+      setExpandedCards(isExpanded ? [] : [id])
     }
-  }, [collapsed])
+  }, [isExpanded, expandedCards])
 
   useEffect(() => {
     if (shouldScroll) {
-      const topItem = isMobile() ? titleRef : outerRef
-      topItem.current?.scrollIntoView({ behavior: 'smooth', block: 'start' })
-      setShouldScroll(false)
+      const topItem = getIsMobile() ? titleRef : outerRef
+
+      setTimeout(() => {
+        requestAnimationFrame(() => {
+          topItem.current?.scrollIntoView({ behavior: 'smooth', block: 'start' })
+        })
+        setShouldScroll(false)
+      }, 7)
     }
   }, [shouldScroll])
 
@@ -83,7 +99,7 @@ export const GridCard = ({
 
   const [UpArrow, DownArrow] = useMemo(() => {
     const scrollRegion = collapseContentRef.current
-    if (!scrollRegion || isCollapsed) return [null, null]
+    if (!scrollRegion || !isExpanded) return [null, null]
 
     const ARROW_CLICK_SCROLL_DIST = 150 // distance scrolled when arrow clicked
     const ARROW_MAGNET_DISTANCE = 100 // when new scroll is within this distance from top/bottom, just scroll all the way to top/bottom
@@ -145,18 +161,18 @@ export const GridCard = ({
       >
         <h2 id={titleId}>{title}</h2>
         <span
-          className={classNames(`fa fa-lg fa-caret-down collapse-caret`, { open: !isCollapsed })}
+          className={classNames(`fa fa-lg fa-caret-down collapse-caret`, { open: isExpanded })}
         ></span>
       </div>
-      {!isCollapsed && UpArrow}
+      {isExpanded && UpArrow}
       <div
-        className={classNames('collapse-content', { hidden: isCollapsed })}
+        className={classNames('collapse-content', { hidden: !isExpanded })}
         ref={collapseContentRef}
         onScroll={(e) => setScrollPosition(e.currentTarget.scrollTop)}
       >
         {children}
       </div>
-      {!isCollapsed && DownArrow}
+      {isExpanded && DownArrow}
     </div>
   )
 }
