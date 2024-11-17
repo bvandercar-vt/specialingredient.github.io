@@ -13,7 +13,7 @@ import {
   useRef,
   useState,
 } from 'react'
-import { getIsMobile, isScrolledToBottom, isScrolledToTop, triggerClick } from '../utils/html-utils'
+import { isScrolledToBottom, isScrolledToTop, triggerClick } from '../utils/html-utils'
 
 export type GridCardProps = PropsWithChildren<{
   title: string
@@ -39,7 +39,7 @@ export const GridCard = ({ title, outerRef = createRef(), children }: GridCardPr
 
   const isExpanded = expandedCards.includes(id)
 
-  const [shouldScroll, setShouldScroll] = useState(false)
+  // const [shouldScroll, setShouldScroll] = useState(false)
   const [scrollPosition, setScrollPosition] = useState(0)
   const [height, setHeight] = useState(0)
   const titleRef = useRef<HTMLDivElement>(null)
@@ -54,9 +54,9 @@ export const GridCard = ({ title, outerRef = createRef(), children }: GridCardPr
   }, [])
 
   const handleCollapseClick = useCallback(() => {
-    if (!isExpanded) {
-      setShouldScroll(true)
-    }
+    // if (!isExpanded) {
+    //   setShouldScroll(true)
+    // }
     if (allowMultiple) {
       setExpandedCards((prev) =>
         isExpanded ? prev.filter((cardId) => cardId !== id) : [...prev, id],
@@ -66,18 +66,18 @@ export const GridCard = ({ title, outerRef = createRef(), children }: GridCardPr
     }
   }, [isExpanded, expandedCards])
 
-  useEffect(() => {
-    if (shouldScroll) {
-      const topItem = getIsMobile() ? titleRef : outerRef
+  // useEffect(() => {
+  //   if (shouldScroll) {
+  //     const topItem = getIsMobile() ? titleRef : outerRef
 
-      setTimeout(() => {
-        requestAnimationFrame(() => {
-          topItem.current?.scrollIntoView({ behavior: 'smooth', block: 'start' })
-        })
-        setShouldScroll(false)
-      }, 7)
-    }
-  }, [shouldScroll])
+  //     setTimeout(() => {
+  //       requestAnimationFrame(() => {
+  //         topItem.current?.scrollIntoView({ behavior: 'smooth', block: 'start' })
+  //       })
+  //       setShouldScroll(false)
+  //     }, 7)
+  //   }
+  // }, [shouldScroll])
 
   useEffect(() => {
     const observer = new ResizeObserver((entries) => {
