@@ -1,14 +1,20 @@
 import { useState } from 'react'
 import { getIsMobile } from '../utils/html-utils'
-import { GridCard, GridCardContext } from './GridCard'
+import { CardsExpandedState, GridCard, GridCardContext, type IsExpandingState } from './GridCard'
 import { SoundcloudTrack } from './SoundcloudTrack'
 
 export const GridBody = () => {
-  const [expandedCards, setExpandedCards] = useState<string[]>([])
   const allowMultiple = !getIsMobile()
+  const initiallyOpened = allowMultiple
+
+  const [gridCardStates, setGridCardStates] = useState<CardsExpandedState>()
+  const [isExpanding, setIsExpanding] = useState<IsExpandingState>()
+
+  const anyExpanded = gridCardStates?.some((c) => c.expanded)
+
   return (
     <div id="main-body" role="main" aria-label="DJ Mixes">
-      {expandedCards.length === 0 && (
+      {!anyExpanded && (
         <span id="click-below">
           Click for SoundCloud mixes! <span className="fa fa-arrow-down"></span>
         </span>
@@ -16,10 +22,12 @@ export const GridBody = () => {
       <div id="main-grid">
         <GridCardContext.Provider
           value={{
-            expandedCards,
-            setExpandedCards,
+            gridCardStates,
+            setGridCardStates,
             allowMultiple,
-            initiallyOpened: allowMultiple,
+            initiallyOpened,
+            isExpanding,
+            setIsExpanding,
           }}
         >
           <GridCard title="Trippy Bass — Wave / Downtempo / Psydub / etc.">
@@ -83,6 +91,18 @@ export const GridBody = () => {
     </GridCard>  */}
         </GridCardContext.Provider>
       </div>
+      {
+        // create a div at the bottom when expanding so can scroll title to the top
+        isExpanding && !isExpanding.wereAnyExpanded && (
+          <div
+            style={{
+              height:
+                parseInt(window.getComputedStyle(isExpanding.ref.current!).maxHeight) -
+                isExpanding.ref.current!.offsetHeight,
+            }}
+          ></div>
+        )
+      }
     </div>
   )
 }

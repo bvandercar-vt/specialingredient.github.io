@@ -1,9 +1,8 @@
 import classNames from 'classnames'
+import mergeRefs from 'merge-refs'
 import {
   createContext,
-  type Dispatch,
   type PropsWithChildren,
-  type SetStateAction,
   useCallback,
   useContext,
   useEffect,
@@ -16,27 +15,46 @@ import { getIsMobile, isScrolledToBottom, isScrolledToTop, triggerClick } from '
 
 export type GridCardProps = PropsWithChildren<{
   title: string
+  outerRef?: React.RefObject<HTMLDivElement>
 }>
+
+export type CardsExpandedState = Array<{ id: string; expanded: boolean }>
+
+type CardsExpandedStateHook = ReturnType<typeof useState<CardsExpandedState>>
+
+export interface IsExpandingState {
+  wereAnyExpanded: boolean
+  ref: React.RefObject<HTMLDivElement>
+}
+
+type IsExpandingStateHook = ReturnType<typeof useState<IsExpandingState | undefined>>
 
 // Context to share expansion control across cards
 export const GridCardContext = createContext<{
-  expandedCards: string[]
-  setExpandedCards: Dispatch<SetStateAction<string[]>>
+  gridCardStates: CardsExpandedStateHook[0]
+  setGridCardStates: CardsExpandedStateHook[1]
   allowMultiple: boolean
   initiallyOpened?: boolean
+  isExpanding?: IsExpandingStateHook[0]
+  setIsExpanding?: IsExpandingStateHook[1]
 }>({
-  expandedCards: [],
-  setExpandedCards: () => {},
+  gridCardStates: [],
+  setGridCardStates: () => {},
   allowMultiple: false,
 })
 
-export const GridCard = ({ title, children }: GridCardProps) => {
-  const { expandedCards, setExpandedCards, allowMultiple, initiallyOpened } =
-    useContext(GridCardContext)
+export const GridCard = ({ title, children, outerRef }: GridCardProps) => {
+  const {
+    gridCardStates,
+    setGridCardStates,
+    allowMultiple,
+    initiallyOpened = false,
+    setIsExpanding,
+  } = useContext(GridCardContext)
 
-  const [isExpanded, setIsExpanded] = useState<boolean | undefined>(initiallyOpened)
+  const [isExpanded, setIsExpanded] = useState<boolean>(initiallyOpened)
 
-  const ref = useRef<HTMLDivElement>(null)
+  const ref = mergeRefs(useRef<HTMLDivElement>(), outerRef) as React.RefObject<HTMLDivElement>
   const id = useId()
 
   // const [shouldScroll, setShouldScroll] = useState(false)
@@ -48,19 +66,23 @@ export const GridCard = ({ title, children }: GridCardProps) => {
   const titleId = useId()
 
   useEffect(() => {
-    setIsExpanded(expandedCards.includes(id))
-  }, [expandedCards])
+    setIsExpanded(Boolean(gridCardStates?.find((a) => a.id === id)?.expanded))
+  }, [gridCardStates])
 
   useEffect(() => {
-    if (initiallyOpened) {
-      setExpandedCards((prev) => [...prev, id])
-    }
+    setGridCardStates((prev = []) => {
+      const existingIndex = prev.findIndex((c) => c.id == id)
+      if (existingIndex >= 0) {
+        return prev.map((v) => (v.id == id ? { ...v, expanded: initiallyOpened } : v))
+      }
+      return [...prev, { id, expanded: initiallyOpened }]
+    })
   }, [])
 
   const scrollToTop = () => {
     const topItem = getIsMobile() ? titleRef : ref
     requestAnimationFrame(() => {
-      topItem.current?.scrollIntoView({ behavior: 'smooth', block: 'start' })
+      topItem?.current?.scrollIntoView({ behavior: 'smooth', block: 'start' })
     })
   }
 
@@ -68,15 +90,21 @@ export const GridCard = ({ title, children }: GridCardProps) => {
     if (!isExpanded) {
       // scroll immediately if we can
       scrollToTop()
+      setIsExpanding?.({
+        wereAnyExpanded: gridCardStates!.some((c) => c.expanded),
+        ref,
+      })
     }
     if (allowMultiple) {
-      setExpandedCards((prev) =>
-        isExpanded ? prev.filter((cardId) => cardId !== id) : [...prev, id],
+      setGridCardStates((prev = []) =>
+        prev.map((v) => (v.id == id ? { ...v, expanded: !isExpanded } : v)),
       )
     } else {
-      setExpandedCards(isExpanded ? [] : [id])
+      setGridCardStates((prev = []) =>
+        prev.map((v) => ({ ...v, expanded: v.id == id ? !isExpanded : false })),
+      )
     }
-  }, [isExpanded, expandedCards])
+  }, [isExpanded, gridCardStates])
 
   useEffect(() => {
     const observer = new ResizeObserver((entries) => {
@@ -173,6 +201,7 @@ export const GridCard = ({ title, children }: GridCardProps) => {
         onTransitionEnd={() => {
           if (isExpanded) {
             scrollToTop()
+            setIsExpanding?.(undefined)
           }
         }}
       >
