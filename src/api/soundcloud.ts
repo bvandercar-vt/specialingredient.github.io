@@ -11,7 +11,7 @@ export interface OEmbed {
   author_url: string
 }
 
-export function oEmbed(params: {
+export function getOEmbed(params: {
   url: string
   /** @default 100% */
   maxwidth?: number
