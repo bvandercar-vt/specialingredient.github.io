@@ -1,6 +1,11 @@
 import { useState } from 'react'
 import { getIsMobile } from '../utils/html-utils'
-import { CardsExpandedState, GridCard, GridCardContext, type IsExpandingState } from './GridCard'
+import {
+  GridCard,
+  GridCardContext,
+  type CardsExpandedState,
+  type IsExpandingState,
+} from './GridCard'
 import { SoundcloudTrack } from './SoundcloudTrack'
 
 export const GridBody = () => {
