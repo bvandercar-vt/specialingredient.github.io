@@ -11,18 +11,25 @@ type ScWidgetEventKeys =
   | 'OPEN_SHARE_PANEL'
   | 'ERROR'
 
-interface Window {
-  SC: {
-    Widget: {
-      (el: HTMLIFrameElement | string): {
-        play(): void
-        pause(): void
-        toggle(): void
-        bind(eventName: string, listener: () => void): void
-        unbind(eventName: string): void
-        load(url: string, options: Record<string, unknown>): void
+export interface TrackInfo extends Record<string, unknown> {
+  artwork_url: string
+}
+
+declare global {
+  interface Window {
+    SC: {
+      Widget: {
+        (el: HTMLIFrameElement | string): {
+          play(): void
+          pause(): void
+          toggle(): void
+          bind(eventName: string, listener: () => void): void
+          unbind(eventName: string): void
+          load(url: string, options: Record<string, unknown>): void
+          getCurrentSound(callback: (trackInfo: TrackInfo) => void): TrackInfo
+        }
+        Events: Record<ScWidgetEventKeys, string>
       }
-      Events: Record<ScWidgetEventKeys, string>
     }
   }
 }

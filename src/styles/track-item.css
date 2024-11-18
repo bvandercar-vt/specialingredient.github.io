@@ -37,26 +37,51 @@
   color: grey;
 }
 
+.sc-player {
+  display: flex; /* Enables flexbox */
+  align-items: center; /* Aligns items vertically */
+  height: 80px;
+  margin-top: 10px;
+}
+
 .sc-iframe-wrapper iframe {
   position: relative;
-  top: -10px; /* Hide top of iframe */
+  top: -60px; /* Hide top of iframe */
 }
 
 .sc-iframe-wrapper {
   position: relative;
   width: 100%;
-
-  height: 100px; /* Hide bottom of iframe */
+  height: 80px; /* Hide bottom of iframe */
   overflow: hidden; /* Hide the excess iframe */
+  border-radius: var(--border-radius);
+}
 
-  margin-top: 10px;
+.sc-player .circle {
+  /* Center the icon */
+  --circle-size: 2em;
+  height: var(--circle-size);
+  width: var(--circle-size);
+  margin: 0 2px;
+  vertical-align: middle;
+  background-color: orangered;
+  align-self: center;
+
+  /* Icon */
+  font-size: 2em;
+}
+
+.album-art {
+  vertical-align: middle;
+  align-self: center;
+  height: 80px;
   border-radius: var(--border-radius);
 }
 
 .sc-iframe-wrapper:hover {
-  height: 115px;
+  height: 90px;
 }
 
 .sc-iframe-wrapper.playing {
-  height: 115px;
+  height: 90px;
 }
