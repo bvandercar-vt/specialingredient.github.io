@@ -201,8 +201,8 @@ export const GridCard = ({ title, children, outerRef }: GridCardProps) => {
         onTransitionEnd={() => {
           if (isExpanded) {
             scrollToTop()
-            setIsExpanding?.(undefined)
           }
+          setIsExpanding?.(undefined)
         }}
       >
         {children}
