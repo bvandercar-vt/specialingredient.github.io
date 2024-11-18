@@ -198,11 +198,13 @@ export const GridCard = ({ title, children, outerRef }: GridCardProps) => {
         onScroll={(e) => setScrollPosition(e.currentTarget.scrollTop)}
         // due to other cards collapsing, may need to scroll again once finished since proper position
         // on page can't be calculated while that collapse animation is occurring.
-        onTransitionEnd={() => {
-          if (isExpanded) {
-            scrollToTop()
+        onTransitionEnd={(e) => {
+          if (e.target === e.currentTarget) {
+            if (isExpanded) {
+              scrollToTop()
+            }
+            setIsExpanding?.(undefined)
           }
-          setIsExpanding?.(undefined)
         }}
       >
         {children}

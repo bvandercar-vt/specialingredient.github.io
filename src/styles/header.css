@@ -41,9 +41,6 @@ header {
 }
 
 #social-links .circle {
-  /* Make a circle */
-  border-radius: 50%;
-
   /* Center the icon */
   --circle-size: 2em;
   height: var(--circle-size);

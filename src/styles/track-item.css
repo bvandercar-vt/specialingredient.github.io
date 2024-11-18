@@ -39,30 +39,20 @@
 
 .sc-iframe-wrapper iframe {
   position: relative;
-  top: -5px; /* Hide top of iframe */
+  top: -10px; /* Hide top of iframe */
 }
 
 .sc-iframe-wrapper {
   position: relative;
   width: 100%;
 
-  /* Hide bottom of iframe-- just enough to cut off privacy policy */
-  height: calc(var(--iframe-height) - 22px);
+  height: 100px; /* Hide bottom of iframe */
   overflow: hidden; /* Hide the excess iframe */
 
   margin-top: 10px;
   border-radius: var(--border-radius);
 }
 
-/* .privacy-policy-cover {
-  position: absolute;
-  height: 0px;
-  width: 100px;
-  left: 0px;
-  bottom: 0px;
-  z-index: 1;
-
-  background-color: orangered;
-  border-bottom-left-radius: var(--border-radius);
-  border-top-right-radius: var(--border-radius);
-} */
+.sc-iframe-wrapper:hover {
+  height: 115px;
+}

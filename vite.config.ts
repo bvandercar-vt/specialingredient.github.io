@@ -1,8 +1,7 @@
 import react from '@vitejs/plugin-react'
 import * as fs from 'fs'
 import { defineConfig } from 'vite'
-import { oEmbed } from './src/api/soundcloud'
-import { IFRAME_HEIGHT } from './src/constants'
+import { getOEmbed } from './src/api/soundcloud'
 
 export default defineConfig(() => ({
   base: `/`,
@@ -16,9 +15,9 @@ export default defineConfig(() => ({
         const soundcloudTracks = await Promise.all(
           Array.from(matches).map(async (match) => ({
             originalLink: match[1],
-            ...(await oEmbed({
+            ...(await getOEmbed({
               url: match[1],
-              maxheight: IFRAME_HEIGHT,
+              maxheight: 135,
               auto_play: false,
             })),
           })),

@@ -9,12 +9,12 @@ export interface SoundcloudIframeProps {
 }
 
 export const SoundcloudIframe = ({ html, title, className }: SoundcloudIframeProps) => {
-  const iframeElement = htmlToElement(html) as HTMLIFrameElement
-  iframeElement.title = title
-  const iframeUrl = new URL(iframeElement.src)
+  const dummyElement = htmlToElement(html) as HTMLIFrameElement
+  dummyElement.title = title
+  const iframeUrl = new URL(dummyElement.src)
   setSearchParams(iframeUrl, {
     auto_play: false,
-    hide_related: false,
+    hide_related: true,
     show_comments: true,
     show_user: false,
     show_reposts: true,
@@ -22,12 +22,12 @@ export const SoundcloudIframe = ({ html, title, className }: SoundcloudIframePro
     visual: true, // true =  artwork behind waveform, false = artwork to left
     show_artwork: true,
   })
-  iframeElement.src = iframeUrl.href
+  dummyElement.src = iframeUrl.href
 
   return (
     <div
       className={classNames('sc-iframe-wrapper', className)}
-      dangerouslySetInnerHTML={{ __html: iframeElement.outerHTML }}
+      dangerouslySetInnerHTML={{ __html: dummyElement.outerHTML }}
     />
   )
 }
