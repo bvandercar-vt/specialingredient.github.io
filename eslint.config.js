@@ -28,5 +28,6 @@ export default tseslint.config({
     '@typescript-eslint/no-empty-function': 'off',
     '@typescript-eslint/no-non-null-assertion': 'off',
     '@typescript-eslint/consistent-type-imports': 'error',
+    'react/jsx-no-useless-fragment': 'error',
   },
 })

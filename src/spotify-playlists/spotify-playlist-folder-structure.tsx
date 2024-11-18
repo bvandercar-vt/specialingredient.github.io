@@ -141,7 +141,7 @@ export function getSpotifyPlaylistFolderTreeNodes(): TreeNode[] {
       let tooltip: React.ReactNode
       if (playlistInfo.public) {
         if (playlistInfo.description) {
-          tooltip = <>{playlistInfo.description}</>
+          tooltip = playlistInfo.description
         }
       } else {
         tooltip = (
