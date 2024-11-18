@@ -56,3 +56,7 @@
 .sc-iframe-wrapper:hover {
   height: 115px;
 }
+
+.sc-iframe-wrapper.playing {
+  height: 115px;
+}
