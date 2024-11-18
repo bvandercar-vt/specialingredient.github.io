@@ -30,7 +30,7 @@ export const GridBody = () => {
             setIsExpanding,
           }}
         >
-          <GridCard title="Trippy Bass — Wave / Downtempo / Psydub / etc.">
+          <GridCard title="Wave / Downtempo / Psydub">
             <SoundcloudTrack
               url="https://soundcloud.com/special-ingredient/plant-life-vol-1?in=special-ingredient/sets/trippy-melty-wavy-bass"
               title="Plant Life Vol. 1"
