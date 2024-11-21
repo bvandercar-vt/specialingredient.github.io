@@ -12,7 +12,16 @@ type ScWidgetEventKeys =
   | 'ERROR'
 
 export interface TrackInfo extends Record<string, unknown> {
+  // incomplete
   artwork_url: string
+  caption: string
+  comment_count: number
+  description: string
+  likes_count: number
+  permalink_url: string
+  playback_count: number
+  reposts_count: number
+  waveform_url: string
 }
 
 declare global {

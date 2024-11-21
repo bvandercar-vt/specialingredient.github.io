@@ -5,6 +5,7 @@ import { setSearchParams } from '../utils/api-utils'
 import { htmlToElement } from '../utils/html-utils'
 
 export interface SoundcloudPlayerProps {
+  url: string
   html: string
   title: string
   className?: string
@@ -12,7 +13,10 @@ export interface SoundcloudPlayerProps {
   onPlayToggle?: (isPlaying: boolean) => void
 }
 
+const EXTERNAL_LINK_LABEL = 'Open new tab to SoundCloud for this track'
+
 export const SoundcloudPlayer = ({
+  url,
   html,
   title,
   className,
@@ -66,29 +70,41 @@ export const SoundcloudPlayer = ({
   }, [trackInfo?.artwork_url])
 
   return (
-    <div className="sc-player">
+    <div className="sc-player" role="group" aria-label="soundcloud player">
       {trackInfo && (
-        <span
-          className="play-button"
-          role="button"
-          aria-label={isPlaying ? 'Pause' : 'Play'}
-          onClick={() => {
-            const widget = window.SC.Widget(id)
-            widget.toggle()
-          }}
-        >
-          <i
-            className={classNames(
-              'circle fa',
-              {
-                'fa-play-circle': !isPlaying,
-                'fa-pause-circle': isPlaying,
-              },
-              'play-button-icon',
-            )}
-          />
-          <i className="fa fa-circle play-button-background" />
-        </span>
+        <>
+          <span
+            className="play-button"
+            role="button"
+            aria-label={isPlaying ? 'Pause' : 'Play'}
+            onClick={() => {
+              const widget = window.SC.Widget(id)
+              widget.toggle()
+            }}
+          >
+            <i
+              className={classNames(
+                'circle fa',
+                {
+                  'fa-play-circle': !isPlaying,
+                  'fa-pause-circle': isPlaying,
+                },
+                'play-button-icon',
+              )}
+            />
+            <i className="fa fa-circle play-button-background" />
+          </span>
+          <a
+            className="sc-external-link"
+            href={url}
+            target="_blank"
+            title={EXTERNAL_LINK_LABEL}
+            aria-label={EXTERNAL_LINK_LABEL}
+          >
+            <i className="fa fa-soundcloud" />
+            <i className="fa fa-external-link" />
+          </a>
+        </>
       )}
       <div
         className={classNames('sc-iframe-wrapper', className, { playing: isPlaying })}

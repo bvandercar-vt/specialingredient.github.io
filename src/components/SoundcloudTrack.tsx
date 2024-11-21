@@ -44,6 +44,7 @@ export const SoundcloudTrack = ({
       </div>
       {addlInfo && <p className="track-addl-info">{addlInfo}</p>}
       <SoundcloudPlayer
+        url={url}
         html={info.html}
         title={title}
         setAlbumArtUrl={setAlbumArtUrl}

@@ -61,23 +61,23 @@ header {
   background-image: none;
 }
 
-.fa-soundcloud {
+#social-links .fa-soundcloud {
   background-color: rgb(242, 111, 35);
 }
 
-.fa-twitter {
+#social-links .fa-twitter {
   background-color: rgb(29, 161, 242);
 }
 
-.fa-instagram {
+#social-links .fa-instagram {
   background-color: rgb(193, 53, 132);
 }
 
-.fa-reddit {
+#social-links .fa-reddit {
   background-color: rgb(255, 86, 0);
 }
 
-.fa-facebook {
+#social-links .fa-facebook {
   background-color: rgb(66, 103, 178);
 }
 
