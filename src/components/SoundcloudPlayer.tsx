@@ -68,14 +68,16 @@ export const SoundcloudPlayer = ({
   return (
     <div className="sc-player">
       {trackInfo && (
-        <span className="play-button">
+        <span
+          className="play-button"
+          role="button"
+          aria-label={isPlaying ? 'Pause' : 'Play'}
+          onClick={() => {
+            const widget = window.SC.Widget(id)
+            widget.toggle()
+          }}
+        >
           <i
-            role="button"
-            onClick={() => {
-              const widget = window.SC.Widget(id)
-              widget.toggle()
-            }}
-            aria-label={isPlaying ? 'Pause' : 'Play'}
             className={classNames(
               'circle fa',
               {
