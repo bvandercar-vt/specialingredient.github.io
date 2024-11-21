@@ -59,17 +59,17 @@
 
 .sc-stats {
   position: absolute;
-  top: 1.2em;
+  top: 1em;
   right: 5.1em;
   z-index: 1;
-  font-size: 0.75em;
+  font-size: 0.8em;
   color: darkslateblue;
   display: inline-flex;
   gap: 0.5em;
+  pointer-events: none;
 }
 
 .sc-stat .fa {
-  margin-top: 0.3em;
   font-size: 0.7em;
 }
 
