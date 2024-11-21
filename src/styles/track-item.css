@@ -47,6 +47,7 @@
 .sc-iframe-wrapper iframe {
   position: relative;
   top: -60px; /* Hide top of iframe */
+  filter: invert(100%) hue-rotate(180deg);
 }
 
 .sc-iframe-wrapper {
