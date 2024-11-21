@@ -75,10 +75,14 @@ export const SoundcloudPlayer = ({
               widget.toggle()
             }}
             aria-label={isPlaying ? 'Pause' : 'Play'}
-            className={classNames('play-button-icon circle fa', {
-              'fa-play-circle': !isPlaying,
-              'fa-pause-circle': isPlaying,
-            })}
+            className={classNames(
+              'circle fa',
+              {
+                'fa-play-circle': !isPlaying,
+                'fa-pause-circle': isPlaying,
+              },
+              'play-button-icon',
+            )}
           />
           <span className="fa fa-circle play-button-background"></span>
         </span>
