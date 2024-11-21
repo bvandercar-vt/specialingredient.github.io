@@ -19,10 +19,19 @@
   border-radius: var(--border-radius);
 }
 
+.sc-iframe-wrapper:hover {
+  height: 90px;
+}
+
+.sc-iframe-wrapper.playing {
+  height: 90px;
+  box-shadow: 0 0 10px 2px cyan;
+}
+
 .play-button {
   position: absolute;
-  top: 1px;
-  left: -6px;
+  top: 0.1em;
+  left: 0px;
   z-index: 1;
 }
 
@@ -39,19 +48,10 @@
 .play-button-background {
   position: absolute;
   top: 0.1em;
-  left: 0.2em;
+  left: 0.1em;
   color: white;
   background: none;
   border: none;
   font-size: 2.5em;
   z-index: -1;
-}
-
-.sc-iframe-wrapper:hover {
-  height: 90px;
-}
-
-.sc-iframe-wrapper.playing {
-  height: 90px;
-  box-shadow: 0 0 10px 2px cyan;
 }

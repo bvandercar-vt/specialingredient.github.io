@@ -69,7 +69,8 @@ export const SoundcloudPlayer = ({
     <div className="sc-player">
       {trackInfo && (
         <span className="play-button">
-          <button
+          <i
+            role="button"
             onClick={() => {
               const widget = window.SC.Widget(id)
               widget.toggle()
@@ -84,7 +85,7 @@ export const SoundcloudPlayer = ({
               'play-button-icon',
             )}
           />
-          <span className="fa fa-circle play-button-background"></span>
+          <i className="fa fa-circle play-button-background" />
         </span>
       )}
       <div
