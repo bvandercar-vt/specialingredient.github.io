@@ -59,11 +59,14 @@
 
 .sc-stats {
   position: absolute;
-  top: 1em;
-  right: 5.1em;
+  top: 0.9em;
+  right: 5em;
   z-index: 1;
   font-size: 0.8em;
   color: darkslateblue;
+  border-radius: 4px;
+  background-color: rgba(0, 0, 0, 0.65);
+  padding: 0.15em 0.3em;
   display: inline-flex;
   gap: 0.5em;
   pointer-events: none;
@@ -90,6 +93,7 @@
   z-index: 1;
   border-radius: 4px;
   outline: var(--sc-link-color) solid 1px;
+  background-color: rgba(0, 0, 0, 0.55);
   padding: 0.1em 0.25em;
   display: inline-flex;
   gap: 0.3em;
