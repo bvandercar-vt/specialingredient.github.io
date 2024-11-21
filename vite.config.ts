@@ -23,7 +23,7 @@ export default defineConfig(() => ({
           })),
         )
 
-        fs.writeFileSync('soundcloud-data.json', JSON.stringify(soundcloudTracks, null, 2))
+        fs.writeFileSync('soundcloud-data.json', JSON.stringify(soundcloudTracks, null, 2) + '\n')
       },
     },
     react(),
