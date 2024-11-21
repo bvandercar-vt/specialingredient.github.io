@@ -21,13 +21,13 @@
 
 .play-button {
   position: absolute;
-  top: 0px;
-  left: -7px;
+  top: 1px;
+  left: -6px;
   z-index: 1;
-  margin: 0 2px;
 }
 
 .play-button-icon {
+  position: absolute;
   color: orangered;
   border: none;
   background: none;
