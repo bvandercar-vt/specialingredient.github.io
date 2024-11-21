@@ -17,13 +17,13 @@ export default defineConfig(() => ({
             originalLink: match[1],
             ...(await getOEmbed({
               url: match[1],
-              maxheight: 166,
+              maxheight: 135,
               auto_play: false,
             })),
           })),
         )
 
-        fs.writeFileSync('soundcloud-data.json', JSON.stringify(soundcloudTracks, null, 2))
+        fs.writeFileSync('soundcloud-data.json', JSON.stringify(soundcloudTracks, null, 2) + '\n')
       },
     },
     react(),
