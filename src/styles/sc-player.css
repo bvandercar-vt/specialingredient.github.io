@@ -1,0 +1,54 @@
+.sc-player {
+  display: flex; /* Enables flexbox */
+  align-items: center; /* Aligns items vertically */
+  height: 100px;
+  position: relative;
+}
+
+.sc-iframe-wrapper iframe {
+  position: relative;
+  top: -60px; /* Hide top of iframe */
+  filter: invert(100%) hue-rotate(180deg);
+}
+
+.sc-iframe-wrapper {
+  position: relative;
+  width: 100%;
+  height: 80px; /* Hide bottom of iframe */
+  overflow: hidden; /* Hide the excess iframe */
+  border-radius: var(--border-radius);
+}
+
+.play-button {
+  position: absolute;
+  top: 0px;
+  left: -7px;
+  z-index: 1;
+  margin: 0 2px;
+}
+
+.play-button-icon {
+  color: orangered;
+  border: none;
+  background: none;
+  font-size: 3em;
+}
+
+.play-button-background {
+  position: absolute;
+  top: 0.1em;
+  left: 0.2em;
+  color: white;
+  background: none;
+  font-size: 2.5em;
+  z-index: -1;
+}
+
+.sc-iframe-wrapper:hover {
+  height: 90px;
+}
+
+.sc-iframe-wrapper.playing {
+  height: 90px;
+  box-shadow: 0 0 10px 2px cyan;
+}

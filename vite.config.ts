@@ -17,7 +17,7 @@ export default defineConfig(() => ({
             originalLink: match[1],
             ...(await getOEmbed({
               url: match[1],
-              maxheight: 135,
+              maxheight: 166,
               auto_play: false,
             })),
           })),

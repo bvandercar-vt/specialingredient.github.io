@@ -1,21 +1,26 @@
+import classNames from 'classnames'
+import { useState } from 'react'
 import data from '../../soundcloud-data.json'
-import { SoundcloudIframe } from './SoundcloudIframe'
+import { SoundcloudPlayer } from './SoundcloudPlayer'
 
 export interface SoundcloudTrackProps {
   url: string
   title?: string
-  genreDescription?: string
-  additionalDescription?: string
+  subTitle?: string
+  additionalInfo?: string
 }
 
 export const SoundcloudTrack = ({
   url,
   title: _title,
-  genreDescription,
-  additionalDescription: _additionalDescription,
+  subTitle,
+  additionalInfo: _additionalInfo,
 }: SoundcloudTrackProps) => {
   const info = data.find((d) => d.originalLink === url)
   if (!info) throw new Error(`no info found from url ${url}`)
+
+  const [isPlaying, onPlayToggle] = useState(false)
+  const [albumArtUrl, setAlbumArtUrl] = useState<string>()
 
   const title =
     _title ??
@@ -24,15 +29,26 @@ export const SoundcloudTrack = ({
       .replaceAll('[w TRACKLIST]', '')
       .replaceAll('[MASHUP]', '')
 
-  const addlDescription =
-    _additionalDescription === 'GET_FROM_SC' ? info.description : _additionalDescription
+  const addlInfo = _additionalInfo === 'GET_FROM_SC' ? info.description : _additionalInfo
 
   return (
     <div className="track">
-      <p className="track-title">{title}</p>
-      {genreDescription && <p className="track-genre-description">{genreDescription}</p>}
-      {addlDescription && <p className="track-addl-description">{addlDescription}</p>}
-      <SoundcloudIframe html={info.html} title={title} />
+      <div className="track-art-and-title">
+        {albumArtUrl && <img src={albumArtUrl} className="album-art" />}
+        <span className="track-title-wrapper" role="heading" aria-level={3}>
+          <p className={classNames('track-title', { 'shadow-darkslateblue': isPlaying })}>
+            {title}
+          </p>
+          {subTitle && <p className="track-subtitle">{subTitle}</p>}
+        </span>
+      </div>
+      {addlInfo && <p className="track-addl-info">{addlInfo}</p>}
+      <SoundcloudPlayer
+        html={info.html}
+        title={title}
+        setAlbumArtUrl={setAlbumArtUrl}
+        onPlayToggle={onPlayToggle}
+      />
     </div>
   )
 }

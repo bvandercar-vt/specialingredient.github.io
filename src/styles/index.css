@@ -1,7 +1,8 @@
 @import 'scrollbar.css';
 @import 'header.css';
 @import 'grid-card.css';
-@import 'track-item.css';
+@import 'sc-track.css';
+@import 'sc-player.css';
 @import 'tree.css';
 @import 'folder-tree.css';
 @import 'tooltip.css';
@@ -25,7 +26,7 @@ body {
 
 p {
   margin-top: 0;
-  margin-bottom: 0.25em;
+  margin-bottom: 0;
   line-height: 1.2em;
 }
 
@@ -49,6 +50,16 @@ a:visited {
 
 .circle {
   border-radius: 50%;
+}
+
+.shadow-darkslateblue {
+  --shadow-color: cyan;
+  text-shadow:
+    0 0 5px black,
+    0 0 5px var(--shadow-color),
+    0 0 10px var(--shadow-color),
+    0 0 15px var(--shadow-color),
+    0 0 30px var(--shadow-color);
 }
 
 @media (max-width: 800px) {

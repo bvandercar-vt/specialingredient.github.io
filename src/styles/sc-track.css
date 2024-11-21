@@ -1,0 +1,39 @@
+.track {
+  position: relative;
+  margin: 10px;
+  font-family: 'Outfit', sans-serif;
+}
+
+.track-art-and-title {
+  display: flex;
+  align-items: flex-start; /* Aligns items at the top */
+  gap: 10px;
+  margin-bottom: 2px;
+  padding-bottom: 0px;
+}
+
+.album-art {
+  vertical-align: middle;
+  align-self: center;
+  height: 80px;
+  border-radius: var(--border-radius);
+}
+
+.track-title {
+  font-size: 1.2em;
+  margin-bottom: 0.2em;
+}
+
+.track-subtitle {
+  font-size: 1.2em;
+  font-weight: bold;
+  color: turquoise;
+}
+
+.track-addl-info {
+  margin-bottom: 0em;
+  font-size: 1em;
+  font-family: 'Barlow', sans-serif;
+  text-align: justify;
+  color: grey;
+}
