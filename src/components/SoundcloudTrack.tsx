@@ -7,7 +7,7 @@ export interface SoundcloudTrackProps {
   url: string
   title?: string
   subTitle?: string
-  additionalInfo?: string
+  additionalInfo?: string | React.ReactNode
 }
 
 export const SoundcloudTrack = ({

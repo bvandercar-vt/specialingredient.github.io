@@ -36,4 +36,13 @@
   font-family: 'Barlow', sans-serif;
   text-align: justify;
   color: grey;
+  line-height: 1.1em;
+}
+
+.track-addl-info a {
+  color: darkslateblue !important;
+}
+
+.track-addl-info .fa {
+  font-size: 0.8em;
 }
