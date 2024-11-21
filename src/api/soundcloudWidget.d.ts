@@ -32,7 +32,7 @@ declare global {
           play(): void
           pause(): void
           toggle(): void
-          bind(eventName: string, listener: () => void): void
+          bind(eventName: string, listener: (info: Record<string, unknown>) => void): void
           unbind(eventName: string): void
           load(url: string, options: Record<string, unknown>): void
           getCurrentSound(callback: (trackInfo: TrackInfo) => void): TrackInfo

@@ -94,6 +94,20 @@ export const SoundcloudPlayer = ({
             />
             <i className="fa fa-circle play-button-background" />
           </span>
+          <span className="sc-stats">
+            <span className="sc-stat play-count">
+              <i className="fa fa-play" />
+              {trackInfo.playback_count.toLocaleString()}
+            </span>
+            <span className="sc-stat likes-count">
+              <i className="fa fa-heart" />
+              {trackInfo.likes_count.toLocaleString()}
+            </span>{' '}
+            <span className="sc-stat comment-count">
+              <i className="fa fa-comment" />
+              {trackInfo.comment_count.toLocaleString()}
+            </span>
+          </span>
           <a
             className="sc-external-link"
             href={url}

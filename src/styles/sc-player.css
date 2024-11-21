@@ -57,6 +57,28 @@
   z-index: -1;
 }
 
+.sc-stats {
+  position: absolute;
+  top: 1.2em;
+  right: 5.1em;
+  z-index: 1;
+  font-size: 0.75em;
+  color: darkslateblue;
+  display: inline-flex;
+  gap: 0.5em;
+}
+
+.sc-stat .fa {
+  margin-top: 0.3em;
+  font-size: 0.7em;
+}
+
+.sc-stat {
+  display: inline-flex;
+  gap: 0.25em;
+  align-items: center;
+}
+
 .sc-external-link {
   --sc-link-color: rgb(190, 50, 0);
   color: var(--sc-link-color) !important;
@@ -68,9 +90,7 @@
   z-index: 1;
   border-radius: 4px;
   outline: var(--sc-link-color) solid 1px;
-  padding: 0 2px;
-}
-
-.sc-external-link .fa-soundcloud {
-  margin-right: 0.2em;
+  padding: 0.1em 0.25em;
+  display: inline-flex;
+  gap: 0.3em;
 }
