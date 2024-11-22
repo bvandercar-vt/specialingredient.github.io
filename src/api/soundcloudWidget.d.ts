@@ -36,6 +36,7 @@ declare global {
           unbind(eventName: string): void
           load(url: string, options: Record<string, unknown>): void
           getCurrentSound(callback: (trackInfo: TrackInfo) => void): TrackInfo
+          getPosition(callback: (position: number) => void): number
         }
         Events: Record<ScWidgetEventKeys, string>
       }

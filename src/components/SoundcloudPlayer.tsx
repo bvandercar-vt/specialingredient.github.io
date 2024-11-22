@@ -13,7 +13,7 @@ export interface SoundcloudPlayerProps {
   onPlayToggle?: (isPlaying: boolean) => void
 }
 
-const EXTERNAL_LINK_LABEL = 'Open new tab to SoundCloud for this track'
+const EXTERNAL_LINK_LABEL = 'New tab on SoundCloud.com for this track'
 
 export const SoundcloudPlayer = ({
   url,
