@@ -1,3 +1,6 @@
+import '@fontsource/barlow'
+import '@fontsource/outfit'
+import '@fontsource/roboto-condensed'
 import 'font-awesome/css/font-awesome.min.css'
 import './styles/index.css'
 

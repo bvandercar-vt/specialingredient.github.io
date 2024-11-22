@@ -83,7 +83,7 @@
 }
 
 .sc-external-link {
-  --sc-link-color: rgb(190, 50, 0);
+  --sc-link-color: rgb(160, 70, 1);
   color: var(--sc-link-color) !important;
   position: absolute;
   top: 0.8em;

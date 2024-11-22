@@ -52,6 +52,9 @@
     "vite-plugin-fs": "^1"
   },
   "dependencies": {
+    "@fontsource/barlow": "^5.1.0",
+    "@fontsource/outfit": "^5.1.0",
+    "@fontsource/roboto-condensed": "^5.1.0",
     "classnames": "^2",
     "font-awesome": "^4.7",
     "lodash": "^4",
