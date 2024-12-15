@@ -18,7 +18,7 @@ export const Header = () => {
           <br />
           AKA DJ Smoothbrain 😉
         </div>
-        <div id="social-links" role="region" aria-label="links and social media">
+        <div id="social-links" role="region" aria-label="social links">
           <a
             className="circle fa fa-soundcloud"
             title="SoundCloud"
