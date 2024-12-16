@@ -24,31 +24,31 @@ export const Header = () => {
             title="SoundCloud"
             href="https://www.soundcloud.com/special-ingredient"
             target="_blank"
-          ></a>
+          />
           <a
             className="circle fa fa-twitter"
             title="Twitter"
             href="https://www.twitter.com/dj_smoothbrain"
             target="_blank"
-          ></a>
+          />
           <a
             className="circle fa fa-instagram"
             title="Instagram"
             href="https://www.instagram.com/special_ingredient_bass"
             target="_blank"
-          ></a>
+          />
           <a
             className="circle fa fa-reddit"
             title="Reddit"
             href="https://www.reddit.com/user/SpecialIngredient"
             target="_blank"
-          ></a>
+          />
           <a
             className="circle fa fa-facebook"
             title="Facebook"
             href="https://www.facebook.com/profile.php?id=100087612335247"
             target="_blank"
-          ></a>
+          />
         </div>
       </div>
     </header>

@@ -21,7 +21,7 @@ export const GridBody = () => {
     <div id="main-body" role="main" aria-label="DJ Mixes">
       {!anyExpanded && (
         <span id="click-below">
-          Click for SoundCloud mixes! <span className="fa fa-arrow-down"></span>
+          Click for SoundCloud mixes! <span className="fa fa-arrow-down" />
         </span>
       )}
       <div id="main-grid">
@@ -84,7 +84,7 @@ export const GridBody = () => {
                 <>
                   Cooked up an extra special bass journey set with{' '}
                   <a href="https://soundcloud.com/saumiimusic" target="__blank">
-                    Saumii <span className="fa fa-external-link"></span>
+                    Saumii <span className="fa fa-external-link" />
                   </a>{' '}
                   for a sold out crowd at Larimer Lounge, rinsing some of our favorite tracks we've
                   shared over the years of DJing together.
@@ -120,7 +120,7 @@ export const GridBody = () => {
                 parseInt(window.getComputedStyle(isExpanding.ref.current!).maxHeight) -
                 isExpanding.ref.current!.offsetHeight,
             }}
-          ></div>
+          />
         )
       }
     </div>

@@ -189,7 +189,7 @@ export const GridCard = ({ title, children, outerRef }: GridCardProps) => {
         <h2 id={titleId}>{title}</h2>
         <span
           className={classNames(`fa fa-lg fa-caret-down collapse-caret`, { open: isExpanded })}
-        ></span>
+        />
       </div>
       {isExpanded && UpArrow}
       <div
