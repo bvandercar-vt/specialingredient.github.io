@@ -4,7 +4,6 @@
   "version": "1.0.0",
   "type": "module",
   "description": "Special Ingredient Bass Music",
-  "main": "index.js",
   "homepage": "specialingredientbass.com",
   "scripts": {
     "start": "yarn dev",
