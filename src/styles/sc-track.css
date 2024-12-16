@@ -1,6 +1,6 @@
 .track {
   position: relative;
-  margin: 10px;
+  margin: 5px 10px;
   font-family: 'Outfit';
 }
 
@@ -49,6 +49,6 @@
 
 @media (max-width: 800px) {
   .album-art {
-    height: 4.5em;
+    height: 4.7em;
   }
 }
