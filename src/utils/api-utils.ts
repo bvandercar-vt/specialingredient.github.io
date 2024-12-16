@@ -20,7 +20,7 @@ export function makeRequest(
   setSearchParams(urlObj, params)
 
   return fetch(urlObj.href, { ...requestArgs, method }).then(async (response) => {
-    if (response.status < 200 || response.status > 300) {
+    if (!response.ok) {
       throw new Error(`${response.status}: ${response.statusText} - ${await response.text()}`)
     }
     return response
