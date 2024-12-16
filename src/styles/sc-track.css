@@ -15,7 +15,7 @@
 .album-art {
   vertical-align: middle;
   align-self: center;
-  height: 80px;
+  height: 5em;
   border-radius: var(--border-radius);
 }
 
@@ -45,4 +45,10 @@
 
 .track-addl-info .fa {
   font-size: 0.8em;
+}
+
+@media (max-width: 800px) {
+  .album-art {
+    height: 4.5em;
+  }
 }
