@@ -49,6 +49,15 @@ export const Header = () => {
             href="https://www.facebook.com/profile.php?id=100087612335247"
             target="_blank"
           />
+          <a
+            className="circle fa fa-envelope"
+            title="Email"
+            onClick={() => {
+              const EMAIL = 'SpecialIngredientBass@gmail.com'
+              navigator.clipboard.writeText(EMAIL)
+              alert('Copied to clipboard: ' + EMAIL)
+            }}
+          />
         </div>
       </div>
     </header>

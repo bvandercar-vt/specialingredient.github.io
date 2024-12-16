@@ -47,7 +47,7 @@ header {
   width: var(--circle-size);
   line-height: var(--circle-size);
   text-align: center;
-  margin: 0 2px;
+  margin: 0 3px;
 
   /* Icon */
   font-size: 1.5em;
@@ -79,6 +79,10 @@ header {
 
 #social-links .fa-facebook {
   background-color: rgb(66, 103, 178);
+}
+
+#social-links .fa-envelope {
+  background-color: DeepSkyBlue;
 }
 
 #click-below {
